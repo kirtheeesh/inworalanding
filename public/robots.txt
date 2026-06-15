@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemaps
+Sitemap: https://inwora.in/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
+
+# Popular search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
