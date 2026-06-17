@@ -82,17 +82,23 @@ function StepCard({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: direction === "left" ? -50 : 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.65, delay: index * 0.08, ease: [0.22, 0.61, 0.36, 1] }}
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
-      className={`group relative rounded-2xl border ${step.border} ${step.bg} p-6 transition-all duration-300 overflow-hidden`}
+      initial={{ opacity: 0, x: direction === "left" ? -50 : 50, rotateY: direction === "left" ? 15 : -15 }}
+      whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ 
+        y: -10, 
+        rotateX: 2,
+        scale: 1.02,
+        boxShadow: `0 20px 40px -10px rgba(0,0,0,0.1)`,
+        borderColor: "rgba(var(--primary), 0.3)"
+      }}
+      className={`group relative rounded-3xl border ${step.border} ${step.bg} p-8 transition-all duration-500 overflow-hidden perspective-1000`}
       data-testid={`step-card-${index + 1}`}
     >
       {/* Large background number watermark */}
       <span
-        className="pointer-events-none absolute -right-3 -top-4 select-none text-8xl font-black opacity-[0.04] dark:opacity-[0.06]"
+        className="pointer-events-none absolute -right-4 -top-6 select-none text-9xl font-black opacity-[0.05] transition-transform group-hover:scale-110 group-hover:-translate-y-4 duration-700"
         style={{ fontFamily: "var(--app-font-display)" }}
       >
         {step.number}

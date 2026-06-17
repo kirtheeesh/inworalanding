@@ -81,15 +81,21 @@ export default function Services() {
       <div className="container relative z-10 mx-auto px-4 md:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 text-center"
         >
-          <span className="inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary mb-4">
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary mb-4"
+          >
             Our Expertise
-          </span>
+          </motion.span>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
             style={{ fontFamily: "var(--app-font-display)" }}
@@ -109,33 +115,43 @@ export default function Services() {
           viewport={{ once: true, margin: "-80px" }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {services.map((service) => (
+          {services.map((service, idx) => (
             <motion.div
               key={service.title}
               variants={cardVariants}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className={`group relative flex flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 ${service.border} ${service.glow}`}
+              whileHover={{ 
+                y: -10, 
+                boxShadow: "0 25px 50px -12px rgba(var(--primary), 0.15)",
+                borderColor: "rgba(var(--primary), 0.3)" 
+              }}
+              className={`group relative flex flex-col rounded-2xl border border-border bg-card p-8 transition-all duration-500 overflow-hidden ${service.glow}`}
               data-testid={`card-service-${service.title.toLowerCase().replace(/\s+/g, "-")}`}
             >
+              {/* Decorative background circle */}
+              <div className={`absolute -right-4 -top-4 h-24 w-24 rounded-full ${service.bg} opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500`} />
+
               {/* Icon */}
-              <div className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl ${service.bg} transition-transform group-hover:scale-110`}>
-                <service.icon className={`h-6 w-6 ${service.color}`} />
-              </div>
+              <motion.div 
+                whileHover={{ rotate: 5, scale: 1.1 }}
+                className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl ${service.bg} transition-all duration-500 shadow-sm group-hover:shadow-md`}
+              >
+                <service.icon className={`h-7 w-7 ${service.color}`} />
+              </motion.div>
 
               {/* Content */}
-              <h3 className="text-base font-bold text-foreground mb-2" style={{ fontFamily: "var(--app-font-display)" }}>
+              <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300" style={{ fontFamily: "var(--app-font-display)" }}>
                 {service.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">{service.desc}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed flex-1 group-hover:text-foreground/80 transition-colors duration-300">{service.desc}</p>
 
               {/* Arrow link */}
-              <div className={`mt-5 flex items-center gap-1.5 text-sm font-semibold ${service.color} opacity-0 group-hover:opacity-100 transition-opacity`}>
-                Learn more
-                <span className="transition-transform group-hover:translate-x-1">→</span>
+              <div className={`mt-6 flex items-center gap-2 text-sm font-bold ${service.color} opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300`}>
+                See our approach
+                <span className="transition-transform group-hover:translate-x-1.5 duration-300">→</span>
               </div>
 
-              {/* Gradient bottom bar — reveals on hover */}
-              <div className={`absolute bottom-0 left-0 right-0 h-[3px] rounded-b-2xl bg-gradient-to-r ${service.gradient} scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left`} />
+              {/* Vertical accent bar */}
+              <div className={`absolute top-0 left-0 bottom-0 w-[4px] bg-gradient-to-b ${service.gradient} scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top`} />
             </motion.div>
           ))}
         </motion.div>

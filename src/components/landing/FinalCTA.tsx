@@ -11,11 +11,11 @@ const perks = [
 export default function FinalCTA() {
   return (
     <section id="contact" className="relative overflow-hidden py-24 md:py-36">
-      {/* Animated gradient background */}
+      {/* Animated gradient background - Updated to theme green */}
       <div
         className="absolute inset-0 animate-gradient-shift"
         style={{
-          background: "linear-gradient(135deg, hsl(235,80%,40%), hsl(250,75%,50%), hsl(200,80%,40%), hsl(235,80%,40%))",
+          background: "linear-gradient(135deg, hsl(120,61%,25%), hsl(140,38%,35%), hsl(120,61%,34%), hsl(140,38%,20%))",
         }}
       />
 
@@ -54,10 +54,10 @@ export default function FinalCTA() {
 
       <div className="container relative z-10 mx-auto px-4 md:px-8 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 36 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 36, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl mx-auto"
         >
           <motion.span
@@ -65,20 +65,20 @@ export default function FinalCTA() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-block rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white mb-6 backdrop-blur"
+            className="inline-block rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-white mb-6 backdrop-blur"
           >
             Get Started Today
           </motion.span>
 
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1] mb-6"
+            className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1] mb-6"
             style={{ fontFamily: "var(--app-font-display)" }}
           >
             Build smarter digital products with{" "}
-            <span className="text-amber-300 drop-shadow-lg">INWORA</span>
+            <span className="text-secondary drop-shadow-md">INWORA</span>
           </h2>
 
-          <p className="text-lg text-white/80 leading-relaxed mb-10 max-w-xl mx-auto">
+          <p className="text-lg text-white/80 leading-relaxed mb-10 max-w-xl mx-auto font-medium">
             Whether you need a mobile app, a subscription platform, or a business software solution — INWORA has the expertise to bring your vision to life. Let's build something extraordinary together.
           </p>
 
@@ -93,21 +93,21 @@ export default function FinalCTA() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <Button
                 size="lg"
-                className="rounded-full bg-white text-primary hover:bg-white/90 px-8 font-semibold transition-all"
+                className="rounded-full bg-white text-primary hover:bg-secondary transition-all px-8 py-7 text-base font-bold shadow-2xl shadow-black/20"
                 data-testid="button-contact-sales"
               >
                 Contact Sales
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-full border-white/40 text-white bg-white/10 hover:bg-white/20 px-8 font-semibold backdrop-blur"
+                className="rounded-full border-white/40 text-white bg-white/10 hover:bg-white/20 px-8 py-7 text-base font-bold backdrop-blur transition-all"
                 data-testid="button-schedule-demo"
               >
-                <Calendar className="mr-2 h-4 w-4" />
+                <Calendar className="mr-2 h-5 w-5" />
                 Schedule Demo
               </Button>
             </motion.div>
@@ -119,18 +119,20 @@ export default function FinalCTA() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap items-center justify-center gap-5"
+            className="flex flex-wrap items-center justify-center gap-6"
           >
             {perks.map((perk, i) => (
               <motion.div
                 key={perk}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
-                className="flex items-center gap-2 text-sm text-white/70"
+                transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+                className="flex items-center gap-3 text-sm font-bold text-white/90"
               >
-                <CheckCircle2 className="h-4 w-4 text-emerald-300 flex-shrink-0" />
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 backdrop-blur">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-secondary" />
+                </div>
                 {perk}
               </motion.div>
             ))}

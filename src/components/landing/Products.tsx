@@ -82,15 +82,21 @@ export default function Products() {
       <div className="container relative z-10 mx-auto px-4 md:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 text-center"
         >
-          <span className="inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary mb-4">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary mb-4"
+          >
             Our Products
-          </span>
+          </motion.span>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground"
             style={{ fontFamily: "var(--app-font-display)" }}
@@ -107,89 +113,128 @@ export default function Products() {
           {products.map((product, i) => (
             <motion.div
               key={product.title}
-              initial={{ opacity: 0, y: 32 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 0.61, 0.36, 1] }}
-              whileHover={{ y: -8, transition: { duration: 0.25 } }}
-              className={`group relative flex flex-col rounded-3xl border ${product.borderColor} bg-card p-7 transition-all duration-300`}
+              transition={{ 
+                duration: 0.7, 
+                delay: i * 0.15, 
+                ease: [0.25, 1, 0.5, 1] 
+              }}
+              whileHover={{ 
+                y: -12, 
+                rotateX: 2,
+                rotateY: -2,
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
+              className={`group relative flex flex-col rounded-3xl border ${product.borderColor} bg-card p-8 transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-primary/10 perspective-1000`}
               data-testid={`card-product-${i}`}
             >
               {/* Featured indicator */}
               {product.featured && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="rounded-full bg-primary px-4 py-1 text-xs font-bold text-white">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
+                  <motion.span 
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                    className="rounded-full bg-primary px-5 py-1.5 text-[10px] font-black uppercase tracking-tighter text-white shadow-xl shadow-primary/40 whitespace-nowrap block"
+                  >
                     Most Popular
-                  </span>
+                  </motion.span>
                 </div>
               )}
 
               {/* Icon + Badge */}
-              <div className="flex items-start justify-between mb-5">
-                <div className={`flex h-14 w-14 items-center justify-center rounded-2xl ${product.iconBg} text-white`}>
-                  <product.icon className="h-7 w-7" />
-                </div>
-                <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${product.badgeBg}`}>
+              <div className="flex items-start justify-between mb-6">
+                <motion.div 
+                  whileHover={{ rotate: 10, scale: 1.1 }}
+                  className={`flex h-16 w-16 items-center justify-center rounded-2xl ${product.iconBg} text-white shadow-lg shadow-primary/20 transition-all duration-500`}
+                >
+                  <product.icon className="h-8 w-8" />
+                </motion.div>
+                <span className={`rounded-full border px-4 py-1 text-[10px] font-bold uppercase tracking-wider ${product.badgeBg}`}>
                   {product.badge}
                 </span>
               </div>
 
               {/* Live URL badge */}
               {product.liveUrl && (
-                <a
+                <motion.a
                   href={product.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`mb-3 inline-flex items-center gap-1.5 rounded-lg border bg-background px-3 py-1.5 text-xs font-semibold ${product.accent} border-current/20 hover:bg-muted transition-colors w-fit`}
+                  whileHover={{ scale: 1.05, backgroundColor: "rgba(var(--primary), 0.05)" }}
+                  className={`mb-4 inline-flex items-center gap-2 rounded-xl border bg-background/50 backdrop-blur-sm px-4 py-2 text-xs font-bold ${product.accent} border-current/20 hover:bg-muted transition-all w-fit group/btn`}
                   data-testid={`link-live-${i}`}
                 >
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary dark:bg-emerald-500 animate-pulse" />
+                  <span className="h-2 w-2 rounded-full bg-primary dark:bg-emerald-500 animate-pulse" />
                   Live: {product.liveLabel}
-                  <ExternalLink className="h-3 w-3 opacity-60" />
-                </a>
+                  <ExternalLink className="h-3.5 w-3.5 opacity-60 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                </motion.a>
               )}
 
               {/* Title */}
               <h3
-                className="text-xl font-extrabold text-foreground mb-1"
+                className="text-2xl font-black text-foreground mb-1 group-hover:text-primary transition-colors duration-300"
                 style={{ fontFamily: "var(--app-font-display)" }}
               >
                 {product.title}
               </h3>
-              <p className={`text-sm font-semibold mb-3 ${product.accent}`}>{product.subtitle}</p>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-6">{product.desc}</p>
+              <p className={`text-sm font-bold mb-4 tracking-tight ${product.accent}`}>{product.subtitle}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-8 flex-1">{product.desc}</p>
 
               {/* Feature List */}
-              <ul className="space-y-2 mb-8 flex-1">
-                {product.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2.5 text-sm text-foreground">
-                    <Check className={`h-4 w-4 flex-shrink-0 ${product.accent}`} />
+              <motion.ul 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  visible: { transition: { staggerChildren: 0.1 } }
+                }}
+                className="space-y-3 mb-10"
+              >
+                {product.features.map((f, fIdx) => (
+                  <motion.li 
+                    key={f} 
+                    variants={{
+                      hidden: { opacity: 0, x: -10 },
+                      visible: { opacity: 1, x: 0 }
+                    }}
+                    className="flex items-center gap-3 text-sm font-medium text-foreground/90"
+                  >
+                    <div className={`flex h-5 w-5 items-center justify-center rounded-full ${product.badgeBg} border-none`}>
+                      <Check className={`h-3 w-3 ${product.accent}`} />
+                    </div>
                     {f}
-                  </li>
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
 
               {/* CTA */}
-              {product.liveUrl ? (
-                <a
-                  href={product.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full rounded-xl py-3 px-6 font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 ${product.ctaColor}`}
-                  data-testid={`button-product-demo-${i}`}
-                >
-                  View Live Product
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              ) : (
-                <button
-                  className={`w-full rounded-xl py-3 px-6 font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 ${product.ctaColor}`}
-                  data-testid={`button-product-demo-${i}`}
-                >
-                  Get Started
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-              )}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {product.liveUrl ? (
+                  <a
+                    href={product.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full rounded-2xl py-4 px-6 font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-primary/10 ${product.ctaColor}`}
+                    data-testid={`button-product-demo-${i}`}
+                  >
+                    Explore Product
+                    <ExternalLink className="h-4.5 w-4.5" />
+                  </a>
+                ) : (
+                  <button
+                    className={`w-full rounded-2xl py-4 px-6 font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-primary/10 ${product.ctaColor}`}
+                    data-testid={`button-product-demo-${i}`}
+                  >
+                    Custom Quote
+                    <ArrowRight className="h-4.5 w-4.5" />
+                  </button>
+                )}
+              </motion.div>
             </motion.div>
           ))}
         </div>

@@ -63,48 +63,64 @@ export default function Testimonials() {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-1000">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.55, delay: i * 0.13, ease: [0.22, 0.61, 0.36, 1] }}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className="group relative flex flex-col rounded-3xl border border-border bg-card p-7 transition-all duration-300"
+              initial={{ opacity: 0, y: 50, rotateX: 5 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ 
+                duration: 0.8, 
+                delay: i * 0.15, 
+                ease: [0.16, 1, 0.3, 1] 
+              }}
+              whileHover={{ 
+                y: -10, 
+                rotateY: i % 2 === 0 ? 3 : -3,
+                scale: 1.02,
+                boxShadow: "0 25px 50px -12px rgba(var(--primary), 0.12)",
+                borderColor: "rgba(var(--primary), 0.2)"
+              }}
+              className="group relative flex flex-col rounded-[2.5rem] border border-border bg-card p-10 transition-all duration-500 shadow-sm"
               data-testid={`card-testimonial-${i}`}
             >
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} className="h-4 w-4 fill-primary text-primary dark:fill-amber-400 dark:text-amber-400" />
-                ))}
+              {/* Quote icon floating */}
+              <div className="absolute -top-4 -right-2 text-primary opacity-5 group-hover:opacity-10 group-hover:-translate-y-2 transition-all duration-700">
+                <Quote className="h-24 w-24 fill-current" />
               </div>
 
-              {/* Quote icon */}
-              <Quote className="h-8 w-8 text-primary/20 mb-3" />
-
-              {/* Quote text */}
-              <p className="flex-1 text-sm text-muted-foreground leading-relaxed italic mb-6">
-                "{t.quote}"
-              </p>
-
-              {/* Divider */}
-              <div className="h-px bg-border mb-5" />
-
               {/* Author */}
-              <div className="flex items-center gap-3">
-                <div className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full ${t.avatarBg} text-white text-sm font-bold`}>
+              <div className="flex items-center gap-4 mb-8">
+                <motion.div 
+                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  transition={{ duration: 0.8 }}
+                  className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl ${t.avatarBg} text-white text-sm font-black shadow-lg shadow-primary/20`}
+                >
                   {t.initials}
-                </div>
+                </motion.div>
                 <div>
-                  <p className="text-sm font-bold text-foreground">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-sm font-black text-foreground group-hover:text-primary transition-colors">{t.name}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
                     {t.role} — {t.company}
                   </p>
                 </div>
               </div>
+
+              {/* Stars */}
+              <div className="flex gap-1.5 mb-6">
+                {Array.from({ length: t.rating }).map((_, j) => (
+                  <Star key={j} className="h-3.5 w-3.5 fill-primary text-primary" />
+                ))}
+              </div>
+
+              {/* Quote text */}
+              <p className="flex-1 text-sm text-muted-foreground leading-relaxed italic mb-8 relative z-10 transition-colors group-hover:text-foreground/90">
+                "{t.quote}"
+              </p>
+
+              {/* Divider accent */}
+              <div className="h-1 w-12 bg-primary/20 rounded-full group-hover:w-24 group-hover:bg-primary/40 transition-all duration-500" />
             </motion.div>
           ))}
         </div>

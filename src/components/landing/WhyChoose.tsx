@@ -81,25 +81,44 @@ export default function WhyChoose() {
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 perspective-1000">
           {reasons.map((reason, i) => (
             <motion.div
               key={reason.title}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 0.61, 0.36, 1] }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className={`group flex flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 ${reason.span}`}
+              initial={{ opacity: 0, y: 30, rotateY: i % 2 === 0 ? 10 : -10 }}
+              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ 
+                duration: 0.8, 
+                delay: i * 0.1, 
+                ease: [0.16, 1, 0.3, 1] 
+              }}
+              whileHover={{ 
+                y: -10, 
+                rotateX: 2,
+                rotateY: -2,
+                z: 20,
+                boxShadow: "0 20px 40px -15px rgba(0,0,0,0.1)",
+                borderColor: "rgba(var(--primary), 0.2)"
+              }}
+              className={`group flex flex-col rounded-3xl border border-border bg-card p-8 transition-all duration-500 shadow-sm overflow-hidden relative ${reason.span}`}
               data-testid={`card-why-${i}`}
             >
-              <div className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl ${reason.iconBg} transition-transform group-hover:scale-110`}>
-                <reason.icon className={`h-5 w-5 ${reason.iconColor}`} />
+              {/* Decorative background number/letter */}
+              <div className="absolute -right-4 -bottom-6 text-9xl font-black text-primary/5 select-none transition-transform group-hover:scale-110 group-hover:-translate-y-4 duration-700">
+                {i + 1}
               </div>
-              <h3 className="text-base font-bold text-foreground mb-2" style={{ fontFamily: "var(--app-font-display)" }}>
+
+              <motion.div 
+                whileHover={{ rotate: 15, scale: 1.1 }}
+                className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl ${reason.iconBg} shadow-inner transition-all duration-500 group-hover:shadow-lg`}
+              >
+                <reason.icon className={`h-7 w-7 ${reason.iconColor}`} />
+              </motion.div>
+              <h3 className="text-lg font-black text-foreground mb-3 group-hover:text-primary transition-colors duration-300" style={{ fontFamily: "var(--app-font-display)" }}>
                 {reason.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{reason.desc}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed font-medium group-hover:text-foreground/80 transition-colors duration-300">{reason.desc}</p>
             </motion.div>
           ))}
         </div>
