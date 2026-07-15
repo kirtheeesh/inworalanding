@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import LandingPage from "@/pages/LandingPage";
 import Portfolio from "@/pages/Portfolio";
 import ProjectDetails from "@/pages/ProjectDetails";
+import ScheduleDemoModal from "@/components/landing/ScheduleDemoModal";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ function App() {
           <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
             <Router />
           </WouterRouter>
+          <ScheduleDemoModal />
           <Toaster />
         </TooltipProvider>
       </ThemeProvider>

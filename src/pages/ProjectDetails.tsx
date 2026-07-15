@@ -16,6 +16,12 @@ export default function ProjectDetails() {
     window.scrollTo(0, 0);
   }, []);
 
+  const handleRequestQuote = () => {
+    if (!project) return;
+    const msg = `Hello INWORA! I am interested in a custom solution similar to the "${project.title}" case study. I'd like to request a quote.`;
+    window.open(`https://wa.me/919047370027?text=${encodeURIComponent(msg)}`, "_blank");
+  };
+
   if (!project) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -35,15 +41,15 @@ export default function ProjectDetails() {
 
       <main className="flex-1 pt-24 pb-20">
         {/* Banner Section */}
-        <div className="relative h-[40vh] md:h-[60vh] w-full overflow-hidden">
+        <div className="relative min-h-[50vh] md:h-[60vh] w-full flex items-end overflow-hidden py-12 md:py-16">
           <img 
             src={project.banner} 
             alt={project.title} 
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover z-0"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-black/10 z-10" />
           
-          <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
+          <div className="relative z-20 w-full px-4 sm:px-8 md:px-16">
             <div className="container mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -58,10 +64,12 @@ export default function ProjectDetails() {
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back to Portfolio
                 </Button>
-                <span className="inline-block rounded-full bg-primary/20 backdrop-blur-sm px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary mb-4">
-                  {project.category}
-                </span>
-                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4" style={{ fontFamily: "var(--app-font-display)" }}>
+                <div className="mb-4">
+                  <span className="inline-block rounded-full bg-primary/20 backdrop-blur-sm px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
+                    {project.category}
+                  </span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-foreground leading-tight" style={{ fontFamily: "var(--app-font-display)" }}>
                   {project.title}
                 </h1>
                 <div className="flex flex-wrap gap-2">
@@ -161,7 +169,7 @@ export default function ProjectDetails() {
                 <div className="p-8 rounded-[2.5rem] bg-muted/50 border border-border">
                   <h3 className="text-lg font-bold mb-4">Interested?</h3>
                   <p className="text-sm text-muted-foreground mb-6">Let's discuss how we can build a similar solution for your business.</p>
-                  <Button variant="outline" className="w-full h-12 rounded-xl border-primary text-primary hover:bg-primary/5">
+                  <Button onClick={handleRequestQuote} variant="outline" className="w-full h-12 rounded-xl border-primary text-primary hover:bg-primary/5">
                     Request a Quote
                   </Button>
                 </div>

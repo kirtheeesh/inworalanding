@@ -7,7 +7,6 @@ import Products from "@/components/landing/Products";
 import Pricing from "@/components/landing/Pricing";
 import WhyChoose from "@/components/landing/WhyChoose";
 import Process from "@/components/landing/Process";
-import Testimonials from "@/components/landing/Testimonials";
 import About from "@/components/landing/About";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
@@ -25,7 +24,6 @@ export default function LandingPage() {
         <Pricing />
         <WhyChoose />
         <Process />
-        <Testimonials />
         <About />
         <FinalCTA />
       </main>

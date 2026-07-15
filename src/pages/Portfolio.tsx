@@ -31,7 +31,7 @@ export default function Portfolio() {
               We Build <span className="bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent">Digital Excellence</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              INWORA, a flagship brand of <a href="https://www.aimstorm.in" target="_blank" rel="noopener noreferrer" className="text-primary font-bold hover:underline">Aim Storm</a>, is dedicated to crafting high-impact software products. From scalable SaaS platforms to custom mobile solutions, our portfolio reflects our commitment to innovation and business growth.
+              INWORA is dedicated to crafting high-impact software products. From scalable SaaS platforms to custom mobile solutions, our portfolio reflects our commitment to innovation and business growth.
             </p>
           </motion.div>
 

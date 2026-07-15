@@ -74,6 +74,11 @@ const products = [
 ];
 
 export default function Products() {
+  const handleCustomQuote = (productTitle: string) => {
+    const msg = `Hello INWORA! I would like to request a custom quote for the "${productTitle}" solution.`;
+    window.open(`https://wa.me/919047370027?text=${encodeURIComponent(msg)}`, "_blank");
+  };
+
   return (
     <section id="products" className="relative overflow-hidden bg-muted/20 py-24 md:py-32">
       <div className="pointer-events-none absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-primary/5 blur-[120px]" />
@@ -227,6 +232,7 @@ export default function Products() {
                   </a>
                 ) : (
                   <button
+                    onClick={() => handleCustomQuote(product.title)}
                     className={`w-full rounded-2xl py-4 px-6 font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-primary/10 ${product.ctaColor}`}
                     data-testid={`button-product-demo-${i}`}
                   >

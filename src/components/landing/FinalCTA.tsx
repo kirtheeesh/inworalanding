@@ -9,6 +9,15 @@ const perks = [
 ];
 
 export default function FinalCTA() {
+  const handleContactSales = () => {
+    const msg = "Hello INWORA! I am interested in your custom development/enterprise plans and would like to connect with your sales team.";
+    window.open(`https://wa.me/919047370027?text=${encodeURIComponent(msg)}`, "_blank");
+  };
+
+  const handleScheduleDemo = () => {
+    window.dispatchEvent(new CustomEvent("open-schedule-demo"));
+  };
+
   return (
     <section id="contact" className="relative overflow-hidden py-24 md:py-36">
       {/* Animated gradient background - Updated to theme green */}
@@ -92,6 +101,7 @@ export default function FinalCTA() {
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <Button
+                onClick={handleContactSales}
                 size="lg"
                 className="rounded-full bg-white text-primary hover:bg-secondary transition-all px-8 py-7 text-base font-bold shadow-2xl shadow-black/20"
                 data-testid="button-contact-sales"
@@ -102,6 +112,7 @@ export default function FinalCTA() {
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <Button
+                onClick={handleScheduleDemo}
                 size="lg"
                 variant="outline"
                 className="rounded-full border-white/40 text-white bg-white/10 hover:bg-white/20 px-8 py-7 text-base font-bold backdrop-blur transition-all"

@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/button";
-import inworaLogo from "@assets/INWORA_1780213525358.png";
+import inworaLogo from "@assets/ibk_icon.png";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -28,6 +28,11 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleBookDemo = () => {
+    const msg = "Hello INWORA! I would like to book a demo for your digital products and services. Please guide me on the next steps.";
+    window.open(`https://wa.me/919047370027?text=${encodeURIComponent(msg)}`, "_blank");
+  };
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileMenuOpen(false);
@@ -64,9 +69,9 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={(e) => handleLinkClick(e, "/")}
-            className="flex items-center gap-2"
+            className="flex items-center group"
           >
-            <img src={inworaLogo} alt="INWORA Logo" className="h-8 object-contain" />
+            <img src={inworaLogo} alt="INWORA Logo" className="h-12 w-12 object-contain rounded-xl group-hover:scale-105 transition-transform" />
           </Link>
 
           {/* Desktop Nav */}
@@ -95,7 +100,7 @@ export default function Navbar() {
             </ul>
 
             <div className="flex items-center gap-4 border-l border-border pl-4">
-              <Button className="rounded-full font-medium px-6">Book Demo</Button>
+              <Button onClick={handleBookDemo} className="rounded-full font-medium px-6">Book Demo</Button>
             </div>
           </nav>
 
@@ -147,7 +152,7 @@ export default function Navbar() {
                   </Link>
                 )
               ))}
-              <Button className="mt-4 w-full rounded-full" size="lg">
+              <Button onClick={handleBookDemo} className="mt-4 w-full rounded-full" size="lg">
                 Book Demo
               </Button>
             </nav>

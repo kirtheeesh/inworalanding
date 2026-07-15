@@ -212,6 +212,13 @@ html {
     animation: shimmer-slide 2.5s ease-in-out infinite;
   }
   .animate-spin-slow { animation: spin-slow 12s linear infinite; }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 @layer utilities {

@@ -3,9 +3,9 @@ import { motion, useInView } from "framer-motion";
 import { Target, Award, Users } from "lucide-react";
 
 const stats = [
-  { icon: Award, value: 80, suffix: "+", label: "Projects Delivered", color: "text-blue-500", bg: "bg-blue-500/10" },
-  { icon: Target, value: 3, suffix: "", label: "Subscription Products", color: "text-amber-500", bg: "bg-amber-500/10" },
-  { icon: Users, value: 15, suffix: "+", label: "Business Categories Served", color: "text-teal-500", bg: "bg-teal-500/10" },
+  { icon: Award, value: 369, suffix: "+", label: "Projects Delivered", color: "text-blue-500", bg: "bg-blue-500/10" },
+  { icon: Target, value: 9, suffix: "", label: "Subscription Products", color: "text-amber-500", bg: "bg-amber-500/10" },
+  { icon: Users, value: 69, suffix: "+", label: "Business Categories Served", color: "text-teal-500", bg: "bg-teal-500/10" },
 ];
 
 function AnimatedCounter({ target, suffix, duration = 1800 }: { target: number; suffix: string; duration?: number }) {
@@ -71,43 +71,9 @@ export default function About() {
               </span>
             </h2>
 
-            {/* Parent company callout */}
-            <div className="mb-6 flex items-center gap-3 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3">
-              <div className="h-8 w-1 flex-shrink-0 rounded-full bg-gradient-to-b from-primary to-blue-400" />
-              <p className="text-sm text-foreground">
-                INWORA is a product of{" "}
-                <a
-                  href="https://www.aimstorm.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-primary underline underline-offset-2 hover:opacity-80 transition-opacity"
-                >
-                  Aim Storm
-                </a>
-                {" "}— our parent company.{" "}
-                <a
-                  href="https://www.aimstorm.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors text-xs"
-                >
-                  www.aimstorm.in
-                </a>
-              </p>
-            </div>
-
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                INWORA is a flagship IT product brand under{" "}
-                <a
-                  href="https://www.aimstorm.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-foreground hover:text-primary transition-colors"
-                >
-                  Aim Storm
-                </a>
-                {" "}— a technology company built by engineers, designers, and business strategists united by a single mission: build software that transforms businesses.
+                INWORA is a premium IT product brand built by engineers, designers, and business strategists united by a single mission: build software that transforms businesses.
               </p>
               <p>
                 We specialize in mobile application development, subscription-based SaaS products, and business automation solutions. From gold poster generation platforms for jewelry brands to POS systems for restaurants, every product we ship is engineered with precision and purpose.
@@ -159,26 +125,7 @@ export default function About() {
               </motion.div>
             ))}
 
-            {/* Parent company badge */}
-            <a
-              href="https://www.aimstorm.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group rounded-2xl border border-primary/20 bg-muted/50 p-5 text-center block hover:border-primary/40 hover:bg-primary/5 transition-all duration-200"
-              data-testid="link-aimstorm"
-            >
-              <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold mb-1">Parent Company</p>
-              <p
-                className="text-xl font-extrabold bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent group-hover:opacity-90 transition-opacity"
-                style={{ fontFamily: "var(--app-font-display)" }}
-              >
-                Aim Storm
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">Your Growth... Our Mission!</p>
-              <p className="text-xs text-primary/60 group-hover:text-primary mt-1 transition-colors font-medium">
-                www.aimstorm.in ↗
-              </p>
-            </a>
+
           </motion.div>
         </div>
       </div>

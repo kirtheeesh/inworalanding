@@ -1,6 +1,6 @@
 import { SiX, SiInstagram, SiFacebook, SiYoutube } from "react-icons/si";
 import { Mail, Phone, MapPin, Linkedin } from "lucide-react";
-import inworaLogo from "@assets/INWORA_1780213525358.png";
+import inworaLogo from "@assets/ibk_icon.png";
 
 const productLinks = [
   { label: "Gold Poster App", href: "#products" },
@@ -49,18 +49,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand Column */}
           <div className="flex flex-col gap-5 sm:col-span-2 lg:col-span-1">
-            <img src={inworaLogo} alt="INWORA Logo" className="h-10 object-contain object-left" />
+            <img src={inworaLogo} alt="INWORA Logo" className="h-14 w-14 object-contain rounded-2xl" />
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               A premium IT product company building mobile apps, SaaS platforms, and subscription software for businesses worldwide.
             </p>
-            <a
-              href="https://www.aimstorm.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-semibold text-muted-foreground/60 uppercase tracking-widest hover:text-primary transition-colors"
-            >
-              Powered by Aim Storm ↗
-            </a>
+
             {/* Social Links */}
             <div className="flex gap-3">
               {socialLinks.map((s) => (
@@ -154,7 +147,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-border pt-6">
           <p className="text-xs text-muted-foreground text-center sm:text-left">
-            &copy; {new Date().getFullYear()} INWORA. Powered by Aim Storm. All rights reserved.
+            &copy; {new Date().getFullYear()} INWORA. All rights reserved.
           </p>
           <div className="flex gap-4">
             <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">

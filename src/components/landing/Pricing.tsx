@@ -66,6 +66,18 @@ const plans = [
 ];
 
 export default function Pricing() {
+  const handlePlanClick = (planName: string) => {
+    let msg = "";
+    if (planName === "Starter") {
+      msg = "Hello INWORA! I would like to get a quote/book a demo for the Starter Plan.";
+    } else if (planName === "Growth") {
+      msg = "Hello INWORA! I would like to get a quote/book a demo for the Growth Plan.";
+    } else if (planName === "Enterprise") {
+      msg = "Hello INWORA! I am interested in custom integrations and would like to contact sales for the Enterprise Plan.";
+    }
+    window.open(`https://wa.me/919047370027?text=${encodeURIComponent(msg)}`, "_blank");
+  };
+
   return (
     <section id="pricing" className="relative overflow-hidden py-24 md:py-32">
       <div className="pointer-events-none absolute inset-0">
@@ -205,6 +217,7 @@ export default function Pricing() {
               {/* CTA */}
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button
+                  onClick={() => handlePlanClick(plan.name)}
                   variant={plan.popular ? "secondary" : plan.variant}
                   size="lg"
                   className={`w-full rounded-2xl py-7 text-base font-black transition-all shadow-xl shadow-black/10 ${
