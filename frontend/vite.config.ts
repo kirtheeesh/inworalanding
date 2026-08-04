@@ -20,6 +20,18 @@ if (Number.isNaN(port) || port <= 0) {
 // Default BASE_PATH to root for local development
 const basePath = process.env.BASE_PATH ?? '/';
 
+// The PHP backend the dev server proxies /api, /admin and /uploads to, so the
+// admin panel opens at <frontend>/admin and the API is same-origin (no CORS).
+const backendUrl = process.env.BACKEND_URL ?? 'http://localhost:8000';
+
+// `changeOrigin: false` keeps the original Host header (e.g. localhost:5173),
+// so links the PHP backend generates point back at the frontend origin.
+const backendProxy = {
+  '/api': { target: backendUrl, changeOrigin: false },
+  '/admin': { target: backendUrl, changeOrigin: false },
+  '/uploads': { target: backendUrl, changeOrigin: false },
+};
+
 export default defineConfig({
   base: basePath,
   plugins: [
@@ -57,6 +69,7 @@ export default defineConfig({
     strictPort: true,
     host: "0.0.0.0",
     allowedHosts: true,
+    proxy: backendProxy,
     fs: {
       strict: true,
     },
@@ -65,5 +78,6 @@ export default defineConfig({
     port,
     host: "0.0.0.0",
     allowedHosts: true,
+    proxy: backendProxy,
   },
 });

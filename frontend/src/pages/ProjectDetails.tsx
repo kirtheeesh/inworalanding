@@ -1,20 +1,29 @@
 import { useParams, useLocation } from "wouter";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
-import { projects } from "@/lib/portfolio-data";
 import { ArrowLeft, Download, ExternalLink, PlayCircle, CheckCircle2, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
+import { ApiError, fetchProject } from "@/lib/api";
 
 export default function ProjectDetails() {
   const { id } = useParams();
   const [, setLocation] = useLocation();
-  const project = projects.find((p) => p.id === id);
+
+  const { data: project, isPending, isError, error } = useQuery({
+    queryKey: ["projects", id],
+    queryFn: () => fetchProject(id!),
+    enabled: Boolean(id),
+    // A missing project is a real answer, not a blip worth retrying.
+    retry: (failureCount, err) =>
+      !(err instanceof ApiError && err.status === 404) && failureCount < 2,
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [id]);
 
   const handleRequestQuote = () => {
     if (!project) return;
@@ -22,11 +31,35 @@ export default function ProjectDetails() {
     window.open(`https://wa.me/919047370027?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
-  if (!project) {
+  if (isPending) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex min-h-screen flex-col bg-background text-foreground">
+        <Navbar />
+        <main className="flex-1 pt-32 pb-20">
+          <div className="container mx-auto px-4 md:px-8 space-y-8">
+            <div className="h-[40vh] w-full rounded-3xl bg-muted animate-pulse" />
+            <div className="h-10 w-2/3 rounded bg-muted animate-pulse" />
+            <div className="h-4 w-full rounded bg-muted animate-pulse" />
+            <div className="h-4 w-5/6 rounded bg-muted animate-pulse" />
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (isError) {
+    const notFound = error instanceof ApiError && error.status === 404;
+
+    return (
+      <div className="flex min-h-screen items-center justify-center px-6">
         <div className="text-center">
-          <h1 className="text-2xl font-bold">Project Not Found</h1>
+          <h1 className="text-2xl font-bold">
+            {notFound ? "Project Not Found" : "We couldn't load this project"}
+          </h1>
+          {!notFound && (
+            <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
+          )}
           <Button onClick={() => setLocation("/portfolio")} className="mt-4">
             Back to Portfolio
           </Button>
@@ -139,7 +172,7 @@ export default function ProjectDetails() {
                     <p className="text-white/80 text-sm">See the application in action with our live deployment.</p>
                     <Button 
                       className="w-full h-14 rounded-2xl bg-white text-primary hover:bg-white/90 font-bold text-lg"
-                      onClick={() => window.open(project.liveUrl, "_blank")}
+                      onClick={() => window.open(project.liveUrl!, "_blank")}
                     >
                       Visit Website
                       <ExternalLink className="ml-2 h-5 w-5" />
@@ -152,7 +185,7 @@ export default function ProjectDetails() {
                   <motion.div 
                     whileHover={{ scale: 1.02 }}
                     className="group p-8 rounded-[2.5rem] border-2 border-primary/20 bg-card cursor-pointer transition-all hover:border-primary/50"
-                    onClick={() => window.open(project.pdfUrl, "_blank")}
+                    onClick={() => window.open(project.pdfUrl!, "_blank")}
                   >
                     <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
                       <FileText className="h-8 w-8" />

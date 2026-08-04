@@ -1,0 +1,7 @@
+# Local configuration — copy .env.example and fill it in.
+.env
+
+# Files uploaded through the admin panel.
+uploads/*
+!uploads/.htaccess
+!uploads/.gitkeep

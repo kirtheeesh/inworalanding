@@ -1,0 +1,7 @@
+# Uploaded files are static assets — nothing in here may ever be executed.
+Options -ExecCGI -Indexes
+SetHandler default-handler
+
+<FilesMatch "\.(?i:php|phtml|phar|phps|cgi|pl|py|sh)$">
+    Require all denied
+</FilesMatch>

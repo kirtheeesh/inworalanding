@@ -1,0 +1,20 @@
+# Apache / XAMPP configuration for the INWORA backend.
+# Point a vhost at this directory, or drop the project inside htdocs and set
+# APP_URL in .env to match (e.g. http://localhost/inworalanding/backend).
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Uploaded files are served straight off disk.
+    RewriteRule ^uploads/ - [L]
+
+    # Everything else is handled by the front controller.
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# Never expose configuration or dotfiles, even if mod_rewrite is unavailable.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
