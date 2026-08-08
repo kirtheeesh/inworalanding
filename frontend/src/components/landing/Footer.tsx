@@ -1,9 +1,9 @@
 import { SiX, SiInstagram, SiFacebook, SiYoutube } from "react-icons/si";
 import { Mail, Phone, MapPin, Linkedin } from "lucide-react";
-import inworaLogo from "@assets/ibk_icon.png";
+import inworaLogo from "@assets/inwora_logo.png";
 
 const productLinks = [
-  { label: "Gold Poster App", href: "#products" },
+  { label: "Inwora Daily Gold (Google Play)", href: "https://play.google.com/store/apps/details?id=com.kirtheeshh.usermobile&pli=1", external: true },
   { label: "POS & KOT Software", href: "#products" },
   { label: "Mobile App Solutions", href: "#products" },
   { label: "Subscription Plans", href: "#pricing" },
@@ -33,6 +33,7 @@ const socialLinks = [
 ];
 
 const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  if (href.startsWith("http")) return;
   e.preventDefault();
   const el = document.querySelector(href);
   if (el) {
@@ -49,7 +50,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand Column */}
           <div className="flex flex-col gap-5 sm:col-span-2 lg:col-span-1">
-            <img src={inworaLogo} alt="INWORA Logo" className="h-14 w-14 object-contain rounded-2xl" />
+            <img src={inworaLogo} alt="INWORA" className="h-10 w-auto max-w-[180px] object-contain rounded-md bg-white px-2 py-1 ring-1 ring-black/5" />
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               A premium IT product company building mobile apps, SaaS platforms, and subscription software for businesses worldwide.
             </p>
@@ -78,8 +79,8 @@ export default function Footer() {
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    onClick={(e) => scrollToSection(e, l.href)}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : { onClick: (e) => scrollToSection(e, l.href) })}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
                     data-testid={`link-product-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
                   >
                     {l.label}

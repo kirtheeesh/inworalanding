@@ -27,8 +27,7 @@ export default function ScheduleDemoModal() {
       return;
     }
     setError("");
-    
-    // Format message
+
     const formattedDate = new Date(date).toLocaleDateString("en-US", {
       weekday: "long",
       year: "numeric",
@@ -41,100 +40,71 @@ export default function ScheduleDemoModal() {
     setIsOpen(false);
   };
 
+  const inputCls =
+    "w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20";
+
   return (
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="absolute inset-0 bg-background/80 backdrop-blur-md"
+            className="absolute inset-0 bg-background/70 backdrop-blur-sm"
           />
 
-          {/* Modal Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.97, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 w-full max-w-md overflow-hidden rounded-[2.5rem] border border-border bg-card p-8 shadow-2xl"
+            exit={{ opacity: 0, scale: 0.97, y: 12 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 w-full max-w-md rounded-2xl border border-border bg-card p-7 shadow-xl"
           >
-            {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-border bg-muted/20 text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
+              aria-label="Close"
+              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               <X className="h-4 w-4" />
             </button>
 
-            {/* Header */}
-            <div className="mb-6 text-center">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                <Calendar className="h-7 w-7" />
+            <div className="mb-6">
+              <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Calendar className="h-5 w-5" />
               </div>
-              <h3 className="text-2xl font-black text-foreground" style={{ fontFamily: "var(--app-font-display)" }}>
-                Schedule Demo
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Select your preferred date and time. Submitting will confirm your slot via WhatsApp.
+              <h3 className="text-xl font-semibold text-foreground">Schedule a demo</h3>
+              <p className="mt-1.5 text-sm text-muted-foreground">
+                Pick your preferred date and time. Submitting confirms your slot via WhatsApp.
               </p>
             </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-foreground mb-2 flex items-center gap-1.5">
+                <label className="mb-1.5 flex items-center gap-1.5 text-sm font-medium text-foreground">
                   <Calendar className="h-3.5 w-3.5 text-primary" />
-                  Select Date
+                  Date
                 </label>
-                <input
-                  type="date"
-                  min={todayStr}
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3.5 text-sm font-semibold text-foreground focus:border-primary/50 focus:ring-1 focus:ring-primary/30 outline-none transition-all"
-                  style={{ fontFamily: "var(--app-font-display)" }}
-                />
+                <input type="date" min={todayStr} value={date} onChange={(e) => setDate(e.target.value)} className={inputCls} />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-foreground mb-2 flex items-center gap-1.5">
+                <label className="mb-1.5 flex items-center gap-1.5 text-sm font-medium text-foreground">
                   <Clock className="h-3.5 w-3.5 text-primary" />
-                  Select Time
+                  Time
                 </label>
-                <input
-                  type="time"
-                  value={time}
-                  onChange={(e) => setTime(e.target.value)}
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3.5 text-sm font-semibold text-foreground focus:border-primary/50 focus:ring-1 focus:ring-primary/30 outline-none transition-all"
-                  style={{ fontFamily: "var(--app-font-display)" }}
-                />
+                <input type="time" value={time} onChange={(e) => setTime(e.target.value)} className={inputCls} />
               </div>
 
-              {error && (
-                <p className="text-xs font-bold text-destructive text-center">
-                  ⚠️ {error}
-                </p>
-              )}
+              {error && <p className="text-sm text-destructive">{error}</p>}
 
-              {/* Action Buttons */}
-              <div className="flex gap-3 pt-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setIsOpen(false)}
-                  className="flex-1 rounded-2xl py-6 font-bold"
-                >
+              <div className="flex gap-3 pt-1">
+                <Button type="button" variant="outline" onClick={() => setIsOpen(false)} className="flex-1 rounded-lg">
                   Cancel
                 </Button>
-                <Button
-                  type="submit"
-                  className="flex-1 rounded-2xl py-6 font-bold shadow-lg shadow-primary/20"
-                >
-                  Schedule in WhatsApp
+                <Button type="submit" className="flex-1 rounded-lg">
+                  Confirm on WhatsApp
                 </Button>
               </div>
             </form>

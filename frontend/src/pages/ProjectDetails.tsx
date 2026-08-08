@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
-import { ArrowLeft, Download, ExternalLink, PlayCircle, CheckCircle2, FileText } from "lucide-react";
+import { ArrowLeft, Download, ExternalLink, PlayCircle, Check, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { ApiError, fetchProject } from "@/lib/api";
@@ -16,7 +16,6 @@ export default function ProjectDetails() {
     queryKey: ["projects", id],
     queryFn: () => fetchProject(id!),
     enabled: Boolean(id),
-    // A missing project is a real answer, not a blip worth retrying.
     retry: (failureCount, err) =>
       !(err instanceof ApiError && err.status === 404) && failureCount < 2,
   });
@@ -35,10 +34,10 @@ export default function ProjectDetails() {
     return (
       <div className="flex min-h-screen flex-col bg-background text-foreground">
         <Navbar />
-        <main className="flex-1 pt-32 pb-20">
-          <div className="container mx-auto px-4 md:px-8 space-y-8">
-            <div className="h-[40vh] w-full rounded-3xl bg-muted animate-pulse" />
-            <div className="h-10 w-2/3 rounded bg-muted animate-pulse" />
+        <main className="flex-1 pt-28 md:pt-36 pb-20">
+          <div className="container mx-auto px-4 md:px-8 space-y-6">
+            <div className="h-[38vh] w-full rounded-xl bg-muted animate-pulse" />
+            <div className="h-9 w-2/3 rounded bg-muted animate-pulse" />
             <div className="h-4 w-full rounded bg-muted animate-pulse" />
             <div className="h-4 w-5/6 rounded bg-muted animate-pulse" />
           </div>
@@ -54,14 +53,12 @@ export default function ProjectDetails() {
     return (
       <div className="flex min-h-screen items-center justify-center px-6">
         <div className="text-center">
-          <h1 className="text-2xl font-bold">
-            {notFound ? "Project Not Found" : "We couldn't load this project"}
+          <h1 className="text-2xl font-bold text-foreground">
+            {notFound ? "Project not found" : "We couldn't load this project"}
           </h1>
-          {!notFound && (
-            <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
-          )}
-          <Button onClick={() => setLocation("/portfolio")} className="mt-4">
-            Back to Portfolio
+          {!notFound && <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>}
+          <Button onClick={() => setLocation("/portfolio")} className="mt-5 rounded-lg">
+            Back to portfolio
           </Button>
         </div>
       </div>
@@ -72,138 +69,140 @@ export default function ProjectDetails() {
     <div className="flex min-h-screen flex-col bg-background text-foreground overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-1 pt-24 pb-20">
-        {/* Banner Section */}
-        <div className="relative min-h-[50vh] md:h-[60vh] w-full flex items-end overflow-hidden py-12 md:py-16">
-          <img 
-            src={project.banner} 
-            alt={project.title} 
-            className="absolute inset-0 h-full w-full object-cover z-0"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-black/10 z-10" />
-          
-          <div className="relative z-20 w-full px-4 sm:px-8 md:px-16">
-            <div className="container mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <Button 
-                  variant="ghost" 
-                  className="mb-6 -ml-4 text-primary hover:bg-primary/10"
-                  onClick={() => setLocation("/portfolio")}
-                >
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Portfolio
-                </Button>
-                <div className="mb-4">
-                  <span className="inline-block rounded-full bg-primary/20 backdrop-blur-sm px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
-                    {project.category}
-                  </span>
-                </div>
-                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-foreground leading-tight" style={{ fontFamily: "var(--app-font-display)" }}>
-                  {project.title}
-                </h1>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-[10px] font-bold tracking-wider uppercase">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
+      <main className="flex-1 pt-24 md:pt-28 pb-20">
+        <div className="container mx-auto px-4 md:px-8">
+          {/* Back */}
+          <Button
+            variant="ghost"
+            className="mb-6 -ml-2 h-9 gap-2 text-muted-foreground hover:text-foreground"
+            onClick={() => setLocation("/portfolio")}
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to portfolio
+          </Button>
 
-        <div className="container mx-auto px-4 md:px-8 py-12 md:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-20">
-            {/* Left Column: Description & Features */}
+          {/* Hero */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+              {project.category}
+            </span>
+            <h1 className="mt-3 max-w-3xl text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-foreground">
+              {project.title}
+            </h1>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-md border border-border bg-card px-2.5 py-1 text-xs font-medium text-muted-foreground"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Banner */}
+          <div className="mt-8 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-muted md:aspect-[21/9]">
+            <img src={project.banner} alt={project.title} className="h-full w-full object-cover" />
+          </div>
+
+          {/* Body */}
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
+            {/* Left */}
             <div className="lg:col-span-2 space-y-12">
               <section>
-                <h2 className="text-2xl font-bold mb-6 flex items-center gap-2" style={{ fontFamily: "var(--app-font-display)" }}>
-                  Project Overview
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {project.fullDesc}
-                </p>
+                <h2 className="mb-4 text-xl font-bold tracking-tight text-foreground">Project overview</h2>
+                <p className="text-base md:text-lg leading-relaxed text-muted-foreground">{project.fullDesc}</p>
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-8" style={{ fontFamily: "var(--app-font-display)" }}>Key Features</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h2 className="mb-5 text-xl font-bold tracking-tight text-foreground">Key features</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {project.features.map((feature) => (
-                    <div key={feature} className="flex items-start gap-3 p-4 rounded-2xl bg-primary/5 border border-primary/10">
-                      <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="font-medium">{feature}</span>
+                    <div
+                      key={feature}
+                      className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+                    >
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                      <span className="text-sm text-foreground/90">{feature}</span>
                     </div>
                   ))}
                 </div>
               </section>
 
-              {/* Video Box */}
               {project.videoUrl && (
                 <section>
-                  <h2 className="text-2xl font-bold mb-8 flex items-center gap-2" style={{ fontFamily: "var(--app-font-display)" }}>
-                    <PlayCircle className="h-6 w-6 text-primary" />
-                    Working Demo
+                  <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-foreground">
+                    <PlayCircle className="h-5 w-5 text-primary" />
+                    Working demo
                   </h2>
-                  <div className="aspect-video w-full rounded-3xl overflow-hidden bg-muted border border-border shadow-2xl">
-                    <iframe 
+                  <div className="aspect-video w-full overflow-hidden rounded-xl border border-border bg-muted">
+                    <iframe
                       className="h-full w-full"
-                      src={project.videoUrl} 
-                      title={`${project.title} Demo`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      src={project.videoUrl}
+                      title={`${project.title} demo`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
-                    ></iframe>
+                    />
                   </div>
                 </section>
               )}
             </div>
 
-            {/* Right Column: Actions & Downloads */}
-            <div className="space-y-8">
-              <div className="sticky top-32 space-y-6">
-                {/* Live Link Card */}
+            {/* Right */}
+            <div>
+              <div className="sticky top-24 space-y-4">
                 {project.liveUrl && (
-                  <div className="p-8 rounded-[2.5rem] bg-primary text-white space-y-6 shadow-xl shadow-primary/20">
-                    <h3 className="text-xl font-bold">Experience it Live</h3>
-                    <p className="text-white/80 text-sm">See the application in action with our live deployment.</p>
-                    <Button 
-                      className="w-full h-14 rounded-2xl bg-white text-primary hover:bg-white/90 font-bold text-lg"
+                  <div className="rounded-xl bg-primary p-6 text-primary-foreground">
+                    <h3 className="text-base font-semibold">Experience it live</h3>
+                    <p className="mt-1.5 text-sm text-primary-foreground/80">
+                      See the application in action with our live deployment.
+                    </p>
+                    <Button
+                      variant="secondary"
+                      className="mt-5 w-full rounded-lg bg-white text-primary hover:bg-white/90"
                       onClick={() => window.open(project.liveUrl!, "_blank")}
                     >
-                      Visit Website
-                      <ExternalLink className="ml-2 h-5 w-5" />
+                      Visit website
+                      <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
                 )}
 
-                {/* Presentation PDF Container */}
                 {project.pdfUrl && (
-                  <motion.div 
-                    whileHover={{ scale: 1.02 }}
-                    className="group p-8 rounded-[2.5rem] border-2 border-primary/20 bg-card cursor-pointer transition-all hover:border-primary/50"
+                  <button
                     onClick={() => window.open(project.pdfUrl!, "_blank")}
+                    className="group w-full rounded-xl border border-border bg-card p-6 text-left transition-colors hover:border-primary/40"
                   >
-                    <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                      <FileText className="h-8 w-8" />
+                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <FileText className="h-5 w-5" />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">Project Presentation</h3>
-                    <p className="text-sm text-muted-foreground mb-6">Download the full project deck and technical specifications.</p>
-                    <div className="flex items-center text-primary font-bold gap-2 group-hover:gap-4 transition-all">
+                    <h3 className="text-base font-semibold text-foreground">Project presentation</h3>
+                    <p className="mt-1.5 text-sm text-muted-foreground">
+                      Download the full project deck and technical specifications.
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
                       Download PDF
-                      <Download className="h-5 w-5" />
-                    </div>
-                  </motion.div>
+                      <Download className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
+                    </span>
+                  </button>
                 )}
-                
-                <div className="p-8 rounded-[2.5rem] bg-muted/50 border border-border">
-                  <h3 className="text-lg font-bold mb-4">Interested?</h3>
-                  <p className="text-sm text-muted-foreground mb-6">Let's discuss how we can build a similar solution for your business.</p>
-                  <Button onClick={handleRequestQuote} variant="outline" className="w-full h-12 rounded-xl border-primary text-primary hover:bg-primary/5">
-                    Request a Quote
+
+                <div className="rounded-xl border border-border bg-muted/40 p-6">
+                  <h3 className="text-base font-semibold text-foreground">Interested?</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground">
+                    Let's discuss how we can build a similar solution for your business.
+                  </p>
+                  <Button
+                    onClick={handleRequestQuote}
+                    variant="outline"
+                    className="mt-5 w-full rounded-lg"
+                  >
+                    Request a quote
                   </Button>
                 </div>
               </div>
