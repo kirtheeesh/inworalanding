@@ -4,8 +4,8 @@
   "private": true,
   "description": "PHP + MySQL backend and admin panel for the INWORA portfolio.",
   "scripts": {
-    "start": "php -S localhost:8000 -t . router.php",
-    "setup": "php database/install.php",
+    "start": "C:/xampp/php/php.exe -S localhost:8000 -t . router.php",
+    "setup": "C:/xampp/php/php.exe database/install.php",
     "lint": "find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l"
   }
 }
