@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Hostinger Apache configuration for INWORA landing site & backend routing
 
 Options -Indexes
@@ -24,3 +25,28 @@ Options -Indexes
 <FilesMatch "^\.">
     Require all denied
 </FilesMatch>
+=======
+# Apache configuration for React SPA routing
+DirectoryIndex index.html
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+
+  # If requested file or directory exists, serve it directly
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+  # Otherwise rewrite all requests to index.html for React SPA router
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Correct MIME types for static assets
+<IfModule mod_mime.c>
+  AddType application/javascript .js .mjs
+  AddType text/css .css
+  AddType image/svg+xml .svg
+</IfModule>
+>>>>>>> 89bc4f760de3eae59f560bb1b0cc6e8fa837eebb
