@@ -34,8 +34,9 @@ function base_url(): string
 }
 
 /**
- * Absolute URL to a path on this backend.
+ * Absolute URL to a path on this application.
  * Values that are already absolute (http/https) are returned untouched.
+ * Public frontend assets (/assets/...) are resolved to origin root.
  */
 function url(string $path = ''): string
 {
@@ -43,7 +44,25 @@ function url(string $path = ''): string
         return $path;
     }
 
-    return base_url() . '/' . ltrim($path, '/');
+    $cleanPath = '/' . ltrim($path, '/');
+    if (str_starts_with($cleanPath, '/assets/')) {
+        $frontendUrl = rtrim(env('FRONTEND_URL', ''), '/');
+        if ($frontendUrl !== '') {
+            return $frontendUrl . $cleanPath;
+        }
+
+        $host = $_SERVER['HTTP_HOST'] ?? '';
+        if ($host !== '') {
+            $https = (!empty($_SERVER['HTTPS']) && strtolower((string) $_SERVER['HTTPS']) !== 'off')
+                || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+
+            return ($https ? 'https' : 'http') . '://' . $host . $cleanPath;
+        }
+
+        return $cleanPath;
+    }
+
+    return base_url() . $cleanPath;
 }
 
 /** Escape a value for safe HTML output. */

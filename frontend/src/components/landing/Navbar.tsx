@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Moon, Sun, Menu, X } from "lucide-react";
-import { useTheme } from "@/components/ThemeProvider";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import inworaLogo from "@assets/inwora_logo.png";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,7 +15,6 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -49,8 +47,6 @@ export default function Navbar() {
       }
     }
   };
-
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
   return (
     <header
@@ -98,15 +94,7 @@ export default function Navbar() {
               })}
             </ul>
 
-            <div className="ml-3 flex items-center gap-2 border-l border-border pl-3">
-              <button
-                onClick={toggleTheme}
-                aria-label="Toggle theme"
-                className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                <Sun className="h-4.5 w-4.5 hidden dark:block" />
-                <Moon className="h-4.5 w-4.5 block dark:hidden" />
-              </button>
+            <div className="ml-3 flex items-center border-l border-border pl-3">
               <Button onClick={handleBookDemo} className="rounded-lg font-medium">
                 Book a demo
               </Button>
@@ -115,14 +103,6 @@ export default function Navbar() {
 
           {/* Mobile toggles */}
           <div className="flex items-center gap-1 md:hidden">
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              <Sun className="h-5 w-5 hidden dark:block" />
-              <Moon className="h-5 w-5 block dark:hidden" />
-            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-expanded={mobileMenuOpen}

@@ -1,0 +1,26 @@
+# Hostinger Apache configuration for INWORA landing site & backend routing
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Route /admin and /api requests directly to PHP backend front controller
+    RewriteRule ^admin(/.*)?$ backend/index.php [QSA,L]
+    RewriteRule ^api(/.*)?$ backend/index.php [QSA,L]
+    RewriteRule ^uploads/(.*)$ backend/uploads/$1 [L]
+
+    # Serve existing static files and directories directly
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Fallback all React SPA routes (like /portfolio, /services) to index.html
+    RewriteRule ^ index.html [L]
+</IfModule>
+
+# Protect hidden dotfiles (.env, .git)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

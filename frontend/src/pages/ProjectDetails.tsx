@@ -106,8 +106,8 @@ export default function ProjectDetails() {
           </motion.div>
 
           {/* Banner */}
-          <div className="mt-8 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-muted md:aspect-[21/9]">
-            <img src={project.banner} alt={project.title} className="h-full w-full object-cover" />
+          <div className="mt-8 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-muted shadow-md">
+            <img src={project.banner} alt={project.title} className="h-full w-full object-cover object-center" />
           </div>
 
           {/* Body */}
