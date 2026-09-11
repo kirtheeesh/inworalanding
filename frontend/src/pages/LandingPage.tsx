@@ -10,6 +10,7 @@ import Process from "@/components/landing/Process";
 import About from "@/components/landing/About";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
+import WhatsAppButton from "@/components/landing/WhatsAppButton";
 
 export default function LandingPage() {
   return (
@@ -28,6 +29,7 @@ export default function LandingPage() {
         <FinalCTA />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

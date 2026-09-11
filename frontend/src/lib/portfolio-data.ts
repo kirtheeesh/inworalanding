@@ -17,8 +17,14 @@ export interface Project {
   desc: string;
   fullDesc: string;
   icon: string;
+  /** Cover image — the lowest-priority slide in `banners`. Kept for card thumbnails. */
   banner: string;
+  /** Full banner slider, ordered by admin-set priority (lowest/highest-priority first). */
+  banners: string[];
+  /** A demo video is a YouTube embed OR an uploaded file — never both. */
+  videoType?: "youtube" | "upload" | null;
   videoUrl?: string | null;
+  videoFileUrl?: string | null;
   pdfUrl?: string | null;
   liveUrl?: string | null;
   tags: string[];

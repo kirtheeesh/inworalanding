@@ -5,7 +5,9 @@ import inworaLogo from "@assets/inwora_logo.png";
 const productLinks = [
   { label: "Inwora Daily Gold (Google Play)", href: "https://play.google.com/store/apps/details?id=com.kirtheeshh.usermobile&pli=1", external: true },
   { label: "POS & KOT Software", href: "#products" },
-  { label: "Mobile App Solutions", href: "#products" },
+  { label: "WhatsApp CRM", href: "#products" },
+  { label: "Construction Management", href: "https://construction.inwora.com", external: true },
+  { label: "Factory Management", href: "#products" },
   { label: "Subscription Plans", href: "#pricing" },
 ];
 

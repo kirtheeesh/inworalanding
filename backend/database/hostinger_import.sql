@@ -31,7 +31,9 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `full_desc`    LONGTEXT     NOT NULL,
   `icon`         VARCHAR(60)  NOT NULL DEFAULT 'Layout',
   `banner`       VARCHAR(500) NOT NULL DEFAULT '',
+  `video_type`   ENUM('youtube', 'upload') NULL DEFAULT NULL,
   `video_url`    VARCHAR(500) NULL,
+  `video_file`   VARCHAR(500) NULL,
   `pdf_url`      VARCHAR(500) NULL,
   `live_url`     VARCHAR(500) NULL,
   `sort_order`   INT          NOT NULL DEFAULT 0,
@@ -41,6 +43,30 @@ CREATE TABLE IF NOT EXISTS `projects` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_projects_slug` (`slug`),
   KEY `idx_projects_listing` (`is_published`, `sort_order`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- `CREATE TABLE IF NOT EXISTS` above is a no-op if `projects` already exists
+-- from before the banner slider / demo video columns were added (re-imports
+-- on an existing production DB). Add them explicitly; requires MySQL 8.0.29+
+-- or MariaDB 10.0.2+ for `ADD COLUMN IF NOT EXISTS` (safe no-op on a fresh
+-- import too, since CREATE TABLE above already created them).
+ALTER TABLE `projects`
+  ADD COLUMN IF NOT EXISTS `video_type` ENUM('youtube', 'upload') NULL DEFAULT NULL AFTER `banner`,
+  ADD COLUMN IF NOT EXISTS `video_file` VARCHAR(500) NULL DEFAULT NULL AFTER `video_url`;
+
+UPDATE `projects` SET `video_type` = 'youtube'
+  WHERE `video_type` IS NULL AND `video_url` IS NOT NULL AND `video_url` <> '';
+
+-- ── Banner slider images (priority = sort_order, lowest shows first) ────
+CREATE TABLE IF NOT EXISTS `project_banners` (
+  `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `project_id` INT UNSIGNED NOT NULL,
+  `image`      VARCHAR(500) NOT NULL,
+  `sort_order` INT          NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `idx_project_banners_project` (`project_id`, `sort_order`),
+  CONSTRAINT `fk_project_banners_project`
+    FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- ── Tags (chips shown on the card + detail hero) ─────────────
@@ -65,6 +91,63 @@ CREATE TABLE IF NOT EXISTS `project_features` (
   KEY `idx_project_features_project` (`project_id`, `sort_order`),
   CONSTRAINT `fk_project_features_project`
     FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- ── Products (Hero panel + #products slider) ─────────────────
+CREATE TABLE IF NOT EXISTS `products` (
+  `id`             INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `slug`           VARCHAR(160) NOT NULL,
+  `title`          VARCHAR(200) NOT NULL,
+  `subtitle`       VARCHAR(255) NOT NULL DEFAULT '',
+  `badge`          VARCHAR(120) NOT NULL DEFAULT '',
+  `tagline`        VARCHAR(255) NOT NULL DEFAULT '',
+  `description`    TEXT         NOT NULL,
+  `overview`       LONGTEXT     NULL,
+  `icon`           VARCHAR(60)  NOT NULL DEFAULT 'Boxes',
+  `image`          VARCHAR(500) NOT NULL DEFAULT '',
+  `video_type`     ENUM('youtube', 'upload') NULL DEFAULT NULL,
+  `video_url`      VARCHAR(500) NULL,
+  `video_file`     VARCHAR(500) NULL,
+  `live_url`       VARCHAR(500) NULL,
+  `play_store_url` VARCHAR(500) NULL,
+  `is_featured`    TINYINT(1)   NOT NULL DEFAULT 0,
+  `sort_order`     INT          NOT NULL DEFAULT 0,
+  `is_published`   TINYINT(1)   NOT NULL DEFAULT 1,
+  `created_at`     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at`     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_products_slug` (`slug`),
+  KEY `idx_products_listing` (`is_published`, `sort_order`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- `CREATE TABLE IF NOT EXISTS` above is a no-op if `products` already exists
+-- from before these columns were added (re-imports on an existing DB).
+ALTER TABLE `products`
+  ADD COLUMN IF NOT EXISTS `overview` LONGTEXT NULL AFTER `description`,
+  ADD COLUMN IF NOT EXISTS `video_type` ENUM('youtube', 'upload') NULL DEFAULT NULL AFTER `image`,
+  ADD COLUMN IF NOT EXISTS `video_url` VARCHAR(500) NULL AFTER `video_type`,
+  ADD COLUMN IF NOT EXISTS `video_file` VARCHAR(500) NULL AFTER `video_url`;
+
+CREATE TABLE IF NOT EXISTS `product_banners` (
+  `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_id` INT UNSIGNED NOT NULL,
+  `image`      VARCHAR(500) NOT NULL,
+  `sort_order` INT          NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `idx_product_banners_product` (`product_id`, `sort_order`),
+  CONSTRAINT `fk_product_banners_product`
+    FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `product_features` (
+  `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_id` INT UNSIGNED NOT NULL,
+  `feature`    VARCHAR(255) NOT NULL,
+  `sort_order` INT          NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `idx_product_features_product` (`product_id`, `sort_order`),
+  CONSTRAINT `fk_product_features_product`
+    FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 
@@ -107,6 +190,17 @@ ON DUPLICATE KEY UPDATE `title`='SCORM LMS Learning Management System', `short_d
 INSERT INTO `projects` (`id`, `slug`, `title`, `category`, `short_desc`, `full_desc`, `icon`, `banner`, `video_url`, `pdf_url`, `live_url`, `sort_order`, `is_published`) VALUES
 (9, 'accounts-management', 'Accounts Management System', 'Financial Tool', 'Double-entry financial accounting software with automated invoicing, ledger tracking, and tax reconciliation.', 'The Accounts Management System is a secure, double-entry financial accounting platform designed for small-to-medium enterprises. It automates general financial ledger updates, tracks recurring operating expenses, generates and dispatches professional PDF invoices to clients, and compiles instant Profit & Loss (P&L) financial statements. The system streamlines bank account reconciliations and tax category mapping, saving business owners and accountants over 70% in administrative preparation time.', 'Calculator', '/assets/projects/accounts-management.png', NULL, NULL, NULL, 8, 1)
 ON DUPLICATE KEY UPDATE `title`='Accounts Management System', `short_desc`='Double-entry financial accounting software with automated invoicing, ledger tracking, and tax reconciliation.', `full_desc`='The Accounts Management System is a secure, double-entry financial accounting platform designed for small-to-medium enterprises. It automates general financial ledger updates, tracks recurring operating expenses, generates and dispatches professional PDF invoices to clients, and compiles instant Profit & Loss (P&L) financial statements. The system streamlines bank account reconciliations and tax category mapping, saving business owners and accountants over 70% in administrative preparation time.', `banner`='/assets/projects/accounts-management.png';
+
+-- ── Backfill one banner slide (priority 0) per existing project ──────
+INSERT INTO `project_banners` (`id`, `project_id`, `image`, `sort_order`) VALUES (1, 1, '/assets/projects/gold-poster.png', 0) ON DUPLICATE KEY UPDATE `image`='/assets/projects/gold-poster.png';
+INSERT INTO `project_banners` (`id`, `project_id`, `image`, `sort_order`) VALUES (2, 2, '/assets/projects/pos-kot.png', 0) ON DUPLICATE KEY UPDATE `image`='/assets/projects/pos-kot.png';
+INSERT INTO `project_banners` (`id`, `project_id`, `image`, `sort_order`) VALUES (3, 3, '/assets/projects/hospital-management.png', 0) ON DUPLICATE KEY UPDATE `image`='/assets/projects/hospital-management.png';
+INSERT INTO `project_banners` (`id`, `project_id`, `image`, `sort_order`) VALUES (4, 4, '/assets/projects/factory-automation.png', 0) ON DUPLICATE KEY UPDATE `image`='/assets/projects/factory-automation.png';
+INSERT INTO `project_banners` (`id`, `project_id`, `image`, `sort_order`) VALUES (5, 5, '/assets/projects/travel-budget.png', 0) ON DUPLICATE KEY UPDATE `image`='/assets/projects/travel-budget.png';
+INSERT INTO `project_banners` (`id`, `project_id`, `image`, `sort_order`) VALUES (6, 6, '/assets/projects/construction-crm.png', 0) ON DUPLICATE KEY UPDATE `image`='/assets/projects/construction-crm.png';
+INSERT INTO `project_banners` (`id`, `project_id`, `image`, `sort_order`) VALUES (7, 7, '/assets/projects/lead-management.png', 0) ON DUPLICATE KEY UPDATE `image`='/assets/projects/lead-management.png';
+INSERT INTO `project_banners` (`id`, `project_id`, `image`, `sort_order`) VALUES (8, 8, '/assets/projects/scrom-lms.png', 0) ON DUPLICATE KEY UPDATE `image`='/assets/projects/scrom-lms.png';
+INSERT INTO `project_banners` (`id`, `project_id`, `image`, `sort_order`) VALUES (9, 9, '/assets/projects/accounts-management.png', 0) ON DUPLICATE KEY UPDATE `image`='/assets/projects/accounts-management.png';
 
 INSERT INTO `project_tags` (`id`, `project_id`, `tag`, `sort_order`) VALUES (41, 1, 'React', 0) ON DUPLICATE KEY UPDATE `tag`='React';
 INSERT INTO `project_tags` (`id`, `project_id`, `tag`, `sort_order`) VALUES (42, 1, 'SaaS', 1) ON DUPLICATE KEY UPDATE `tag`='SaaS';
@@ -199,5 +293,40 @@ INSERT INTO `project_features` (`id`, `project_id`, `feature`, `sort_order`) VAL
 INSERT INTO `project_features` (`id`, `project_id`, `feature`, `sort_order`) VALUES (112, 9, 'Instant P&L Financial Statement Generator', 3) ON DUPLICATE KEY UPDATE `feature`='Instant P&L Financial Statement Generator';
 INSERT INTO `project_features` (`id`, `project_id`, `feature`, `sort_order`) VALUES (113, 9, 'Automated Tax Category Mapping', 4) ON DUPLICATE KEY UPDATE `feature`='Automated Tax Category Mapping';
 INSERT INTO `project_features` (`id`, `project_id`, `feature`, `sort_order`) VALUES (114, 9, 'Secure Accountant Access & Audit Trail', 5) ON DUPLICATE KEY UPDATE `feature`='Secure Accountant Access & Audit Trail';
+
+-- ── Seed Products Data ───────────────────────────────────────
+INSERT INTO `products` (`id`, `slug`, `title`, `subtitle`, `badge`, `tagline`, `description`, `icon`, `image`, `live_url`, `play_store_url`, `is_featured`, `sort_order`, `is_published`) VALUES
+(1, 'inwora-daily-gold', 'Inwora Daily Gold', 'Gold-rate poster & daily creatives app', 'Poster Automation', 'Gold-rate posters & daily creatives', 'A mobile app & subscription platform for creating gold & silver rate posters and promotional graphics. Generate professional visuals in seconds.', 'Image', '', 'https://gold.inwora.com', 'https://play.google.com/store/apps/details?id=com.kirtheeshh.usermobile&pli=1', 0, 0, 1),
+(2, 'pos-kot-software', 'POS & KOT Software', 'Restaurants, billing & order workflows', 'Restaurant SaaS', 'Restaurant billing & kitchen orders', 'A live SaaS subscription POS & Kitchen Order Ticket system for restaurants, cafes, and retail counters. Streamline orders and billing in real time.', 'Monitor', '', 'https://kot.nexoraapp.in/', NULL, 1, 1, 1),
+(3, 'whatsapp-crm', 'WhatsApp CRM', 'Scheduled bulk messaging & tag-based campaigns', 'Marketing CRM', 'Scheduled bulk messaging by tag', 'A CRM built for WhatsApp outreach — send bulk messages on a schedule, segmented by contact tags, so the right audience hears from you at the right time.', 'Send', '', NULL, NULL, 0, 2, 1),
+(4, 'construction-management', 'Construction Management', 'Site accounts & operations in a single step', 'Site Operations', 'Site accounts & every movement in one step', 'Manage every construction site account and track each movement from one place. Materials, labour, expenses and progress stay in sync across all your sites.', 'HardHat', '', 'https://construction.inwora.com', NULL, 0, 3, 1),
+(5, 'factory-management', 'Factory Management', 'Raw material to dispatch in one click', 'Production Ops', 'Raw material to packing & dispatch', 'Record the full production flow — from raw material intake through manufacturing to product packing and final dispatch — in a single click.', 'Factory', '', NULL, NULL, 0, 4, 1)
+ON DUPLICATE KEY UPDATE `title`=VALUES(`title`), `subtitle`=VALUES(`subtitle`), `badge`=VALUES(`badge`), `tagline`=VALUES(`tagline`), `description`=VALUES(`description`), `icon`=VALUES(`icon`), `live_url`=VALUES(`live_url`), `play_store_url`=VALUES(`play_store_url`), `is_featured`=VALUES(`is_featured`), `sort_order`=VALUES(`sort_order`);
+
+-- New `overview` column defaults to the card description until an admin writes a fuller one.
+UPDATE `products` SET `overview` = `description` WHERE `overview` IS NULL;
+
+INSERT INTO `product_features` (`id`, `product_id`, `feature`, `sort_order`) VALUES
+(1, 1, 'Official Android app on Google Play', 0),
+(2, 1, 'Automated gold & silver rate templates', 1),
+(3, 1, 'Fast poster creation engine', 2),
+(4, 1, 'Brand logo & shop customization', 3),
+(5, 2, 'Real-time order management', 0),
+(6, 2, 'Kitchen display system (KOT)', 1),
+(7, 2, 'Multi-counter support', 2),
+(8, 2, 'Sales reports & analytics', 3),
+(9, 3, 'Bulk message broadcasting', 0),
+(10, 3, 'Schedule campaigns in advance', 1),
+(11, 3, 'Tag-based audience segmentation', 2),
+(12, 3, 'Contact & conversation management', 3),
+(13, 4, 'Centralised site account management', 0),
+(14, 4, 'Track every material & fund movement', 1),
+(15, 4, 'Labour & expense records per site', 2),
+(16, 4, 'Real-time progress across all sites', 3),
+(17, 5, 'Raw material inventory tracking', 0),
+(18, 5, 'Production & packing workflow', 1),
+(19, 5, 'One-click dispatch entries', 2),
+(20, 5, 'Stock & output reporting', 3)
+ON DUPLICATE KEY UPDATE `feature`=VALUES(`feature`), `sort_order`=VALUES(`sort_order`);
 
 SET FOREIGN_KEY_CHECKS=1;

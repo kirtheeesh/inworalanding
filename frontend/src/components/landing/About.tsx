@@ -62,9 +62,8 @@ export default function About() {
                 single mission: build software that transforms businesses.
               </p>
               <p>
-                We specialize in mobile application development, subscription-based SaaS products, and business automation.
-                From the Inwora Daily Gold poster app for jewelry brands to POS systems for restaurants, every product we
-                ship is engineered with precision and purpose.
+                We specialize in mobile application development, subscription-based SaaS platforms, and enterprise business automation.
+                Every digital solution we engineer is built with precision, scalable architecture, and commercial purpose.
               </p>
               <p>
                 Our philosophy is simple: software should be beautiful, reliable, and commercially impactful. We don't

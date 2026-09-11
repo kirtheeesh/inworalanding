@@ -7,9 +7,9 @@ This is the Inwora landing site: a **React 19 frontend** (Vite, Tailwind CSS v4,
 The repository has two apps side by side; the root holds only shared config (`.gitignore`, `AGENTS.md`, `.replit-artifact/`):
 
 - **`frontend/`** — the Vite app. It is the Vite root and holds `package.json`, so run every npm command from there.
-- **`backend/`** — a dependency-free PHP backend (no Composer). It serves a read-only JSON API (`/api/projects`) and an admin panel (`/admin`, default `admin` / `admin123`) for creating and editing portfolio projects, including image uploads. See `backend/README.md` for setup. The frontend reads the API base URL from `frontend/.env` (`VITE_API_BASE_URL`).
+- **`backend/`** — a dependency-free PHP backend (no Composer). It serves a read-only JSON API (`/api/projects`, `/api/products`) and an admin panel (`/admin`, default `admin` / `admin123`) with a **Products** section (the 5 official products behind the Hero panel + `#products` slider) and a **Portfolio** section (case-study projects), both including image uploads. See `backend/README.md` for setup. The frontend reads the API base URL from `frontend/.env` (`VITE_API_BASE_URL`).
 
-Portfolio data lives in MySQL (database `inworalanding`), **not** in the frontend source. The `icon` field stores a lucide icon *name*; the allowed set is duplicated in `backend/src/ProjectRepository.php` (`ICONS`) and `frontend/src/lib/portfolio-data.ts` (`iconMap`) and must stay in sync.
+Portfolio and product data live in MySQL (database name from `backend/.env` `DB_DATABASE`), **not** in the frontend source. The `icon` field stores a lucide icon *name*; the allowed sets are duplicated in `backend/src/ProjectRepository.php` / `ProductRepository.php` (`ICONS`) and `frontend/src/lib/portfolio-data.ts` (`iconMap`) / `frontend/src/lib/products-data.ts` (`productIconMap`) and must stay in sync. `frontend/src/lib/products-data.ts` also holds `FALLBACK_PRODUCTS`, a static copy shown in the Hero panel until `/api/products` resolves.
 
 The architecture follows a component-driven approach integrated with **shadcn/ui**.
 

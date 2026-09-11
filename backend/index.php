@@ -15,6 +15,7 @@ require_once __DIR__ . '/config/env.php';
 require_once __DIR__ . '/src/helpers.php';
 require_once __DIR__ . '/src/Auth.php';
 require_once __DIR__ . '/src/ProjectRepository.php';
+require_once __DIR__ . '/src/ProductRepository.php';
 require_once __DIR__ . '/src/FileUploader.php';
 require_once __DIR__ . '/admin/controller.php';
 
@@ -29,6 +30,9 @@ $requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 $basePath = rtrim(parse_url(env('APP_URL', ''), PHP_URL_PATH) ?: '', '/');
 if ($basePath !== '' && str_starts_with($requestPath, $basePath)) {
     $requestPath = substr($requestPath, strlen($basePath));
+}
+if (str_starts_with($requestPath, '/backend')) {
+    $requestPath = substr($requestPath, 8);
 }
 $path = '/' . trim(rawurldecode($requestPath), '/');
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
@@ -77,6 +81,24 @@ function dispatch(string $path, string $method, bool $isApi): void
         json_response(['data' => $repo->toApiArray($project)]);
     }
 
+    if ($path === '/api/products' && $method === 'GET') {
+        $repo = new ProductRepository();
+        $products = array_map([$repo, 'toApiArray'], $repo->all(true));
+
+        json_response(['data' => $products]);
+    }
+
+    if (preg_match('#^/api/products/([A-Za-z0-9\-_]+)$#', $path, $m) && $method === 'GET') {
+        $repo = new ProductRepository();
+        $product = $repo->findBySlug($m[1], true);
+
+        if (!$product) {
+            json_response(['error' => 'Product not found.'], 404);
+        }
+
+        json_response(['data' => $repo->toApiArray($product)]);
+    }
+
     if ($path === '/api/health' && $method === 'GET') {
         db()->query('SELECT 1');
         json_response(['status' => 'ok', 'database' => env('DB_DATABASE')]);
@@ -119,6 +141,25 @@ function dispatch(string $path, string $method, bool $isApi): void
         }
         if (preg_match('#^/admin/projects/(\d+)/delete$#', $path, $m) && $method === 'POST') {
             admin_project_delete((int) $m[1]);
+        }
+
+        if ($path === '/admin/products' && $method === 'GET') {
+            admin_products_index();
+        }
+        if ($path === '/admin/products/create' && $method === 'GET') {
+            admin_product_form(null);
+        }
+        if ($path === '/admin/products' && $method === 'POST') {
+            admin_product_save(null);
+        }
+        if (preg_match('#^/admin/products/(\d+)/edit$#', $path, $m) && $method === 'GET') {
+            admin_product_form((int) $m[1]);
+        }
+        if (preg_match('#^/admin/products/(\d+)$#', $path, $m) && $method === 'POST') {
+            admin_product_save((int) $m[1]);
+        }
+        if (preg_match('#^/admin/products/(\d+)/delete$#', $path, $m) && $method === 'POST') {
+            admin_product_delete((int) $m[1]);
         }
     }
 

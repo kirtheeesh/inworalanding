@@ -1,4 +1,5 @@
 import type { Project } from "@/lib/portfolio-data";
+import type { Product } from "@/lib/products-data";
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/+$/, "");
 
@@ -30,7 +31,14 @@ async function getJson<T>(path: string): Promise<T> {
     throw new ApiError(response.status, body?.error ?? `Request failed with status ${response.status}.`);
   }
 
-  return body?.data as T;
+  if (!body || body.data === undefined) {
+    throw new ApiError(
+      response.status,
+      body?.error ?? "Invalid API response: expected JSON data but received HTML or malformed response. Please verify backend deployment and .htaccess."
+    );
+  }
+
+  return body.data as T;
 }
 
 export function fetchProjects(): Promise<Project[]> {
@@ -39,4 +47,12 @@ export function fetchProjects(): Promise<Project[]> {
 
 export function fetchProject(slug: string): Promise<Project> {
   return getJson<Project>(`/api/projects/${encodeURIComponent(slug)}`);
+}
+
+export function fetchProducts(): Promise<Product[]> {
+  return getJson<Product[]>("/api/products");
+}
+
+export function fetchProduct(slug: string): Promise<Product> {
+  return getJson<Product>(`/api/products/${encodeURIComponent(slug)}`);
 }

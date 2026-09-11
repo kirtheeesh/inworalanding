@@ -1,13 +1,17 @@
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
-import { ArrowRight, Briefcase, Rocket, Layout } from "lucide-react";
+import { ArrowRight, Briefcase, Rocket, Layout, LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/landing/_shared";
 import { Link } from "wouter";
 import { resolveIcon } from "@/lib/portfolio-data";
 import { fetchProjects } from "@/lib/api";
+import { cn } from "@/lib/utils";
+
+const ALL_CATEGORY = "All";
 
 const values = [
   { icon: Rocket, title: "Innovation first", desc: "Always pushing the boundaries of what's possible with modern tech stacks." },
@@ -20,6 +24,25 @@ export default function Portfolio() {
     queryKey: ["projects"],
     queryFn: fetchProjects,
   });
+
+  const [activeCategory, setActiveCategory] = useState(ALL_CATEGORY);
+
+  const categories = useMemo(() => {
+    if (!projects) return [];
+    const counts = new Map<string, number>();
+    for (const p of projects) {
+      counts.set(p.category, (counts.get(p.category) ?? 0) + 1);
+    }
+    return [
+      { name: ALL_CATEGORY, count: projects.length },
+      ...Array.from(counts, ([name, count]) => ({ name, count })).sort((a, b) => a.name.localeCompare(b.name)),
+    ];
+  }, [projects]);
+
+  const filteredProjects = useMemo(() => {
+    if (!projects) return [];
+    return activeCategory === ALL_CATEGORY ? projects : projects.filter((p) => p.category === activeCategory);
+  }, [projects, activeCategory]);
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground overflow-x-hidden">
@@ -59,10 +82,46 @@ export default function Portfolio() {
 
           {/* Projects */}
           <div className="mt-20">
-            <div className="mb-8 flex items-end justify-between border-b border-border pb-5">
+            <div className="mb-6 flex items-end justify-between border-b border-border pb-5">
               <h2 className="text-2xl font-bold tracking-tight text-foreground">Featured projects</h2>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Shipping globally</p>
             </div>
+
+            {/* Category filter */}
+            {categories.length > 1 && (
+              <div className="mb-10 -mx-4 overflow-x-auto px-4 md:mx-0 md:overflow-visible md:px-0">
+                <div className="flex items-center gap-2 md:flex-wrap">
+                  {categories.map(({ name, count }) => {
+                    const active = activeCategory === name;
+                    return (
+                      <button
+                        key={name}
+                        type="button"
+                        onClick={() => setActiveCategory(name)}
+                        aria-pressed={active}
+                        className={cn(
+                          "inline-flex flex-shrink-0 items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                          active
+                            ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                            : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                        )}
+                      >
+                        {name === ALL_CATEGORY && <LayoutGrid className="h-3.5 w-3.5" />}
+                        {name}
+                        <span
+                          className={cn(
+                            "rounded-full px-1.5 py-0.5 text-[11px] font-semibold leading-none",
+                            active ? "bg-white/20" : "bg-muted"
+                          )}
+                        >
+                          {count}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {isPending && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -92,9 +151,18 @@ export default function Portfolio() {
               </div>
             )}
 
-            {projects && projects.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {projects.map((project, i) => {
+            {projects && projects.length > 0 && filteredProjects.length === 0 && (
+              <div className="rounded-xl border border-border bg-muted/30 p-12 text-center">
+                <p className="text-muted-foreground">No projects in "{activeCategory}" yet.</p>
+                <Button variant="outline" size="sm" className="mt-4 rounded-lg" onClick={() => setActiveCategory(ALL_CATEGORY)}>
+                  Show all projects
+                </Button>
+              </div>
+            )}
+
+            {filteredProjects.length > 0 && (
+              <div key={activeCategory} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {filteredProjects.map((project, i) => {
                   const Icon = resolveIcon(project.icon);
 
                   return (
@@ -103,7 +171,7 @@ export default function Portfolio() {
                         initial={{ opacity: 0, y: 14 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-60px" }}
-                        transition={{ duration: 0.45, delay: Math.min(i * 0.05, 0.3) }}
+                        transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.3) }}
                         className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/30 hover:shadow-md cursor-pointer"
                       >
                         <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted">

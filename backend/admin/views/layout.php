@@ -89,7 +89,8 @@ $error = flash('error');
   <header class="topbar">
     <span class="brand">INWORA Admin</span>
     <nav>
-      <a href="<?= e(url('/admin/projects')) ?>">Projects</a>
+      <a href="<?= e(url('/admin/products')) ?>">Products</a>
+      <a href="<?= e(url('/admin/projects')) ?>">Portfolio</a>
       <a href="<?= e(rtrim(env('FRONTEND_URL', '') ?: '#', '/')) ?>" target="_blank" rel="noopener">View site</a>
       <span class="who hide-sm">Signed in as <strong><?= e(Auth::username()) ?></strong></span>
       <form method="post" action="<?= e(url('/admin/logout')) ?>" style="margin:0">

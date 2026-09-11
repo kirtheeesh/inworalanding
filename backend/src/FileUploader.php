@@ -24,6 +24,13 @@ class FileUploader
         'application/pdf' => 'pdf',
     ];
 
+    public const VIDEO_TYPES = [
+        'video/mp4'       => 'mp4',
+        'video/webm'      => 'webm',
+        'video/ogg'       => 'ogv',
+        'video/quicktime' => 'mov',
+    ];
+
     private string $directory;
 
     public function __construct(?string $directory = null)
@@ -39,10 +46,11 @@ class FileUploader
      * Validate and store one uploaded file.
      *
      * @param  array<string, string> $allowedTypes MIME => extension
+     * @param  int|null              $maxBytes     Override for the size cap (default: UPLOAD_MAX_BYTES).
      * @return string Path relative to the backend root, e.g. "uploads/a1b2c3.jpg".
      * @throws RuntimeException When the upload is rejected.
      */
-    public function store(array $file, array $allowedTypes): string
+    public function store(array $file, array $allowedTypes, ?int $maxBytes = null): string
     {
         $error = $file['error'] ?? UPLOAD_ERR_NO_FILE;
 
@@ -53,7 +61,7 @@ class FileUploader
             throw new RuntimeException('The file could not be uploaded. Please try again.');
         }
 
-        $maxBytes = env_int('UPLOAD_MAX_BYTES', 5 * 1024 * 1024);
+        $maxBytes ??= env_int('UPLOAD_MAX_BYTES', 5 * 1024 * 1024);
         if (($file['size'] ?? 0) > $maxBytes) {
             throw new RuntimeException(sprintf('File is too large. Maximum size is %d MB.', (int) round($maxBytes / 1048576)));
         }

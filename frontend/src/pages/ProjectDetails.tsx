@@ -7,6 +7,7 @@ import { ArrowLeft, Download, ExternalLink, PlayCircle, Check, FileText } from "
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { ApiError, fetchProject } from "@/lib/api";
+import { BannerSlider } from "@/components/ui/banner-slider";
 
 export default function ProjectDetails() {
   const { id } = useParams();
@@ -106,8 +107,8 @@ export default function ProjectDetails() {
           </motion.div>
 
           {/* Banner */}
-          <div className="mt-8 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-muted shadow-md">
-            <img src={project.banner} alt={project.title} className="h-full w-full object-cover object-center" />
+          <div className="mt-8">
+            <BannerSlider images={project.banners?.length ? project.banners : [project.banner]} alt={project.title} />
           </div>
 
           {/* Body */}
@@ -134,23 +135,28 @@ export default function ProjectDetails() {
                 </div>
               </section>
 
-              {project.videoUrl && (
+              {(project.videoType === "youtube" && project.videoUrl) ||
+              (project.videoType === "upload" && project.videoFileUrl) ? (
                 <section>
                   <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-foreground">
                     <PlayCircle className="h-5 w-5 text-primary" />
                     Working demo
                   </h2>
                   <div className="aspect-video w-full overflow-hidden rounded-xl border border-border bg-muted">
-                    <iframe
-                      className="h-full w-full"
-                      src={project.videoUrl}
-                      title={`${project.title} demo`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
+                    {project.videoType === "youtube" ? (
+                      <iframe
+                        className="h-full w-full"
+                        src={project.videoUrl!}
+                        title={`${project.title} demo`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    ) : (
+                      <video className="h-full w-full" src={project.videoFileUrl!} controls playsInline preload="metadata" />
+                    )}
                   </div>
                 </section>
-              )}
+              ) : null}
             </div>
 
             {/* Right */}

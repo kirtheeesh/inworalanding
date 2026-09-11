@@ -3,7 +3,27 @@
 $isEdit = $project !== null;
 $action = $isEdit ? url('/admin/projects/' . $project['id']) : url('/admin/projects');
 $val = static fn (string $key, string $default = '') => e((string) ($project[$key] ?? $default));
+$videoMode = $project['video_type'] ?? 'none';
+if ($videoMode === '' || $videoMode === null) {
+    $videoMode = 'none';
+}
+$banners = $project['banners'] ?? [];
 ?>
+<style>
+  .banner-slide {
+    display: flex; align-items: flex-end; gap: .9rem; padding: .85rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .banner-slide:last-child { border-bottom: 0; }
+  .banner-slide .thumb { width: 96px; height: 64px; flex-shrink: 0; }
+  .banner-slide .field { flex: 1; margin: 0; min-width: 0; }
+  .banner-slide .field-priority { flex: 0 0 90px; }
+  .banner-slide .checkbox { flex-shrink: 0; white-space: nowrap; }
+  .video-mode-options { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1rem; }
+  .video-mode-options label { display: inline-flex; align-items: center; gap: .4rem; margin: 0; font-weight: 500; }
+  .video-mode-options input { width: auto; }
+</style>
+
 <div class="page-head">
   <h1><?= $isEdit ? 'Edit project' : 'New project' ?></h1>
   <span class="spacer"></span>
@@ -27,7 +47,7 @@ $val = static fn (string $key, string $default = '') => e((string) ($project[$ke
         <input type="text" id="slug" name="slug" value="<?= $val('slug') ?>" placeholder="gold-poster">
       </div>
       <div class="field">
-        <label for="category">Category</label>
+        <label for="category">Category <span class="hint">— powers the filter chips on the public portfolio page</span></label>
         <input type="text" id="category" name="category" value="<?= $val('category') ?>" placeholder="SaaS Product">
       </div>
     </div>
@@ -38,7 +58,7 @@ $val = static fn (string $key, string $default = '') => e((string) ($project[$ke
     </div>
 
     <div class="field">
-      <label for="full_desc">Full description <span class="hint">— shown on the project detail page</span></label>
+      <label for="full_desc">Overview <span class="hint">— the full project description shown on the project detail page</span></label>
       <textarea id="full_desc" name="full_desc" rows="6"><?= $val('full_desc') ?></textarea>
     </div>
 
@@ -54,7 +74,7 @@ $val = static fn (string $key, string $default = '') => e((string) ($project[$ke
         </select>
       </div>
       <div class="field">
-        <label for="sort_order">Sort order <span class="hint">— lower shows first</span></label>
+        <label for="sort_order">Sort order <span class="hint">— lower shows first in the projects list</span></label>
         <input type="number" id="sort_order" name="sort_order" value="<?= $val('sort_order', '0') ?>">
       </div>
     </div>
@@ -67,26 +87,67 @@ $val = static fn (string $key, string $default = '') => e((string) ($project[$ke
   </fieldset>
 
   <fieldset>
-    <legend>Banner image</legend>
+    <legend>Banner image slider</legend>
+    <p class="hint" style="margin:0 0 1.1rem">
+      Add one or more images. <strong>Priority</strong> controls slide order on the site —
+      lower numbers show first, and the lowest-priority image becomes the cover shown on the portfolio card.
+    </p>
 
-    <?php if (($project['banner'] ?? '') !== ''): ?>
-      <div class="field">
-        <img src="<?= e(url($project['banner'])) ?>" alt="Current banner"
-             style="width:100%;max-width:420px;border-radius:10px;border:1px solid var(--border);display:block">
+    <div id="banner-slides">
+      <?php foreach ($banners as $banner): ?>
+        <div class="banner-slide">
+          <img class="thumb" src="<?= e(url($banner['image'])) ?>" alt="">
+          <input type="hidden" name="banner_existing_id[]" value="<?= (int) $banner['id'] ?>">
+          <div class="field field-priority">
+            <label>Priority</label>
+            <input type="number" name="banner_existing_priority[]" value="<?= (int) $banner['sort_order'] ?>">
+          </div>
+          <label class="checkbox">
+            <input type="checkbox" name="banner_remove[]" value="<?= (int) $banner['id'] ?>">
+            Remove
+          </label>
+        </div>
+      <?php endforeach; ?>
+    </div>
+
+    <div id="banner-new-slides">
+      <div class="banner-slide banner-slide-new">
+        <div class="field">
+          <label>Image file</label>
+          <input type="file" name="banner_new_file[]" accept="image/*">
+        </div>
+        <div class="field">
+          <label>…or image URL</label>
+          <input type="text" name="banner_new_url[]" placeholder="https://images.unsplash.com/photo-...">
+        </div>
+        <div class="field field-priority">
+          <label>Priority</label>
+          <input type="number" name="banner_new_priority[]" value="<?= count($banners) * 10 ?>">
+        </div>
       </div>
-    <?php endif; ?>
-
-    <div class="field">
-      <label for="banner_file">Upload a new image <span class="hint">— JPG, PNG, WebP, GIF or AVIF. Replaces the current one.</span></label>
-      <input type="file" id="banner_file" name="banner_file" accept="image/*">
     </div>
 
-    <div class="field">
-      <label for="banner_url">…or use an image URL</label>
-      <input type="text" id="banner_url" name="banner_url" value="<?= $val('banner') ?>"
-             placeholder="https://images.unsplash.com/photo-...">
-      <p class="hint" style="margin:.4rem 0 0">An uploaded file always wins over this field.</p>
-    </div>
+    <p style="margin:.9rem 0 0">
+      <button type="button" class="btn btn-outline btn-sm" id="banner-add-btn">+ Add another slide</button>
+    </p>
+
+    <template id="banner-slide-template">
+      <div class="banner-slide banner-slide-new">
+        <div class="field">
+          <label>Image file</label>
+          <input type="file" name="banner_new_file[]" accept="image/*">
+        </div>
+        <div class="field">
+          <label>…or image URL</label>
+          <input type="text" name="banner_new_url[]" placeholder="https://images.unsplash.com/photo-...">
+        </div>
+        <div class="field field-priority">
+          <label>Priority</label>
+          <input type="number" name="banner_new_priority[]" value="0">
+        </div>
+        <button type="button" class="btn btn-outline btn-sm banner-remove-new">✕</button>
+      </div>
+    </template>
   </fieldset>
 
   <fieldset>
@@ -105,17 +166,53 @@ $val = static fn (string $key, string $default = '') => e((string) ($project[$ke
   </fieldset>
 
   <fieldset>
-    <legend>Links &amp; media</legend>
+    <legend>Demo video</legend>
+    <p class="hint" style="margin:0 0 1.1rem">A YouTube link <strong>or</strong> an uploaded video file — never both.</p>
 
-    <div class="grid-2">
+    <div class="video-mode-options">
+      <label>
+        <input type="radio" name="video_mode" value="none" <?= $videoMode === 'none' ? 'checked' : '' ?>>
+        No video
+      </label>
+      <label>
+        <input type="radio" name="video_mode" value="youtube" <?= $videoMode === 'youtube' ? 'checked' : '' ?>>
+        YouTube link
+      </label>
+      <label>
+        <input type="radio" name="video_mode" value="upload" <?= $videoMode === 'upload' ? 'checked' : '' ?>>
+        Upload video file
+      </label>
+    </div>
+
+    <div id="video-panel-youtube" <?= $videoMode !== 'youtube' ? 'hidden' : '' ?>>
       <div class="field">
-        <label for="live_url">Live site URL</label>
-        <input type="text" id="live_url" name="live_url" value="<?= $val('live_url') ?>" placeholder="https://gold.inwora.com">
+        <label for="video_url">YouTube URL</label>
+        <input type="text" id="video_url" name="video_url"
+               value="<?= $videoMode === 'youtube' ? $val('video_url') : '' ?>"
+               placeholder="https://www.youtube.com/watch?v=...">
       </div>
+    </div>
+
+    <div id="video-panel-upload" <?= $videoMode !== 'upload' ? 'hidden' : '' ?>>
+      <?php if (($project['video_file'] ?? '') !== ''): ?>
+        <div class="field">
+          <video src="<?= e(url($project['video_file'])) ?>" controls
+                 style="width:100%;max-width:420px;border-radius:10px;border:1px solid var(--border);display:block;background:#000"></video>
+        </div>
+      <?php endif; ?>
       <div class="field">
-        <label for="video_url">Demo video embed URL</label>
-        <input type="text" id="video_url" name="video_url" value="<?= $val('video_url') ?>" placeholder="https://www.youtube.com/embed/...">
+        <label for="video_file">Video file <span class="hint">— MP4, WebM, Ogg or MOV. Replaces the current one.</span></label>
+        <input type="file" id="video_file" name="video_file" accept="video/*">
       </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Live server &amp; presentation</legend>
+
+    <div class="field">
+      <label for="live_url">Live server URL <span class="hint">— redirects visitors here from a "Visit website" button</span></label>
+      <input type="text" id="live_url" name="live_url" value="<?= $val('live_url') ?>" placeholder="https://gold.inwora.com">
     </div>
 
     <div class="field">
@@ -134,3 +231,41 @@ $val = static fn (string $key, string $default = '') => e((string) ($project[$ke
     <a class="btn btn-outline" href="<?= e(url('/admin/projects')) ?>">Cancel</a>
   </div>
 </form>
+
+<script>
+(function () {
+  var addBtn = document.getElementById('banner-add-btn');
+  var template = document.getElementById('banner-slide-template');
+  var container = document.getElementById('banner-new-slides');
+
+  if (addBtn && template && container) {
+    addBtn.addEventListener('click', function () {
+      container.appendChild(template.content.cloneNode(true));
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('banner-remove-new')) {
+      var row = e.target.closest('.banner-slide');
+      if (row) row.remove();
+    }
+  });
+
+  var radios = document.querySelectorAll('input[name="video_mode"]');
+  var panels = {
+    youtube: document.getElementById('video-panel-youtube'),
+    upload: document.getElementById('video-panel-upload'),
+  };
+
+  function syncVideoPanels() {
+    var selected = document.querySelector('input[name="video_mode"]:checked');
+    var mode = selected ? selected.value : 'none';
+    Object.keys(panels).forEach(function (key) {
+      if (panels[key]) panels[key].hidden = key !== mode;
+    });
+  }
+
+  radios.forEach(function (r) { r.addEventListener('change', syncVideoPanels); });
+  syncVideoPanels();
+})();
+</script>

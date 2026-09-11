@@ -4,19 +4,51 @@ import {
   Smartphone, Package, Palette, Cpu, Cloud, Layers,
   Users, UserCheck, Database, Sliders, ShoppingBag, Globe,
   GraduationCap, Calculator, Sparkles, Receipt, Activity,
-  Factory, Compass, HardHat, ArrowRight,
+  Factory, Compass, HardHat, Wrench, Building2, ArrowRight,
 } from "lucide-react";
 import { SectionHeading } from "./_shared";
 
 const categories = [
   { id: "all", label: "All solutions" },
+  { id: "apps", label: "Mobile App Solutions" },
   { id: "saas", label: "Enterprise & SaaS" },
   { id: "custom", label: "Web & custom dev" },
   { id: "automation", label: "Smart automation" },
 ];
 
-const services = [
-  { icon: Smartphone, title: "Custom Mobile App Development", desc: "End-to-end Android and iOS development tailored to your business goals — from concept to launch.", category: "custom" },
+interface ServiceItem {
+  icon: any;
+  title: string;
+  desc: string;
+  category: string;
+  highlight?: boolean;
+  liveUrl?: string;
+  liveLabel?: string;
+}
+
+const services: ServiceItem[] = [
+  {
+    icon: Sparkles,
+    title: "Customized Apps — Built to Your Requirement",
+    desc: "Most startup IT companies stick to templates and say no to fully bespoke builds. We don't. Every screen, workflow and integration is engineered around exactly how your business runs.",
+    category: "apps",
+    highlight: true,
+  },
+  {
+    icon: Wrench,
+    title: "Servix — Field Service Platform",
+    desc: "A fully customized application we designed, built and shipped for service-business operations — job scheduling, technicians, and customer tracking. Live in production.",
+    category: "apps",
+    liveUrl: "https://servix.inwora.com/",
+    liveLabel: "servix.inwora.com",
+  },
+  {
+    icon: Building2,
+    title: "Real Estate Applications",
+    desc: "Custom property listing, lead management, and site-visit tracking apps built for real-estate businesses and agents.",
+    category: "apps",
+  },
+  { icon: Smartphone, title: "Custom Mobile App Development", desc: "End-to-end Android and iOS development tailored to your business goals — from concept to launch.", category: "apps" },
   { icon: Package, title: "SaaS Product Development", desc: "Subscription-based software platforms built for scale. Multi-tenant, revenue-generating products from the ground up.", category: "saas" },
   { icon: Palette, title: "UI/UX Design for Apps", desc: "Interfaces that users love — intuitive, visually premium, and conversion-optimized. Every pixel has a purpose.", category: "custom" },
   { icon: Cpu, title: "Business Automation Solutions", desc: "Streamline operations with intelligent workflows. Reduce manual effort and let software run your business logic.", category: "automation" },
@@ -80,18 +112,44 @@ export default function Services() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, delay: Math.min(i * 0.03, 0.3) }}
-              className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/30"
+              className={`group relative flex flex-col rounded-xl border bg-card p-6 transition-colors ${
+                service.highlight
+                  ? "border-primary/50 ring-1 ring-primary/20 shadow-sm shadow-primary/5"
+                  : "border-border hover:border-primary/30"
+              }`}
               data-testid={`card-service-${service.title.toLowerCase().replace(/\s+/g, "-")}`}
             >
+              {service.highlight && (
+                <span className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary">
+                  <Sparkles className="h-3 w-3" />
+                  What sets us apart
+                </span>
+              )}
               <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <service.icon className="h-5 w-5" />
               </div>
               <h3 className="mb-2 text-base font-semibold text-foreground">{service.title}</h3>
               <p className="flex-1 text-sm leading-relaxed text-muted-foreground">{service.desc}</p>
-              <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                Learn more
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-              </div>
+              {service.liveUrl ? (
+                <a
+                  href={service.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary"
+                >
+                  {service.liveLabel ?? "Visit live site"}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              ) : (
+                <div
+                  className={`mt-4 flex items-center gap-1.5 text-sm font-medium text-primary transition-opacity ${
+                    service.highlight ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                  }`}
+                >
+                  Learn more
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </div>
+              )}
             </motion.div>
           ))}
         </motion.div>

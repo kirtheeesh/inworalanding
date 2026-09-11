@@ -17,6 +17,9 @@ class ProjectRepository
         'Cloud', 'Cpu', 'LineChart', 'Users', 'Briefcase', 'Rocket', 'Boxes',
     ];
 
+    /** A project's demo video is a YouTube link OR an uploaded file — never both. */
+    public const VIDEO_MODES = ['youtube', 'upload'];
+
     private PDO $db;
 
     public function __construct(?PDO $db = null)
@@ -64,12 +67,17 @@ class ProjectRepository
     }
 
     /**
-     * Insert or update a project together with its tags and features.
+     * Insert or update a project together with its tags, features and banner slides.
      *
+     * @param array<int, array{image: string, sort_order: int}> $banners Slider images.
+     *        The lowest `sort_order` (highest priority) becomes the project's cover
+     *        image, kept in the `banner` column for backward-compatible thumbnails.
      * @return int The project id.
      */
-    public function save(?int $id, array $data, array $tags, array $features): int
+    public function save(?int $id, array $data, array $tags, array $features, array $banners = []): int
     {
+        usort($banners, static fn (array $a, array $b) => $a['sort_order'] <=> $b['sort_order']);
+
         $this->db->beginTransaction();
 
         try {
@@ -80,8 +88,10 @@ class ProjectRepository
                 'short_desc'   => $data['short_desc'],
                 'full_desc'    => $data['full_desc'],
                 'icon'         => $data['icon'],
-                'banner'       => $data['banner'],
+                'banner'       => $banners[0]['image'] ?? '',
+                'video_type'   => $data['video_type'] ?: null,
                 'video_url'    => $data['video_url'] ?: null,
+                'video_file'   => $data['video_file'] ?: null,
                 'pdf_url'      => $data['pdf_url'] ?: null,
                 'live_url'     => $data['live_url'] ?: null,
                 'sort_order'   => $data['sort_order'],
@@ -105,6 +115,7 @@ class ProjectRepository
 
             $this->replaceChildren('project_tags', 'tag', $id, $tags);
             $this->replaceChildren('project_features', 'feature', $id, $features);
+            $this->replaceBanners($id, $banners);
 
             $this->db->commit();
         } catch (Throwable $e) {
@@ -117,7 +128,7 @@ class ProjectRepository
 
     public function delete(int $id): void
     {
-        // Tags and features cascade via foreign keys.
+        // Tags, features and banner slides cascade via foreign keys.
         $this->db->prepare('DELETE FROM projects WHERE id = ?')->execute([$id]);
     }
 
@@ -156,15 +167,29 @@ class ProjectRepository
      */
     public function toApiArray(array $project): array
     {
+        $banners = array_map(
+            static fn (array $b) => url($b['image']),
+            $project['banners'] ?? []
+        );
+        // Defensive fallback for rows saved before the slider existed.
+        if ($banners === [] && $project['banner'] !== '') {
+            $banners = [url($project['banner'])];
+        }
+
         return [
-            'id'       => $project['slug'],
-            'title'    => $project['title'],
-            'category' => $project['category'],
-            'desc'     => $project['short_desc'],
-            'fullDesc' => $project['full_desc'],
-            'icon'     => $project['icon'],
-            'banner'   => $project['banner'] !== '' ? url($project['banner']) : '',
-            'videoUrl' => $project['video_url'] ?: null,
+            'id'           => $project['slug'],
+            'title'        => $project['title'],
+            'category'     => $project['category'],
+            'desc'         => $project['short_desc'],
+            'fullDesc'     => $project['full_desc'],
+            'icon'         => $project['icon'],
+            'banner'       => $banners[0] ?? '',
+            'banners'      => $banners,
+            'videoType'    => $project['video_type'] ?: null,
+            'videoUrl'     => $project['video_type'] === 'youtube' ? $project['video_url'] : null,
+            'videoFileUrl' => $project['video_type'] === 'upload' && $project['video_file']
+                ? url($project['video_file'])
+                : null,
             'pdfUrl'   => $project['pdf_url'] ? url($project['pdf_url']) : null,
             'liveUrl'  => $project['live_url'] ?: null,
             'tags'     => $project['tags'],
@@ -172,7 +197,7 @@ class ProjectRepository
         ];
     }
 
-    /** Load tags and features for the given rows in two queries (no N+1). */
+    /** Load tags, features and banner slides for the given rows in three queries (no N+1). */
     private function attachChildren(array $projects): array
     {
         if ($projects === []) {
@@ -182,6 +207,7 @@ class ProjectRepository
         $ids = array_column($projects, 'id');
         $tags = $this->childrenFor('project_tags', 'tag', $ids);
         $features = $this->childrenFor('project_features', 'feature', $ids);
+        $banners = $this->bannersFor($ids);
 
         foreach ($projects as &$project) {
             $project['id'] = (int) $project['id'];
@@ -189,9 +215,47 @@ class ProjectRepository
             $project['is_published'] = (int) $project['is_published'];
             $project['tags'] = $tags[$project['id']] ?? [];
             $project['features'] = $features[$project['id']] ?? [];
+            $project['banners'] = $banners[$project['id']] ?? [];
         }
 
         return $projects;
+    }
+
+    /** @return array<int, array<int, array{id: int, image: string, sort_order: int}>> Keyed by project id. */
+    private function bannersFor(array $projectIds): array
+    {
+        $placeholders = implode(', ', array_fill(0, count($projectIds), '?'));
+        $stmt = $this->db->prepare(
+            "SELECT id, project_id, image, sort_order FROM project_banners
+             WHERE project_id IN ($placeholders) ORDER BY sort_order ASC, id ASC"
+        );
+        $stmt->execute($projectIds);
+
+        $grouped = [];
+        foreach ($stmt->fetchAll() as $row) {
+            $grouped[(int) $row['project_id']][] = [
+                'id'         => (int) $row['id'],
+                'image'      => $row['image'],
+                'sort_order' => (int) $row['sort_order'],
+            ];
+        }
+
+        return $grouped;
+    }
+
+    /** @param array<int, array{image: string, sort_order: int}> $banners Already sorted by priority. */
+    private function replaceBanners(int $projectId, array $banners): void
+    {
+        $this->db->prepare('DELETE FROM project_banners WHERE project_id = ?')->execute([$projectId]);
+
+        if ($banners === []) {
+            return;
+        }
+
+        $stmt = $this->db->prepare('INSERT INTO project_banners (project_id, image, sort_order) VALUES (?, ?, ?)');
+        foreach ($banners as $banner) {
+            $stmt->execute([$projectId, $banner['image'], $banner['sort_order']]);
+        }
     }
 
     /** @return array<int, string[]> Keyed by project id. */

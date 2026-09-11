@@ -180,3 +180,49 @@ function post_lines(string $key): array
 
     return array_values(array_filter(array_map('trim', $lines), static fn ($l) => $l !== ''));
 }
+
+/**
+ * Reindex a same-name array of `<input type="file" name="field[]">` uploads
+ * from PHP's `$_FILES['field'] = ['name' => [...], 'tmp_name' => [...], ...]`
+ * shape into a list of single-file arrays, each usable with FileUploader.
+ */
+function files_array(string $key): array
+{
+    $field = $_FILES[$key] ?? null;
+    if (!is_array($field) || !isset($field['name']) || !is_array($field['name'])) {
+        return [];
+    }
+
+    $out = [];
+    foreach (array_keys($field['name']) as $i) {
+        $out[] = [
+            'name'     => $field['name'][$i],
+            'type'     => $field['type'][$i],
+            'tmp_name' => $field['tmp_name'][$i],
+            'error'    => $field['error'][$i],
+            'size'     => $field['size'][$i],
+        ];
+    }
+
+    return $out;
+}
+
+/**
+ * Normalize any common YouTube URL (watch/short/embed link, with or without
+ * tracking params) into a clean `https://www.youtube.com/embed/{id}` URL the
+ * frontend can drop straight into an <iframe>. Falls back to the trimmed input
+ * unchanged when it doesn't look like YouTube, so a direct embed URL still works.
+ */
+function youtube_embed_url(string $url): string
+{
+    $url = trim($url);
+    if ($url === '') {
+        return '';
+    }
+
+    if (preg_match('#(?:youtu\.be/|youtube(?:-nocookie)?\.com/(?:embed/|watch\?(?:.*&)?v=|shorts/))([A-Za-z0-9_-]{11})#i', $url, $m)) {
+        return 'https://www.youtube.com/embed/' . $m[1];
+    }
+
+    return $url;
+}

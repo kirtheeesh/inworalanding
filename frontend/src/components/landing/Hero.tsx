@@ -1,30 +1,15 @@
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronRight, ImageIcon, Monitor, Smartphone, Check } from "lucide-react";
+import { ArrowRight, ChevronRight, Check } from "lucide-react";
 import { SiGoogleplay } from "react-icons/si";
+import { fetchProducts } from "@/lib/api";
+import { FALLBACK_PRODUCTS, resolveProductIcon } from "@/lib/products-data";
 
-const products = [
-  {
-    icon: ImageIcon,
-    title: "Inwora Daily Gold",
-    desc: "Gold-rate posters & daily creatives",
-    href: "https://play.google.com/store/apps/details?id=com.kirtheeshh.usermobile&pli=1",
-  },
-  {
-    icon: Monitor,
-    title: "POS & KOT Software",
-    desc: "Restaurant billing & kitchen orders",
-    href: "https://kot.nexoraapp.in/",
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile App Solutions",
-    desc: "Android & iOS for startups",
-    href: "#products",
-  },
-];
+const DAILY_GOLD_PLAY_URL =
+  "https://play.google.com/store/apps/details?id=com.kirtheeshh.usermobile&pli=1";
 
-const highlights = ["Fast deployment", "Scalable products", "Subscription-ready"];
+const highlights = ["5 live products", "Custom apps built to spec", "369+ projects shipped"];
 
 const container = {
   hidden: {},
@@ -36,6 +21,9 @@ const item: any = {
 };
 
 export default function Hero() {
+  const { data } = useQuery({ queryKey: ["products"], queryFn: fetchProducts });
+  const products = (data && data.length > 0 ? data : FALLBACK_PRODUCTS).slice(0, 5);
+
   const scrollToSection = (id: string) => {
     const el = document.querySelector(id);
     if (el) {
@@ -74,24 +62,22 @@ export default function Hero() {
               variants={item}
               className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] tracking-tight text-foreground"
             >
-              Mobile apps, business software &amp;{" "}
+              Innovative software solutions{" "}
               <span className="bg-gradient-to-r from-primary to-emerald-500 bg-clip-text text-transparent">
-                subscription products
-              </span>
+                &amp; custom applications
+              </span>{" "}
+              built for modern business
             </motion.h1>
 
             <motion.p variants={item} className="max-w-lg text-base md:text-lg leading-relaxed text-muted-foreground">
-              INWORA builds modern mobile applications, poster-generation platforms, and subscription-based POS &amp; KOT
-              systems for growing businesses, jewelry brands, restaurants, and startups.
+              INWORA delivers high-performance subscription software and bespoke digital applications engineered to automate workflows, optimize operations, and drive scalable business growth.
             </motion.p>
 
             <motion.div variants={item} className="flex flex-wrap gap-3">
               <Button
                 size="lg"
                 className="rounded-lg gap-2"
-                onClick={() =>
-                  window.open("https://play.google.com/store/apps/details?id=com.kirtheeshh.usermobile&pli=1", "_blank")
-                }
+                onClick={() => window.open(DAILY_GOLD_PLAY_URL, "_blank")}
                 data-testid="button-download-dailygold"
               >
                 <SiGoogleplay className="h-4 w-4" />
@@ -137,41 +123,41 @@ export default function Hero() {
               </div>
 
               <div className="flex flex-col gap-2.5">
-                {products.map((p, i) => (
-                  <motion.a
-                    key={p.title}
-                    href={p.href}
-                    {...(p.href.startsWith("http")
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {
-                          onClick: (e: React.MouseEvent) => {
-                            e.preventDefault();
-                            scrollToSection(p.href);
-                          },
-                        })}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.35 + i * 0.1 }}
-                    className="group flex items-center gap-4 rounded-xl border border-border bg-background p-4 transition-colors hover:border-primary/30 hover:bg-muted/40"
-                  >
-                    <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <p.icon className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {p.title}
-                      </p>
-                      <p className="truncate text-xs text-muted-foreground">{p.desc}</p>
-                    </div>
-                    <ChevronRight className="h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
-                  </motion.a>
-                ))}
+                {products.map((p, i) => {
+                  const Icon = resolveProductIcon(p.icon);
+
+                  return (
+                    <motion.a
+                      key={p.id}
+                      href="#products"
+                      onClick={(e: React.MouseEvent) => {
+                        e.preventDefault();
+                        scrollToSection("#products");
+                      }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.35 + i * 0.1 }}
+                      className="group flex items-center gap-4 rounded-xl border border-border bg-background p-4 transition-colors hover:border-primary/30 hover:bg-muted/40"
+                    >
+                      <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {p.title}
+                        </p>
+                        <p className="truncate text-xs text-muted-foreground">{p.tagline || p.subtitle}</p>
+                      </div>
+                      <ChevronRight className="h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+                    </motion.a>
+                  );
+                })}
               </div>
 
               <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border pt-4 text-center">
                 {[
                   { v: "369+", l: "Projects" },
-                  { v: "9", l: "Products" },
+                  { v: String(products.length), l: "Products" },
                   { v: "69+", l: "Industries" },
                 ].map((s) => (
                   <div key={s.l}>
