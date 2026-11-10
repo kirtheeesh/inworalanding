@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="wm3Bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#091422"/>
+      <stop offset="60%" stop-color="#142842"/>
+      <stop offset="100%" stop-color="#060E18"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#wm3Bg)"/>
+  <g transform="translate(80, 50)">
+    <rect width="230" height="30" rx="15" fill="#0284C7" fill-opacity="0.25" stroke="#38BDF8" stroke-width="1"/>
+    <text x="115" y="20" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">ARCHITECTURAL EXCELLENCE</text>
+    <text x="0" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="34" font-weight="800">Wallmark Structural Portfolio</text>
+    <text x="0" y="92" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="14">Commercial grade curtain wall facades, composite aluminum cladding &amp; glazing systems</text>
+  </g>
+  <g transform="translate(80, 160)">
+    <rect width="1040" height="460" rx="16" fill="#0A1828" stroke="#0284C7" stroke-width="1.2"/>
+    <rect width="1040" height="46" rx="16" fill="#112B45"/>
+    <text x="30" y="28" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="13" font-weight="700">TECHNICAL FACADE SPECIFICATIONS &amp; COMPLIANCE</text>
+    <g transform="translate(30, 70)">
+      <rect width="470" height="150" rx="10" fill="#163454"/>
+      <text x="24" y="32" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Unitized Curtain Wall Systems</text>
+      <text x="24" y="60" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13">• Double-glazed low-E thermal acoustic insulation</text>
+      <text x="24" y="85" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13">• Wind load resistance up to 3.5 kPa</text>
+      <text x="24" y="110" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13">• Seismic movement expansion joints integrated</text>
+    </g>
+    <g transform="translate(540, 70)">
+      <rect width="470" height="150" rx="10" fill="#163454"/>
+      <text x="24" y="32" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Commercial Landmark Projects</text>
+      <text x="24" y="60" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13">• Olympia Tech Park IT Tower (120,000 sq ft)</text>
+      <text x="24" y="85" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13">• Nexus Horizon Corporate Headquarters</text>
+      <text x="24" y="110" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13">• Grand Sovereign Commercial Mall Atrium</text>
+    </g>
+    <g transform="translate(30, 245)">
+      <rect width="980" height="180" rx="10" fill="#0E2338"/>
+      <text x="24" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="15" font-weight="700">Engineering Accreditations &amp; Durability Warranties</text>
+      <g transform="translate(24, 60)">
+        <rect width="210" height="90" rx="8" fill="#16385A"/>
+        <text x="16" y="28" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">FIRE RATING</text>
+        <text x="16" y="62" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="24" font-weight="800">Class A1 Non-Comb</text>
+      </g>
+      <g transform="translate(260, 60)">
+        <rect width="210" height="90" rx="8" fill="#16385A"/>
+        <text x="16" y="28" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">STRUCTURAL WARRANTY</text>
+        <text x="16" y="62" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="24" font-weight="800">25 Years</text>
+      </g>
+      <g transform="translate(500, 60)">
+        <rect width="210" height="90" rx="8" fill="#16385A"/>
+        <text x="16" y="28" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">LEED CONTRIBUTION</text>
+        <text x="16" y="62" fill="#FBBF24" font-family="'Montserrat', sans-serif" font-size="24" font-weight="800">Platinum Tier</text>
+      </g>
+      <g transform="translate(740, 60)">
+        <rect width="210" height="90" rx="8" fill="#16385A"/>
+        <text x="16" y="28" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">INSTALLED AREA</text>
+        <text x="16" y="62" fill="#A78BFA" font-family="'Montserrat', sans-serif" font-size="24" font-weight="800">1.2M+ Sq Ft</text>
+      </g>
+    </g>
+  </g>
+</svg>

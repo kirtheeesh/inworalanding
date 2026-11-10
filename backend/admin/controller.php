@@ -109,19 +109,21 @@ function admin_project_save(?int $id): void
     $videoMode = in_array($videoMode, ProjectRepository::VIDEO_MODES, true) ? $videoMode : 'none';
 
     $data = [
-        'slug'         => $repo->uniqueSlug(slugify($slugInput), $id),
-        'title'        => $title,
-        'category'     => post('category'),
-        'short_desc'   => post('short_desc'),
-        'full_desc'    => post('full_desc'),
-        'icon'         => in_array($icon, ProjectRepository::ICONS, true) ? $icon : 'Layout',
-        'video_type'   => null,
-        'video_url'    => null,
-        'video_file'   => $videoMode === 'upload' ? ($existing['video_file'] ?? null) : null,
-        'pdf_url'      => post('pdf_url'),
-        'live_url'     => post('live_url'),
-        'sort_order'   => (int) post('sort_order', '0'),
-        'is_published' => isset($_POST['is_published']) ? 1 : 0,
+        'slug'             => $repo->uniqueSlug(slugify($slugInput), $id),
+        'title'            => $title,
+        'category'         => post('category'),
+        'short_desc'       => post('short_desc'),
+        'full_desc'        => post('full_desc'),
+        'icon'             => in_array($icon, ProjectRepository::ICONS, true) ? $icon : 'Layout',
+        'video_type'       => null,
+        'video_url'        => null,
+        'video_file'       => $videoMode === 'upload' ? ($existing['video_file'] ?? null) : null,
+        'pdf_url'          => post('pdf_url'),
+        'live_url'         => post('live_url'),
+        'sort_order'       => (int) post('sort_order', '0'),
+        'is_published'     => isset($_POST['is_published']) ? 1 : 0,
+        'show_web_view'    => isset($_POST['show_web_view']) ? 1 : 0,
+        'show_mobile_view' => isset($_POST['show_mobile_view']) ? 1 : 0,
     ];
 
     if ($videoMode === 'youtube') {
@@ -212,13 +214,65 @@ function admin_project_save(?int $id): void
         redirect($id ? "/admin/projects/$id/edit" : '/admin/projects/create');
     }
 
-    $newId = $repo->save($id, $data, post_lines('tags'), post_lines('features'), $banners);
+    // ── Mobile banner slides ─────────────────────────────────
+    $existingMobileBannersById = [];
+    foreach ($existing['mobile_banners'] ?? [] as $b) {
+        $existingMobileBannersById[$b['id']] = $b['image'];
+    }
+    $removeMobileIds = array_map('intval', $_POST['mobile_banner_remove'] ?? []);
 
-    // Once the row is safely written, drop any upload it no longer points at —
-    // whether it was replaced, removed from the slider, or swapped for a URL.
+    $mobileBanners = [];
+    $keptMobileImages = [];
+
+    $existingMobileIds = $_POST['mobile_banner_existing_id'] ?? [];
+    $existingMobilePriorities = $_POST['mobile_banner_existing_priority'] ?? [];
+    foreach ($existingMobileIds as $i => $eid) {
+        $eid = (int) $eid;
+        if (!isset($existingMobileBannersById[$eid]) || in_array($eid, $removeMobileIds, true)) {
+            continue;
+        }
+        $mobileBanners[] = [
+            'image'      => $existingMobileBannersById[$eid],
+            'sort_order' => (int) ($existingMobilePriorities[$i] ?? 0),
+        ];
+        $keptMobileImages[] = $existingMobileBannersById[$eid];
+    }
+
+    try {
+        $newMobileFiles = files_array('mobile_banner_new_file');
+        $newMobileUrls  = $_POST['mobile_banner_new_url'] ?? [];
+        $newMobilePriorities = $_POST['mobile_banner_new_priority'] ?? [];
+        $mobileSlotCount = max(count($newMobileFiles), count($newMobileUrls), count($newMobilePriorities));
+
+        for ($i = 0; $i < $mobileSlotCount; $i++) {
+            $image = null;
+            if (FileUploader::wasProvided($newMobileFiles[$i] ?? null)) {
+                $image = $uploader->store($newMobileFiles[$i], FileUploader::IMAGE_TYPES);
+            } elseif (trim((string) ($newMobileUrls[$i] ?? '')) !== '') {
+                $image = trim($newMobileUrls[$i]);
+            }
+            if ($image === null) continue;
+            $mobileBanners[] = [
+                'image'      => $image,
+                'sort_order' => (int) ($newMobilePriorities[$i] ?? (100 + $i)),
+            ];
+        }
+    } catch (RuntimeException $e) {
+        flash('error', $e->getMessage());
+        redirect($id ? "/admin/projects/$id/edit" : '/admin/projects/create');
+    }
+
+    $newId = $repo->save($id, $data, post_lines('tags'), post_lines('features'), $banners, $mobileBanners);
+
+    // Drop orphaned uploads after the DB write.
     if ($existing !== null) {
         foreach ($existingBannersById as $eid => $image) {
             if (!in_array($image, $keptImages, true)) {
+                $uploader->delete($image);
+            }
+        }
+        foreach ($existingMobileBannersById as $eid => $image) {
+            if (!in_array($image, $keptMobileImages, true)) {
                 $uploader->delete($image);
             }
         }
@@ -253,6 +307,9 @@ function admin_project_delete(int $id): void
 
     $uploader = new FileUploader();
     foreach ($project['banners'] as $banner) {
+        $uploader->delete($banner['image']);
+    }
+    foreach ($project['mobile_banners'] ?? [] as $banner) {
         $uploader->delete($banner['image']);
     }
     $uploader->delete($project['video_file'] ?? null);

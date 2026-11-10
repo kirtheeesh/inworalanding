@@ -1,0 +1,50 @@
+================================================================================
+IMAGE GENERATION PROMPTS: UNIFIED BUSINESS ERP
+Type: Official Inwora Product
+Category: Business Software
+Badge: Enterprise ERP
+================================================================================
+
+OVERVIEW & AESTHETIC GUIDELINES:
+- Aspect Ratio: 16:9 (--ar 16:9) for slideshow banners, web headers, and presentation decks.
+- Style: Ultra-photorealistic, high-end commercial tech & corporate editorial aesthetic.
+- Key Goal: Look like authentic, production-grade software and real commercial environments. AVOID generic cartoonish AI vectors, fake 3D blobs, or illegible text.
+- Recommended Midjourney Parameters: --ar 16:9 --style raw --v 6.1
+- Recommended Flux Parameters: 1920x1080 resolution, steps: 35, guidance: 3.5
+
+--------------------------------------------------------------------------------
+SLIDE 1: MAIN HERO BANNER & SPOTLIGHT SHOWCASE (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+A high-end modern corporate headquarters executive office overlooking a city skyline at dusk. On a polished oak boardroom desk sits an Apple Pro Display XDR showing the Unified Business ERP master command dashboard. The screen presents clean multi-warehouse stock valuations, real-time cash flow line charts, GST invoicing status widgets, and department headcount bars. Ambient warm architectural lighting, minimalist decor, premium enterprise technology feel, 8k, cinematic depth of field.
+
+NEGATIVE PROMPT:
+cartoon, anime, 3d render illustration, low resolution, blurry, distorted text, mutated hands, bad anatomy, artificial floating plastic blobs, watermarks, stock photo watermark, oversaturated colors, cheap vector clip-art.
+
+--------------------------------------------------------------------------------
+SLIDE 2: REAL-WORLD OPERATIONAL / IN-ACTION ENVIRONMENT (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+A sprawling modern automated distribution warehouse with high-bay pallet racking. A logistics supervisor in a safety vest and hardhat holds a rugged industrial tablet scanning barcode pallets. The tablet screen clearly displays the Unified Business ERP warehouse inventory module showing bin location allocations, SKU stock quantities, and dispatch approvals. Clean industrial warehouse interior with natural skylights and LED aisle lamps.
+
+NEGATIVE PROMPT:
+deformed faces, extra fingers, cartoonish, oversaturated, staged fake smile, plastic skin, uncanny valley, watermark, text errors, low-res, out of frame, blurry background text.
+
+--------------------------------------------------------------------------------
+SLIDE 3: DEEP FEATURE SCREEN / MULTI-DEVICE WORKFLOW (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+High-resolution perspective UI dashboard mockup of Unified Business ERP. An expansive dark-themed desktop software interface showcasing modular cards: "Total Revenue $148,500 (+8.2%)", "Multi-Warehouse Stock Levels", "GST Invoicing Tracker", and "Recent Purchase Orders". Clean typography, elegant financial charts in forest green and muted slate, crisp micro-interactions, no visual clutter, ultra-crisp Figma-style design system rendered in 3D studio light.
+
+NEGATIVE PROMPT:
+gibberish text, chaotic layouts, pixelated UI, neon cartoon vectors, low quality, warped perspective, bad typography, clutter, blurry lines, watermark.
+
+================================================================================
+HOW TO USE IN POPULAR AI IMAGE GENERATORS:
+1. Midjourney v6.1:
+   Paste: /imagine prompt: [PASTE PROMPT HERE] --ar 16:9 --style raw --v 6.1
+2. Flux 1.1 Pro / Dev:
+   Paste the prompt with aspect ratio set to 16:9 (1920x1080).
+3. DALL-E 3:
+   Paste the prompt directly; ensure you specify "16:9 widescreen landscape".
+================================================================================

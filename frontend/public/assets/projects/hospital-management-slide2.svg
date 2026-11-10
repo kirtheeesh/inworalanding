@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="hmBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#051B2E"/>
+      <stop offset="60%" stop-color="#0A3254"/>
+      <stop offset="100%" stop-color="#03121F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#hmBg)"/>
+  <g transform="translate(80, 50)">
+    <rect width="210" height="30" rx="15" fill="#0284C7" fill-opacity="0.25" stroke="#38BDF8" stroke-width="1"/>
+    <text x="105" y="20" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">CLINICAL OPD WORKFLOW</text>
+    <text x="0" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="34" font-weight="800">Hospital Management Suite</text>
+    <text x="0" y="92" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="14">Electronic medical records (EMR), doctor queue management, bed occupancy &amp; pharmacy</text>
+  </g>
+  <g transform="translate(80, 160)">
+    <rect width="1040" height="460" rx="16" fill="#081E33" stroke="#0284C7" stroke-width="1.2"/>
+    <rect width="1040" height="46" rx="16" fill="#0F2B48"/>
+    <text x="30" y="28" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="13" font-weight="700">OUTPATIENT CLINIC QUEUE &amp; DOCTOR SCHEDULES</text>
+    
+    <g transform="translate(30, 70)">
+      <rect width="470" height="150" rx="10" fill="#123354" stroke="#38BDF8" stroke-width="1"/>
+      <text x="20" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="16" font-weight="700">Dr. Ramesh V. (Cardiology)</text>
+      <text x="20" y="55" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600">Status: In Consultation (Token #14)</text>
+      <text x="20" y="85" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">Next Patient: S. Meenakshi (Token #15)</text>
+      <text x="20" y="110" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">Waiting in OPD Lounge: 6 patients</text>
+    </g>
+    <g transform="translate(540, 70)">
+      <rect width="470" height="150" rx="10" fill="#123354" stroke="#10B981" stroke-width="1"/>
+      <text x="20" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="16" font-weight="700">Dr. Ananya R. (Pediatrics)</text>
+      <text x="20" y="55" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600">Status: In Consultation (Token #22)</text>
+      <text x="20" y="85" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">Next Patient: Master Harish (Token #23)</text>
+      <text x="20" y="110" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">Waiting in OPD Lounge: 4 patients</text>
+    </g>
+
+    <g transform="translate(30, 245)">
+      <rect width="980" height="180" rx="10" fill="#0D2742"/>
+      <text x="24" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Hospital Bed Occupancy &amp; Emergency Census</text>
+      <g transform="translate(24, 60)">
+        <rect width="210" height="90" rx="8" fill="#14365A"/>
+        <text x="16" y="28" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">ICU BEDS OCCUPIED</text>
+        <text x="16" y="62" fill="#EF4444" font-family="'Montserrat', sans-serif" font-size="28" font-weight="800">18 / 20</text>
+      </g>
+      <g transform="translate(260, 60)">
+        <rect width="210" height="90" rx="8" fill="#14365A"/>
+        <text x="16" y="28" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">GENERAL WARD BEDS</text>
+        <text x="16" y="62" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="28" font-weight="800">64 / 80</text>
+      </g>
+      <g transform="translate(500, 60)">
+        <rect width="210" height="90" rx="8" fill="#14365A"/>
+        <text x="16" y="28" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">OPERATION THEATRES</text>
+        <text x="16" y="62" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="28" font-weight="800">4 / 5 Active</text>
+      </g>
+      <g transform="translate(740, 60)">
+        <rect width="210" height="90" rx="8" fill="#14365A"/>
+        <text x="16" y="28" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">PHARMACY DISPATCHES</text>
+        <text x="16" y="62" fill="#FBBF24" font-family="'Montserrat', sans-serif" font-size="28" font-weight="800">320 Today</text>
+      </g>
+    </g>
+  </g>
+</svg>

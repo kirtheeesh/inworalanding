@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="jci3Bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#041F38"/>
+      <stop offset="60%" stop-color="#082845"/>
+      <stop offset="100%" stop-color="#02101F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#jci3Bg)"/>
+  <g transform="translate(80, 50)">
+    <rect width="210" height="30" rx="15" fill="#0284C7" fill-opacity="0.25" stroke="#38BDF8" stroke-width="1"/>
+    <text x="105" y="20" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">PROJECT INITIATIVES</text>
+    <text x="0" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="34" font-weight="800">JCI Malligai Impact Log</text>
+    <text x="0" y="92" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="14">Community development, youth training programs, and chapter award archives</text>
+  </g>
+  <g transform="translate(80, 160)">
+    <g transform="translate(0, 0)">
+      <rect width="320" height="450" rx="16" fill="#0B1B2B" stroke="#334155"/>
+      <rect width="320" height="120" rx="16" fill="#0284C7"/>
+      <text x="24" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="20" font-weight="800">Youth Leadership Camp</text>
+      <text x="24" y="90" fill="#E0F2FE" font-family="'Montserrat', sans-serif" font-size="12">March 2026 • 240 Students</text>
+      <text x="24" y="160" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="600">Key Outcomes:</text>
+      <text x="24" y="190" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• Public speaking seminars</text>
+      <text x="24" y="215" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• Career guidance panels</text>
+      <text x="24" y="240" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• Certificate distributions</text>
+    </g>
+    <g transform="translate(360, 0)">
+      <rect width="320" height="450" rx="16" fill="#0B1B2B" stroke="#334155"/>
+      <rect width="320" height="120" rx="16" fill="#10B981"/>
+      <text x="24" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="20" font-weight="800">Green City Plantation</text>
+      <text x="24" y="90" fill="#D1FAE5" font-family="'Montserrat', sans-serif" font-size="12">February 2026 • 1,500 Saplings</text>
+      <text x="24" y="160" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="600">Key Outcomes:</text>
+      <text x="24" y="190" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• 5 School campus drives</text>
+      <text x="24" y="215" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• Corporate volunteer participation</text>
+      <text x="24" y="240" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• Environmental awareness kit</text>
+    </g>
+    <g transform="translate(720, 0)">
+      <rect width="320" height="450" rx="16" fill="#0B1B2B" stroke="#334155"/>
+      <rect width="320" height="120" rx="16" fill="#8B5CF6"/>
+      <text x="24" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="20" font-weight="800">Blood Donation Drive</text>
+      <text x="24" y="90" fill="#EDE9FE" font-family="'Montserrat', sans-serif" font-size="12">January 2026 • 185 Donors</text>
+      <text x="24" y="160" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="600">Key Outcomes:</text>
+      <text x="24" y="190" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• District Hospital tie-up</text>
+      <text x="24" y="215" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• Emergency registry updated</text>
+      <text x="24" y="240" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• 100% safety compliance</text>
+    </g>
+  </g>
+</svg>

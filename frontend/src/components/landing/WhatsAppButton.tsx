@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiWhatsapp } from "react-icons/si";
 
-const WHATSAPP_NUMBER = "919047370027";
+const WHATSAPP_NUMBER = "919025728998";
 const DEFAULT_MESSAGE =
   "Hello INWORA! I'd like to know more about your products and services.";
 

@@ -1,0 +1,50 @@
+================================================================================
+IMAGE GENERATION PROMPTS: INWORA ERP
+Type: Portfolio Project
+Category: Business Software
+Live URL: https://erp.inwora.com
+================================================================================
+
+OVERVIEW & AESTHETIC GUIDELINES:
+- Aspect Ratio: 16:9 (--ar 16:9) for slideshow banners, web headers, and presentation decks.
+- Style: Ultra-photorealistic, high-end commercial tech & corporate editorial aesthetic.
+- Key Goal: Look like authentic, production-grade software and real commercial environments. AVOID generic cartoonish AI vectors, fake 3D blobs, or illegible text.
+- Recommended Midjourney Parameters: --ar 16:9 --style raw --v 6.1
+- Recommended Flux Parameters: 1920x1080 resolution, steps: 35, guidance: 3.5
+
+--------------------------------------------------------------------------------
+SLIDE 1: MAIN HERO BANNER & SPOTLIGHT SHOWCASE (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+Executive command center UI mockup of Inwora ERP displayed on an Apple Studio Display. A clean, light/dark responsive dashboard showcasing multi-branch inventory tracking, sales order pipelines, role-based staff access permissions, and financial P&L reporting. Crisp modern typography, subtle shadows, forest green and graphite color scheme. Polished desk setting with minimalist accessories, 8k.
+
+NEGATIVE PROMPT:
+cartoon, anime, 3d render illustration, low resolution, blurry, distorted text, mutated hands, bad anatomy, artificial floating plastic blobs, watermarks, stock photo watermark, oversaturated colors, cheap vector clip-art.
+
+--------------------------------------------------------------------------------
+SLIDE 2: REAL-WORLD OPERATIONAL / IN-ACTION ENVIRONMENT (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+A corporate supply chain manager reviewing warehouse stock levels across four distribution hubs on a lightweight business laptop in a bright modern office. Natural sunlight streaming through floor-to-ceiling glass windows. Focus on the screen displaying live inventory valuation and vendor purchase order approvals.
+
+NEGATIVE PROMPT:
+deformed faces, extra fingers, cartoonish, oversaturated, staged fake smile, plastic skin, uncanny valley, watermark, text errors, low-res, out of frame, blurry background text.
+
+--------------------------------------------------------------------------------
+SLIDE 3: DEEP FEATURE SCREEN / MULTI-DEVICE WORKFLOW (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+Detailed UI screen layout showing Inwora ERP multi-branch stock movement ledger: interactive filter chips, expandable order rows, tax summary cards, and role permission matrices. Crisp enterprise SaaS UI design, perfectly aligned typography, zero clutter.
+
+NEGATIVE PROMPT:
+gibberish text, chaotic layouts, pixelated UI, neon cartoon vectors, low quality, warped perspective, bad typography, clutter, blurry lines, watermark.
+
+================================================================================
+HOW TO USE IN POPULAR AI IMAGE GENERATORS:
+1. Midjourney v6.1:
+   Paste: /imagine prompt: [PASTE PROMPT HERE] --ar 16:9 --style raw --v 6.1
+2. Flux 1.1 Pro / Dev:
+   Paste the prompt with aspect ratio set to 16:9 (1920x1080).
+3. DALL-E 3:
+   Paste the prompt directly; ensure you specify "16:9 widescreen landscape".
+================================================================================

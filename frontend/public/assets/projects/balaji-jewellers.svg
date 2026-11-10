@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2A0812"/>
+      <stop offset="50%" stop-color="#1A040B"/>
+      <stop offset="100%" stop-color="#0D0205"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCE08B"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#996515"/>
+    </linearGradient>
+    <linearGradient id="cardGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.02"/>
+    </linearGradient>
+    <radialGradient id="sparkle" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#FCE08B" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="jewelGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M30 0 L60 30 L30 60 L0 30 Z" fill="none" stroke="#D4AF37" stroke-width="0.5" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#jewelGrid)"/>
+  <circle cx="950" cy="200" r="280" fill="url(#sparkle)" opacity="0.6"/>
+
+  <!-- Ornate Border Frame -->
+  <rect x="30" y="30" width="1140" height="615" rx="20" fill="none" stroke="url(#gold)" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="42" y="42" width="1116" height="591" rx="14" fill="none" stroke="url(#gold)" stroke-width="0.75" stroke-opacity="0.2"/>
+
+  <!-- Corner Flourishes -->
+  <g stroke="url(#gold)" stroke-width="1.5" fill="none" opacity="0.7">
+    <path d="M50 80 L50 50 L80 50 M58 58 L72 58 M58 58 L58 72"/>
+    <path d="M1150 80 L1150 50 L1120 50 M1142 58 L1128 58 M1142 58 L1142 72"/>
+    <path d="M50 595 L50 625 L80 625 M58 617 L72 617 M58 617 L58 603"/>
+    <path d="M1150 595 L1150 625 L1120 625 M1142 617 L1128 617 M1142 617 L1142 603"/>
+  </g>
+
+  <!-- Left Content Info -->
+  <g transform="translate(90, 160)">
+    <rect x="0" y="0" width="180" height="32" rx="16" fill="url(#gold)" fill-opacity="0.15" stroke="url(#gold)" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="90" y="21" fill="#FCE08B" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700" letter-spacing="2" text-anchor="middle">JEWELLERY SHOWCASE</text>
+
+    <text x="0" y="90" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="52" font-weight="800" letter-spacing="-1">Balaji Jewellers</text>
+    <text x="0" y="130" fill="url(#gold)" font-family="'Montserrat', sans-serif" font-size="22" font-weight="600" letter-spacing="1">Exquisite Gold, Antique &amp; Diamond Collections</text>
+
+    <text x="0" y="185" fill="#E5D5BA" font-family="'Montserrat', sans-serif" font-size="16" font-weight="400" opacity="0.85">Curated digital jewellery showroom showcasing handcrafted bridal sets,</text>
+    <text x="0" y="215" fill="#E5D5BA" font-family="'Montserrat', sans-serif" font-size="16" font-weight="400" opacity="0.85">hallmarked bullion ornaments, and direct customer inquiry channels.</text>
+
+    <!-- Feature Tags -->
+    <g transform="translate(0, 270)">
+      <rect x="0" y="0" width="160" height="38" rx="8" fill="#1A040B" stroke="url(#gold)" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="80" y="24" fill="#FCE08B" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600" text-anchor="middle">Bridal Sets</text>
+
+      <rect x="175" y="0" width="170" height="38" rx="8" fill="#1A040B" stroke="url(#gold)" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="260" y="24" fill="#FCE08B" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600" text-anchor="middle">916 Hallmark</text>
+
+      <rect x="360" y="0" width="180" height="38" rx="8" fill="#1A040B" stroke="url(#gold)" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="450" y="24" fill="#FCE08B" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600" text-anchor="middle">Direct Enquiries</text>
+    </g>
+  </g>
+
+  <!-- Right Visual: Faceted Gem / Diamond Mandala -->
+  <g transform="translate(880, 335)">
+    <!-- Glow rings -->
+    <circle cx="0" cy="0" r="180" fill="none" stroke="url(#gold)" stroke-width="1" stroke-opacity="0.15" stroke-dasharray="6 6"/>
+    <circle cx="0" cy="0" r="140" fill="none" stroke="url(#gold)" stroke-width="1.5" stroke-opacity="0.25"/>
+    <circle cx="0" cy="0" r="100" fill="url(#cardGlow)"/>
+
+    <!-- Brilliant Cut Diamond Motif -->
+    <polygon points="0,-90 64,-45 78,35 0,90 -78,35 -64,-45" fill="none" stroke="url(#gold)" stroke-width="2.5"/>
+    <polygon points="0,-90 40,-35 48,25 0,70 -48,25 -40,-35" fill="none" stroke="url(#gold)" stroke-width="1.5" stroke-opacity="0.7"/>
+    <polygon points="0,-45 25,-15 25,15 0,35 -25,15 -25,-15" fill="url(#gold)" fill-opacity="0.35" stroke="url(#gold)" stroke-width="1.5"/>
+
+    <line x1="0" y1="-90" x2="0" y2="90" stroke="url(#gold)" stroke-width="1.2" stroke-opacity="0.5"/>
+    <line x1="-78" y1="35" x2="78" y2="35" stroke="url(#gold)" stroke-width="1.2" stroke-opacity="0.5"/>
+    <line x1="-64" y1="-45" x2="64" y2="-45" stroke="url(#gold)" stroke-width="1.2" stroke-opacity="0.5"/>
+
+    <!-- Small Sparkles -->
+    <polygon points="120,-80 126,-95 132,-80 147,-74 132,-68 126,-53 120,-68 105,-74" fill="#FFF8DC"/>
+    <polygon points="-130,90 -126,78 -122,90 -110,94 -122,98 -126,110 -130,98 -142,94" fill="#FFF8DC"/>
+  </g>
+</svg>

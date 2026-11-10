@@ -5,6 +5,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import LandingPage from "@/pages/LandingPage";
+import ServicesPage from "@/pages/Services";
+import ProductsPage from "@/pages/Products";
+import AboutPage from "@/pages/About";
 import Portfolio from "@/pages/Portfolio";
 import ProjectDetails from "@/pages/ProjectDetails";
 import ScheduleDemoModal from "@/components/landing/ScheduleDemoModal";
@@ -15,6 +18,9 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={LandingPage} />
+      <Route path="/services" component={ServicesPage} />
+      <Route path="/products" component={ProductsPage} />
+      <Route path="/about" component={AboutPage} />
       <Route path="/portfolio" component={Portfolio} />
       <Route path="/portfolio/:id" component={ProjectDetails} />
       <Route component={NotFound} />

@@ -3,7 +3,7 @@ Allow: /
 Disallow: /api/
 
 # Sitemaps
-Sitemap: https://inwora.in/sitemap.xml
+Sitemap: https://inwora.com/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 10

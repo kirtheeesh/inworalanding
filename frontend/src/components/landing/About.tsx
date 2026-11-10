@@ -4,9 +4,9 @@ import { Target, Award, Users } from "lucide-react";
 import { Eyebrow } from "./_shared";
 
 const stats = [
-  { icon: Award, value: 369, suffix: "+", label: "Projects delivered" },
-  { icon: Target, value: 9, suffix: "", label: "Subscription products" },
-  { icon: Users, value: 69, suffix: "+", label: "Industries served" },
+  { icon: Award, value: 80, suffix: "+", label: "Projects delivered across Tamil Nadu" },
+  { icon: Target, value: 3, suffix: "", label: "Subscription products" },
+  { icon: Users, value: 12, suffix: "+", label: "Industries served" },
 ];
 
 function AnimatedCounter({ target, suffix, duration = 1600 }: { target: number; suffix: string; duration?: number }) {
@@ -73,7 +73,7 @@ export default function About() {
 
             <div className="mt-8 flex items-center gap-3">
               <div className="h-px w-10 bg-primary" />
-              <p className="text-sm font-medium text-foreground">"Your Growth… Our Mission."</p>
+              <p className="text-sm font-medium text-foreground">"Innovate, Automate, Scale"</p>
             </div>
           </motion.div>
 

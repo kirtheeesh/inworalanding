@@ -24,7 +24,8 @@ export const fadeUpDelay = (i: number): any => ({
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+    <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.18em] text-[#228B22] mb-1">
+      <span className="h-1.5 w-1.5 rounded-full bg-[#228B22]" />
       {children}
     </span>
   );
@@ -49,11 +50,11 @@ export function SectionHeading({
       className={isCenter ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}
     >
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+      <h2 className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight text-foreground leading-[1.18]">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-base md:text-lg leading-relaxed text-muted-foreground">
+        <p className="mt-3.5 text-base md:text-lg leading-relaxed text-muted-foreground">
           {subtitle}
         </p>
       )}

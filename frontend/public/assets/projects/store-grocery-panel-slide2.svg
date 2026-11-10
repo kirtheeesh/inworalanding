@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="gpBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#062014"/>
+      <stop offset="60%" stop-color="#0E3D27"/>
+      <stop offset="100%" stop-color="#05170E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#gpBg)"/>
+  <g transform="translate(80, 50)">
+    <rect width="210" height="30" rx="15" fill="#10B981" fill-opacity="0.25" stroke="#34D399" stroke-width="1"/>
+    <text x="105" y="20" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">LIVE ORDER PACKING</text>
+    <text x="0" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="34" font-weight="800">Store Grocery Panel Workflows</text>
+    <text x="0" y="92" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="14">Real-time order incoming alerts, barcode item verification &amp; rider assignment</text>
+  </g>
+  <g transform="translate(80, 160)">
+    <rect width="1040" height="460" rx="16" fill="#0A1E14" stroke="#10B981" stroke-width="1.5"/>
+    <rect width="1040" height="46" rx="16" fill="#123524"/>
+    <text x="30" y="28" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="13" font-weight="700">STORE ORDER DISPATCH QUEUE • 8 ORDERS READY FOR RIDER PICKUP</text>
+    
+    <g transform="translate(30, 70)">
+      <rect width="470" height="170" rx="10" fill="#15422D" stroke="#34D399" stroke-width="1.2"/>
+      <text x="20" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="16" font-weight="700">Order #GRC-9841</text>
+      <rect x="360" y="16" width="90" height="24" rx="12" fill="#10B981"/>
+      <text x="405" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="10" font-weight="700" text-anchor="middle">PACKED</text>
+      <text x="20" y="65" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• Organic Cow Milk 1L (x2)</text>
+      <text x="20" y="90" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• Fresh Tomatoes 1kg (x1)</text>
+      <text x="20" y="115" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• Whole Wheat Bread 400g (x1)</text>
+      <text x="20" y="145" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Rider: Rajesh (Arriving in 3 mins)</text>
+    </g>
+
+    <g transform="translate(540, 70)">
+      <rect width="470" height="170" rx="10" fill="#15422D" stroke="#F59E0B" stroke-width="1.2"/>
+      <text x="20" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="16" font-weight="700">Order #GRC-9842</text>
+      <rect x="340" y="16" width="110" height="24" rx="12" fill="#F59E0B"/>
+      <text x="395" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="10" font-weight="700" text-anchor="middle">PACKING (3/5)</text>
+      <text x="20" y="65" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• Sona Masoori Rice 5kg [Scanned ✓]</text>
+      <text x="20" y="90" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13">• Sunflower Oil 1L [Scanned ✓]</text>
+      <text x="20" y="115" fill="#F59E0B" font-family="'Montserrat', sans-serif" font-size="13">• Kashmiri Chilli Powder 200g [Pending]</text>
+      <text x="20" y="145" fill="#FBBF24" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600">Picker: Counter 2</text>
+    </g>
+
+    <g transform="translate(30, 260)">
+      <rect width="980" height="160" rx="10" fill="#123524"/>
+      <text x="24" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="15" font-weight="700">Store Inventory Low-Stock Alerts</text>
+      <g transform="translate(24, 55)">
+        <rect width="290" height="80" rx="6" fill="#1A4731"/>
+        <text x="16" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600">Brown Eggs (Pack of 12)</text>
+        <text x="16" y="52" fill="#EF4444" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">4 packs left (Reorder alert)</text>
+      </g>
+      <g transform="translate(330, 55)">
+        <rect width="290" height="80" rx="6" fill="#1A4731"/>
+        <text x="16" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600">Aashirvaad Atta 10kg</text>
+        <text x="16" y="52" fill="#F59E0B" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">8 bags left</text>
+      </g>
+      <g transform="translate(635, 55)">
+        <rect width="320" height="80" rx="6" fill="#1A4731"/>
+        <text x="16" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600">Fresh Coriander Bunches</text>
+        <text x="16" y="52" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Replenished today (45 units)</text>
+      </g>
+    </g>
+  </g>
+</svg>

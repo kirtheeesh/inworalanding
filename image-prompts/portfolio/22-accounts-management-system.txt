@@ -1,0 +1,49 @@
+================================================================================
+IMAGE GENERATION PROMPTS: ACCOUNTS MANAGEMENT SYSTEM
+Type: Portfolio Project
+Category: Business Software
+================================================================================
+
+OVERVIEW & AESTHETIC GUIDELINES:
+- Aspect Ratio: 16:9 (--ar 16:9) for slideshow banners, web headers, and presentation decks.
+- Style: Ultra-photorealistic, high-end commercial tech & corporate editorial aesthetic.
+- Key Goal: Look like authentic, production-grade software and real commercial environments. AVOID generic cartoonish AI vectors, fake 3D blobs, or illegible text.
+- Recommended Midjourney Parameters: --ar 16:9 --style raw --v 6.1
+- Recommended Flux Parameters: 1920x1080 resolution, steps: 35, guidance: 3.5
+
+--------------------------------------------------------------------------------
+SLIDE 1: MAIN HERO BANNER & SPOTLIGHT SHOWCASE (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+Double-entry enterprise financial accounting system on a minimalist desktop setup. The interface displays general ledger balances, automated GST/VAT reconciliation tables, recurring expense tracking, and instant Profit & Loss (P&L) statements. Clean, modern typography with calm blue and forest green accents, 8k.
+
+NEGATIVE PROMPT:
+cartoon, anime, 3d render illustration, low resolution, blurry, distorted text, mutated hands, bad anatomy, artificial floating plastic blobs, watermarks, stock photo watermark, oversaturated colors, cheap vector clip-art.
+
+--------------------------------------------------------------------------------
+SLIDE 2: REAL-WORLD OPERATIONAL / IN-ACTION ENVIRONMENT (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+A financial controller and accountant reviewing bank reconciliation discrepancies and automated tax mapping ledgers on a dual-monitor setup in a corporate finance office.
+
+NEGATIVE PROMPT:
+deformed faces, extra fingers, cartoonish, oversaturated, staged fake smile, plastic skin, uncanny valley, watermark, text errors, low-res, out of frame, blurry background text.
+
+--------------------------------------------------------------------------------
+SLIDE 3: DEEP FEATURE SCREEN / MULTI-DEVICE WORKFLOW (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+Detailed accounting UI screen: double-entry ledger balance view with debit/credit verification, automated PDF invoice generation modal, and cash flow forecasting graph.
+
+NEGATIVE PROMPT:
+gibberish text, chaotic layouts, pixelated UI, neon cartoon vectors, low quality, warped perspective, bad typography, clutter, blurry lines, watermark.
+
+================================================================================
+HOW TO USE IN POPULAR AI IMAGE GENERATORS:
+1. Midjourney v6.1:
+   Paste: /imagine prompt: [PASTE PROMPT HERE] --ar 16:9 --style raw --v 6.1
+2. Flux 1.1 Pro / Dev:
+   Paste the prompt with aspect ratio set to 16:9 (1920x1080).
+3. DALL-E 3:
+   Paste the prompt directly; ensure you specify "16:9 widescreen landscape".
+================================================================================

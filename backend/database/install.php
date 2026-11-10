@@ -77,6 +77,14 @@ if (!column_exists($pdo, 'projects', 'video_file')) {
     $pdo->exec('ALTER TABLE projects ADD COLUMN video_file VARCHAR(500) NULL DEFAULT NULL AFTER video_url');
     step('Added `projects.video_file` column.');
 }
+if (!column_exists($pdo, 'projects', 'show_web_view')) {
+    $pdo->exec('ALTER TABLE projects ADD COLUMN show_web_view TINYINT(1) NOT NULL DEFAULT 1 AFTER is_published');
+    step('Added `projects.show_web_view` column.');
+}
+if (!column_exists($pdo, 'projects', 'show_mobile_view')) {
+    $pdo->exec('ALTER TABLE projects ADD COLUMN show_mobile_view TINYINT(1) NOT NULL DEFAULT 0 AFTER show_web_view');
+    step('Added `projects.show_mobile_view` column.');
+}
 
 // Projects saved before this column existed may already have a YouTube embed
 // URL in `video_url` — tag them as such so the admin form's radio toggle and
@@ -145,7 +153,9 @@ if ($existing > 0) {
             'live_url'     => $project['live_url'],
             'sort_order'   => $index,
             'is_published' => 1,
-        ], $project['tags'], $project['features'], $banners);
+            'show_web_view' => 1,
+            'show_mobile_view' => 0,
+        ], $project['tags'], $project['features'], $banners, []);
     }
 
     step('Seeded ' . count($projects) . ' portfolio projects.');

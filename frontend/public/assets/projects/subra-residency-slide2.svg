@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="srBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#081A24"/>
+      <stop offset="60%" stop-color="#0E2D3E"/>
+      <stop offset="100%" stop-color="#040F16"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#srBg)"/>
+  <g transform="translate(80, 50)">
+    <rect width="230" height="30" rx="15" fill="#0284C7" fill-opacity="0.25" stroke="#38BDF8" stroke-width="1"/>
+    <text x="115" y="20" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">FRONT-DESK CHECK-IN ENGINE</text>
+    <text x="0" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="34" font-weight="800">Subra Residency Hotel Management</text>
+    <text x="0" y="92" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="14">Room occupancy grid, instant guest check-in, Aadhaar verification &amp; checkout billing</text>
+  </g>
+  <g transform="translate(80, 160)">
+    <rect width="1040" height="460" rx="16" fill="#071720" stroke="#0284C7" stroke-width="1.2"/>
+    <rect width="1040" height="46" rx="16" fill="#0D2736"/>
+    <text x="30" y="28" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="13" font-weight="700">ROOM OCCUPANCY &amp; HOUSEKEEPING STATUS (32 ROOMS)</text>
+    
+    <!-- Floor 1 -->
+    <g transform="translate(30, 70)">
+      <text x="0" y="20" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">First Floor (Executive AC)</text>
+      <g transform="translate(0, 35)">
+        <rect width="180" height="70" rx="8" fill="#0F3348" stroke="#10B981" stroke-width="2"/>
+        <text x="16" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Room 101</text>
+        <text x="16" y="52" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="12">OCCUPIED (Dr. Sen)</text>
+
+        <rect x="200" width="180" height="70" rx="8" fill="#0F3348" stroke="#38BDF8" stroke-width="2"/>
+        <text x="216" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Room 102</text>
+        <text x="216" y="52" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="12">AVAILABLE (Clean)</text>
+
+        <rect x="400" width="180" height="70" rx="8" fill="#0F3348" stroke="#10B981" stroke-width="2"/>
+        <text x="416" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Room 103</text>
+        <text x="416" y="52" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="12">OCCUPIED (Mr. Rao)</text>
+
+        <rect x="600" width="180" height="70" rx="8" fill="#0F3348" stroke="#F59E0B" stroke-width="2"/>
+        <text x="616" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Room 104</text>
+        <text x="616" y="52" fill="#FBBF24" font-family="'Montserrat', sans-serif" font-size="12">HOUSEKEEPING</text>
+
+        <rect x="800" width="180" height="70" rx="8" fill="#0F3348" stroke="#38BDF8" stroke-width="2"/>
+        <text x="816" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Room 105</text>
+        <text x="816" y="52" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="12">AVAILABLE (Clean)</text>
+      </g>
+    </g>
+
+    <!-- Floor 2 -->
+    <g transform="translate(30, 210)">
+      <text x="0" y="20" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Second Floor (Deluxe Suite)</text>
+      <g transform="translate(0, 35)">
+        <rect width="180" height="70" rx="8" fill="#0F3348" stroke="#10B981" stroke-width="2"/>
+        <text x="16" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Room 201</text>
+        <text x="16" y="52" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="12">OCCUPIED</text>
+
+        <rect x="200" width="180" height="70" rx="8" fill="#0F3348" stroke="#10B981" stroke-width="2"/>
+        <text x="216" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Room 202</text>
+        <text x="216" y="52" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="12">OCCUPIED</text>
+
+        <rect x="400" width="180" height="70" rx="8" fill="#0F3348" stroke="#38BDF8" stroke-width="2"/>
+        <text x="416" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Room 203</text>
+        <text x="416" y="52" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="12">AVAILABLE</text>
+
+        <rect x="600" width="180" height="70" rx="8" fill="#0F3348" stroke="#38BDF8" stroke-width="2"/>
+        <text x="616" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Room 204</text>
+        <text x="616" y="52" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="12">AVAILABLE</text>
+
+        <rect x="800" width="180" height="70" rx="8" fill="#0F3348" stroke="#10B981" stroke-width="2"/>
+        <text x="816" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Room 205</text>
+        <text x="816" y="52" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="12">OCCUPIED</text>
+      </g>
+    </g>
+
+    <!-- Summary Stats -->
+    <g transform="translate(30, 350)">
+      <rect width="980" height="85" rx="8" fill="#0D2736"/>
+      <text x="30" y="30" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">TODAY'S OCCUPANCY</text>
+      <text x="30" y="62" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="24" font-weight="800">82% (26 Rooms Full)</text>
+      <text x="450" y="30" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">ESTIMATED REVENUE</text>
+      <text x="450" y="62" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="24" font-weight="800">₹ 58,400 Today</text>
+    </g>
+  </g>
+</svg>

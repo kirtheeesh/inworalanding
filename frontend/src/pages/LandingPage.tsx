@@ -2,12 +2,9 @@ import Navbar from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero";
 import TrustStrip from "@/components/landing/TrustStrip";
 import ClientLogos from "@/components/landing/ClientLogos";
-import Services from "@/components/landing/Services";
 import Products from "@/components/landing/Products";
-import Pricing from "@/components/landing/Pricing";
 import WhyChoose from "@/components/landing/WhyChoose";
 import Process from "@/components/landing/Process";
-import About from "@/components/landing/About";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
@@ -20,12 +17,9 @@ export default function LandingPage() {
         <Hero />
         <TrustStrip />
         <ClientLogos />
-        <Services />
         <Products />
-        <Pricing />
         <WhyChoose />
         <Process />
-        <About />
         <FinalCTA />
       </main>
       <Footer />

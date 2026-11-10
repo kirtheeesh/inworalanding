@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `live_url`     VARCHAR(500) NULL,
   `sort_order`   INT          NOT NULL DEFAULT 0,
   `is_published` TINYINT(1)   NOT NULL DEFAULT 1,
+  `show_web_view`    TINYINT(1)   NOT NULL DEFAULT 1,
+  `show_mobile_view` TINYINT(1)   NOT NULL DEFAULT 0,
   `created_at`   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -51,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `projects` (
   KEY `idx_projects_listing` (`is_published`, `sort_order`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
--- ── Banner slider images ──────────────────────────────────────
+-- ── Banner slider images (web view) ─────────────────────────
 -- Multiple banner slides per project. `sort_order` is the admin-facing
 -- "priority" — lower shows first, and the lowest becomes `projects.banner`
 -- (the cover image used on the portfolio card).
@@ -63,6 +65,18 @@ CREATE TABLE IF NOT EXISTS `project_banners` (
   PRIMARY KEY (`id`),
   KEY `idx_project_banners_project` (`project_id`, `sort_order`),
   CONSTRAINT `fk_project_banners_project`
+    FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- ── Mobile screenshots (portrait phone mockups) ─────────────
+CREATE TABLE IF NOT EXISTS `project_mobile_banners` (
+  `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `project_id` INT UNSIGNED NOT NULL,
+  `image`      VARCHAR(500) NOT NULL,
+  `sort_order` INT          NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `idx_project_mobile_banners_project` (`project_id`, `sort_order`),
+  CONSTRAINT `fk_project_mobile_banners_project`
     FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 

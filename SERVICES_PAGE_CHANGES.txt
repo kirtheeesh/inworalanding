@@ -1,0 +1,295 @@
+================================================================================
+INWORA TECHNOLOGIES — SERVICES PAGE ENHANCEMENT SUMMARY & CHANGELOG
+================================================================================
+Date: 2026-10-26
+Target Page: /services
+Primary File Modified: frontend/src/pages/Services.tsx
+================================================================================
+
+1. EXECUTIVE OVERVIEW OF CHANGES
+--------------------------------------------------------------------------------
+The existing Services page has been redesigned and enhanced from a generic
+listing into a professional B2B IT Services and Software Outsourcing platform.
+
+Strategic Positioning:
+- Positioned Inwora as a "Software Development, Application Maintenance & 
+  IT Outsourcing Partner".
+- Communicates genuine business value, technical competency, and clear 
+  engagement models suitable for software product companies, SaaS businesses,
+  startups, digital agencies, and growing enterprises.
+
+--------------------------------------------------------------------------------
+2. SECTION-BY-SECTION CONTENT CHANGES
+--------------------------------------------------------------------------------
+
+[SECTION 1: SERVICES HERO]
+- Hero Eyebrow Pill:
+  "Software Development, Application Maintenance & IT Outsourcing Partner"
+- Main Headline:
+  "Technology Services That Keep Your Business Moving."
+- Supporting Subtitle:
+  "From application development and ongoing maintenance to QA automation and 
+  IT outsourcing, Inwora helps businesses build, maintain and improve their 
+  software with flexible technical support."
+- Primary CTA:
+  "Discuss a Project" -> Initiates WhatsApp consultation with pre-filled context.
+- Secondary CTA:
+  "Explore Our Services" -> Smooth-scrolls directly to #service-categories.
+- Trust Strip (4 items):
+  1. 100% Client Code & IP Ownership
+  2. Transparent Defined Scopes
+  3. Structured QA & Testing Checks
+  4. Ongoing Support & Retainers
+- Quick-Jump Navigation Bar:
+  Direct anchor jump links to 01. Services, 02. Who We Help, 03. How We Work,
+  04. Engagement Models, and 05. Technologies.
+
+[SECTION 2: 8 CORE SERVICE CATEGORIES]
+Added category filter pills:
+- All Services (8)
+- Software & Web Development
+- Maintenance & QA Testing
+- APIs, Operations & Automation
+
+Each service card features an initial 4 visible capabilities + an interactive 
+expandable toggle to view additional capabilities without layout clutter.
+
+Service 1: Application Maintenance & Support
+- Badge: Ongoing Reliability
+- Description: Keep your existing applications reliable, secure and up to date 
+  with ongoing technical support, bug fixes and continuous improvements.
+- Key Capabilities (Initial):
+  * Bug fixing and issue resolution
+  * Application troubleshooting
+  * Dependency and security updates
+  * Performance optimization
+- Additional Capabilities (Expandable):
+  * Database maintenance
+  * Feature enhancements
+  * Technical documentation
+  * Ongoing maintenance and support plans
+- Card CTA: "Discuss Maintenance Requirements"
+
+Service 2: Custom Software Development
+- Badge: Bespoke Engineering
+- Description: Build and extend software applications tailored to your business 
+  workflows, product requirements and technical architecture.
+- Key Capabilities (Initial):
+  * Web application development
+  * Frontend and backend development
+  * Admin panels and dashboards
+  * New modules and product features
+- Additional Capabilities (Expandable):
+  * Database-driven applications
+  * Business process automation
+  * Application enhancements
+  * Responsive web interfaces
+- Card CTA: "Discuss Your Project"
+
+Service 3: IT Outsourcing & Developer Augmentation
+- Badge: Capacity Augmentation
+- Description: Extend your existing engineering capacity with flexible 
+  development support for specific projects, product enhancements and 
+  ongoing technical tasks.
+- Boundary Note:
+  "Engagements are subject to resource availability and confirmed project scope."
+- Key Capabilities (Initial):
+  * Project-based development
+  * Developer augmentation
+  * Remote development support
+  * Feature and module development
+- Additional Capabilities (Expandable):
+  * Additional engineering capacity
+  * Technical collaboration with existing teams
+  * Defined-scope delivery engagements
+- Card CTA: "Discuss Outsourcing Requirements"
+
+Service 4: Quality Assurance & Test Automation
+- Badge: Reliability & Quality
+- Description: Improve software reliability and release confidence through 
+  structured testing, automated checks and clear defect reporting.
+- Tool Callout Box:
+  "Includes DoSmokeTest CLI — our in-house automated smoke testing & 
+  regression check tool"
+- Key Capabilities (Initial):
+  * Manual functional testing
+  * Regression testing
+  * Browser compatibility testing
+  * Website smoke testing
+- Additional Capabilities (Expandable):
+  * Broken-link and navigation checks
+  * API and network response checks
+  * JavaScript error detection
+  * Test reports and release validation
+  * CI/CD test integration where supported
+- Card CTA: "Discuss Testing Requirements"
+
+Service 5: API Development, Database & Integration
+- Badge: Connectivity & Data
+- Description: Connect applications, streamline data exchange and maintain 
+  reliable communication between your software systems.
+- Key Capabilities (Initial):
+  * REST API development
+  * API integration and maintenance
+  * Third-party service integration
+  * Payment gateway integration
+- Additional Capabilities (Expandable):
+  * Webhook implementation
+  * Database design and optimization
+  * Data migration and import/export
+  * Authentication and access-control integration
+  * Reporting and data-processing workflows
+- Card CTA: "Discuss Integration Requirements"
+
+Service 6: Deployment & Technical Operations
+- Badge: Release & DevOps
+- Description: Support application releases and routine technical operations to 
+  help keep your software environments properly configured and maintainable.
+- Boundary Note:
+  "Standard deployment, hosting maintenance, CI/CD setup and release documentation 
+  for your production stack."
+- Key Capabilities (Initial):
+  * Application deployment
+  * Hosting and environment configuration
+  * Domain and SSL configuration
+  * Deployment troubleshooting
+- Additional Capabilities (Expandable):
+  * CI/CD pipeline setup
+  * Application logs and monitoring
+  * Database backup configuration
+  * Release and environment documentation
+- Card CTA: "Discuss Deployment Support"
+
+Service 7: Website, CMS & E-commerce Development
+- Badge: Web Platforms
+- Description: Develop professional websites and online business platforms 
+  with responsive interfaces and manageable content.
+- Key Capabilities (Initial):
+  * Corporate and business websites
+  * Landing pages
+  * CMS and admin-editable content
+  * Blog and content management
+- Additional Capabilities (Expandable):
+  * E-commerce applications
+  * Website redesign and modernization
+  * Forms and lead-generation workflows
+  * Website maintenance and updates
+- Card CTA: "Discuss Website Requirements"
+
+Service 8: CRM, ERP & Business Automation
+- Badge: Business Systems
+- Description: Simplify business operations with custom business applications, 
+  integrated workflows and centralized management systems.
+- Key Capabilities (Initial):
+  * CRM customization
+  * Lead and customer management
+  * ERP and business workflow customization
+  * Billing and inventory applications
+- Additional Capabilities (Expandable):
+  * Business dashboards and reporting
+  * Notification and messaging integrations
+  * Workflow automation
+  * Custom internal business tools
+- Card CTA: "Discuss Business Automation"
+
+[WHO WE PARTNER WITH STRIP]
+Showcases 4 target client segments:
+1. Software & SaaS Companies — Feature sprints, routine maintenance, QA automation.
+2. Startups & Emerging Ventures — Translating wireframes to production-ready apps.
+3. Digital Agencies & Dev Teams — Engineering augmentation for tight deadlines.
+4. Growing Businesses & SMEs — Digitizing operations & CRM/ERP automation.
+
+[SECTION 3: HOW WE WORK (5 STEPS)]
+Presents a structured, transparent 5-step engineering delivery process:
+- 01. Understand — Identify your application, business needs and technical challenges.
+- 02. Scope — Define deliverables, priorities, timelines and responsibilities.
+- 03. Execute — Develop, maintain, integrate or test the agreed solution.
+- 04. Validate — Verify the work with automated smoke tests & QA checks.
+- 05. Support — Provide agreed handover, documentation and ongoing assistance.
+
+[SECTION 4: FLEXIBLE ENGAGEMENT MODELS (4 MODELS)]
+Clear contractual options without fabricated pricing:
+1. Fixed-Scope Projects — Milestone deliverables, defined timeline & budget, 100% IP transfer.
+2. Monthly Application Maintenance — Proactive bug fixes, security patches, database tuning.
+3. Developer Augmentation — Collaborative remote engineering integrated with client tech leads.
+4. QA & Testing Assignments — Manual functional testing, automated smoke checks, defect logging.
+
+[SECTION 5: TECHNOLOGIES & CAPABILITIES]
+Transparently showcases genuine technologies used by the business:
+- Frontend: React 19, TypeScript, JavaScript (ESNext), Tailwind CSS, Vite, HTML5 & CSS3.
+- Backend & APIs: PHP (8+), Node.js, RESTful APIs, Webhooks, JSON Services, Authentication.
+- Databases & Data: MySQL, MariaDB, Relational Schema Design, Query Optimization, Data Migrations.
+- QA & Testing: DoSmokeTest CLI, Playwright, Automated Smoke Tests, Endpoint Checks, Defect Logging.
+- Deployment & Ops: Git & GitHub, Linux (Apache / Nginx), cPanel & VPS, SSL & Domain Setup, Release Docs.
+
+[SECTION 6: FINAL CTA]
+- Headline: "Looking for a Reliable Technology Partner?"
+- Description: "Tell us about your application, project requirements or ongoing 
+  technical challenges. Let's explore how Inwora can help."
+- Primary CTA: "Discuss Your Project" (Direct WhatsApp inquiry)
+- Secondary CTA: "Contact Us" (Opens the interactive ScheduleDemoModal)
+- Value Badges:
+  * Direct engineer consultation
+  * Defined-scope delivery
+  * 100% intellectual property transfer
+
+--------------------------------------------------------------------------------
+3. SEO & METADATA UPDATES (BASIC & TECHNICAL SEO OPTIMIZATION)
+--------------------------------------------------------------------------------
+Updated dynamically in useEffect on page mount with persistent tag sync:
+- Document Title:
+  "IT Services & Software Development Company in India | Inwora"
+- Meta Description:
+  "Explore Inwora's software development, application maintenance, QA automation, 
+  IT outsourcing and API integration services for businesses in India and worldwide."
+- Canonical Tag:
+  <link rel="canonical" href="https://inwora.com/services" />
+  Cleanly managed and prevents duplicate/self-conflicting canonical tags.
+- Open Graph Metadata:
+  * og:title: "IT Services & Software Development Company in India | Inwora"
+  * og:description: "Explore Inwora's software development, application maintenance, QA automation, IT outsourcing and API integration services for businesses in India and worldwide."
+  * og:url: "https://inwora.com/services"
+  * og:type: "website"
+  * og:site_name: "Inwora Technologies"
+  * og:locale: "en_IN"
+  * og:image: "https://inwora.com/opengraph.jpg"
+- Twitter Card:
+  * twitter:card: "summary_large_image"
+  * twitter:title: "IT Services & Software Development Company in India | Inwora"
+  * twitter:description: "Explore Inwora's software development, application maintenance, QA automation, IT outsourcing and API integration services for businesses in India and worldwide."
+  * twitter:image: "https://inwora.com/opengraph.jpg"
+- Structured Data (Schema.org JSON-LD):
+  * BreadcrumbList: Home (https://inwora.com/) > Services (https://inwora.com/services)
+  * ItemList of Service offerings: Provider (Inwora Technologies), areaServed (India), 
+    accurate descriptions of all 8 core services. Zero fabricated ratings, reviews, or pricing.
+- Search Engine Files:
+  * sitemap.xml: Replaced non-standard fragment URLs with clean, canonical production URLs
+    (https://inwora.com/, /services, /products, /portfolio, /about).
+  * robots.txt: Updated to reference https://inwora.com/sitemap.xml and permits full crawling of assets.
+  * index.html: Removed obsolete meta keywords tag; aligned default Open Graph & canonical references.
+
+--------------------------------------------------------------------------------
+4. UI / UX & DESIGN SYSTEM SPECIFICATIONS
+--------------------------------------------------------------------------------
+- Theme: Clean, professional Light Theme with crisp white cards (bg-card).
+- Brand Colors:
+  * Forest Green: #228B22 (Primary accents, icons, and CTA gradient)
+  * Mint Accent: #E0EEE0 (Badges, subtle backgrounds, and wave accents)
+  * Charcoal Dark: Deep text foreground for high contrast readability
+  * Subtle Neutral Gray: Muted borders and secondary text
+- Typography: Plus Jakarta Sans for headings + Inter for body text.
+- Responsiveness: Fully tested across desktop (1920x1080) and mobile (390x844).
+- Accessibility: Semantic headings, ARIA expanded state attributes, and keyboard-friendly buttons.
+- Interactions:
+  * Category filter pills for instant service filtering
+  * Accordion expansion for capability lists with smooth transitions
+  * WhatsApp click-to-chat queries tailored per service category
+  * Integrated calendar booking modal trigger
+
+--------------------------------------------------------------------------------
+5. CODE VERIFICATION & BUILD STATUS
+--------------------------------------------------------------------------------
+- TypeScript typecheck (tsc -p tsconfig.json --noEmit): PASSED (0 errors)
+- Production build (vite build): PASSED (bundle successfully created in dist/public)
+- Browser Navigation & Visual Verification: PASSED
+================================================================================

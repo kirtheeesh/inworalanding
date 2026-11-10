@@ -57,7 +57,7 @@ export default function Pricing() {
       planName === "Enterprise"
         ? "Hello INWORA! I am interested in custom integrations and would like to contact sales for the Enterprise Plan."
         : `Hello INWORA! I would like to get a quote/book a demo for the ${planName} Plan.`;
-    window.open(`https://wa.me/919047370027?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/919025728998?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   return (

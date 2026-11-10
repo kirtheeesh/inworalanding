@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="crmBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B132B"/>
+      <stop offset="60%" stop-color="#1C2541"/>
+      <stop offset="100%" stop-color="#0A1128"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#crmBg)"/>
+  <g transform="translate(80, 50)">
+    <rect width="200" height="30" rx="15" fill="#6366F1" fill-opacity="0.2" stroke="#818CF8" stroke-width="1"/>
+    <text x="100" y="20" fill="#818CF8" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">SALES PIPELINE KANBAN</text>
+    <text x="0" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="34" font-weight="800">Malligai CRM Lead Stages</text>
+    <text x="0" y="92" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="14">Multi-channel lead tracking, team conversion velocity, and stage movement</text>
+  </g>
+  <!-- 4 Kanban Columns -->
+  <g transform="translate(80, 170)">
+    <!-- Column 1: New Enquiries -->
+    <rect width="240" height="450" rx="12" fill="#0F172A" stroke="#334155" stroke-width="1.2"/>
+    <rect width="240" height="40" rx="12" fill="#1E293B"/>
+    <text x="16" y="25" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">NEW ENQUIRIES (18)</text>
+    <g transform="translate(12, 52)">
+      <rect width="216" height="85" rx="8" fill="#1E293B" stroke="#334155"/>
+      <text x="14" y="25" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600">Apex Construction</text>
+      <text x="14" y="44" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">Commercial HVAC inquiry</text>
+      <rect x="14" y="55" width="60" height="20" rx="4" fill="#0284C7" fill-opacity="0.3"/>
+      <text x="44" y="69" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="9" font-weight="700" text-anchor="middle">HIGH</text>
+      <text x="195" y="70" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="10" text-anchor="end">2m ago</text>
+    </g>
+    <g transform="translate(12, 147)">
+      <rect width="216" height="85" rx="8" fill="#1E293B" stroke="#334155"/>
+      <text x="14" y="25" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600">Surya Textiles</text>
+      <text x="14" y="44" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">ERP integration quote</text>
+      <rect x="14" y="55" width="60" height="20" rx="4" fill="#10B981" fill-opacity="0.3"/>
+      <text x="44" y="69" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="9" font-weight="700" text-anchor="middle">WARM</text>
+      <text x="195" y="70" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="10" text-anchor="end">14m ago</text>
+    </g>
+  </g>
+  <!-- Column 2: In Contact -->
+  <g transform="translate(340, 170)">
+    <rect width="240" height="450" rx="12" fill="#0F172A" stroke="#334155" stroke-width="1.2"/>
+    <rect width="240" height="40" rx="12" fill="#1E293B"/>
+    <text x="16" y="25" fill="#F59E0B" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">IN CONTACT (12)</text>
+    <g transform="translate(12, 52)">
+      <rect width="216" height="95" rx="8" fill="#1E293B" stroke="#F59E0B" stroke-width="1.2"/>
+      <text x="14" y="25" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600">Kaveri Agro Tech</text>
+      <text x="14" y="44" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">Demo scheduled for 4 PM</text>
+      <text x="14" y="62" fill="#F59E0B" font-family="'Montserrat', sans-serif" font-size="11" font-weight="600">Agent: Priya S.</text>
+      <rect x="14" y="70" width="70" height="18" rx="4" fill="#F59E0B" fill-opacity="0.2"/>
+      <text x="49" y="83" fill="#F59E0B" font-family="'Montserrat', sans-serif" font-size="9" font-weight="700" text-anchor="middle">FOLLOW-UP</text>
+    </g>
+  </g>
+  <!-- Column 3: Proposal Sent -->
+  <g transform="translate(600, 170)">
+    <rect width="240" height="450" rx="12" fill="#0F172A" stroke="#334155" stroke-width="1.2"/>
+    <rect width="240" height="40" rx="12" fill="#1E293B"/>
+    <text x="16" y="25" fill="#818CF8" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">PROPOSAL SENT (7)</text>
+    <g transform="translate(12, 52)">
+      <rect width="216" height="95" rx="8" fill="#1E293B" stroke="#334155"/>
+      <text x="14" y="25" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600">Vasantham Motors</text>
+      <text x="14" y="44" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">Commercial SLA Sent</text>
+      <text x="14" y="64" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">₹ 4,50,000</text>
+      <text x="195" y="83" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="10" text-anchor="end">Viewed 1h ago</text>
+    </g>
+  </g>
+  <!-- Column 4: Deals Won -->
+  <g transform="translate(860, 170)">
+    <rect width="240" height="450" rx="12" fill="#0F172A" stroke="#10B981" stroke-width="1.5"/>
+    <rect width="240" height="40" rx="12" fill="#064E3B"/>
+    <text x="16" y="25" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">CLOSED WON (34)</text>
+    <g transform="translate(12, 52)">
+      <rect width="216" height="95" rx="8" fill="#1E293B" stroke="#10B981"/>
+      <text x="14" y="25" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600">Sri Balaji Logistics</text>
+      <text x="14" y="44" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="11">Annual SaaS Contract</text>
+      <text x="14" y="64" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="13" font-weight="800">₹ 8,20,000</text>
+      <rect x="14" y="70" width="80" height="18" rx="4" fill="#10B981" fill-opacity="0.3"/>
+      <text x="54" y="83" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="9" font-weight="700" text-anchor="middle">ACTIVE CLIENT</text>
+    </g>
+  </g>
+</svg>

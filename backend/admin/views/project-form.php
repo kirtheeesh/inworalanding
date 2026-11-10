@@ -8,6 +8,7 @@ if ($videoMode === '' || $videoMode === null) {
     $videoMode = 'none';
 }
 $banners = $project['banners'] ?? [];
+$mobileBanners = $project['mobile_banners'] ?? [];
 ?>
 <style>
   .banner-slide {
@@ -79,18 +80,30 @@ $banners = $project['banners'] ?? [];
       </div>
     </div>
 
-    <div class="checkbox">
-      <input type="checkbox" id="is_published" name="is_published" value="1"
-             <?= (!$isEdit || $project['is_published']) ? 'checked' : '' ?>>
-      <label for="is_published">Published <span class="hint">— unpublished projects are hidden from the website</span></label>
+    <div class="checkbox-group" style="display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:.5rem">
+      <div class="checkbox">
+        <input type="checkbox" id="is_published" name="is_published" value="1"
+               <?= (!$isEdit || $project['is_published']) ? 'checked' : '' ?>>
+        <label for="is_published">Published <span class="hint">— unpublished projects are hidden from the website</span></label>
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" id="show_web_view" name="show_web_view" value="1"
+               <?= ($project['show_web_view'] ?? 1) ? 'checked' : '' ?>>
+        <label for="show_web_view">Enable Web view <span class="hint">— shows the banner/web screenshot slideshow</span></label>
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" id="show_mobile_view" name="show_mobile_view" value="1"
+               <?= ($project['show_mobile_view'] ?? 0) ? 'checked' : '' ?>>
+        <label for="show_mobile_view">Enable Mobile view <span class="hint">— shows phone mockup screenshots</span></label>
+      </div>
     </div>
   </fieldset>
 
   <fieldset>
-    <legend>Banner image slider</legend>
+    <legend>Web view — banner image slider</legend>
     <p class="hint" style="margin:0 0 1.1rem">
-      Add one or more images. <strong>Priority</strong> controls slide order on the site —
-      lower numbers show first, and the lowest-priority image becomes the cover shown on the portfolio card.
+      Add one or more images for the <strong>Web view</strong> (desktop banner slideshow). Requires "Enable Web view" checked above.
+      <strong>Priority</strong> controls slide order — lower numbers show first, and the lowest becomes the portfolio card cover.
     </p>
 
     <div id="banner-slides">
@@ -146,6 +159,69 @@ $banners = $project['banners'] ?? [];
           <input type="number" name="banner_new_priority[]" value="0">
         </div>
         <button type="button" class="btn btn-outline btn-sm banner-remove-new">✕</button>
+      </div>
+    </template>
+  </fieldset>
+
+  <fieldset>
+    <legend>Mobile view — phone screenshots</legend>
+    <p class="hint" style="margin:0 0 1.1rem">
+      Upload portrait phone screenshots for the <strong>Mobile view</strong> gallery (shown as phone mockups on the case study page). Requires "Enable Mobile view" checked in Basics above.
+    </p>
+
+    <div id="mobile-banner-slides">
+      <?php foreach ($mobileBanners as $banner): ?>
+        <div class="banner-slide">
+          <img class="thumb" src="<?= e(url($banner['image'])) ?>" alt="">
+          <input type="hidden" name="mobile_banner_existing_id[]" value="<?= (int) $banner['id'] ?>">
+          <div class="field field-priority">
+            <label>Priority</label>
+            <input type="number" name="mobile_banner_existing_priority[]" value="<?= (int) $banner['sort_order'] ?>">
+          </div>
+          <label class="checkbox">
+            <input type="checkbox" name="mobile_banner_remove[]" value="<?= (int) $banner['id'] ?>">
+            Remove
+          </label>
+        </div>
+      <?php endforeach; ?>
+    </div>
+
+    <div id="mobile-banner-new-slides">
+      <div class="banner-slide banner-slide-new">
+        <div class="field">
+          <label>Screenshot file</label>
+          <input type="file" name="mobile_banner_new_file[]" accept="image/*">
+        </div>
+        <div class="field">
+          <label>…or image URL</label>
+          <input type="text" name="mobile_banner_new_url[]" placeholder="https://...">
+        </div>
+        <div class="field field-priority">
+          <label>Priority</label>
+          <input type="number" name="mobile_banner_new_priority[]" value="<?= count($mobileBanners) * 10 ?>">
+        </div>
+      </div>
+    </div>
+
+    <p style="margin:.9rem 0 0">
+      <button type="button" class="btn btn-outline btn-sm" id="mobile-banner-add-btn">+ Add another screenshot</button>
+    </p>
+
+    <template id="mobile-banner-slide-template">
+      <div class="banner-slide banner-slide-new">
+        <div class="field">
+          <label>Screenshot file</label>
+          <input type="file" name="mobile_banner_new_file[]" accept="image/*">
+        </div>
+        <div class="field">
+          <label>…or image URL</label>
+          <input type="text" name="mobile_banner_new_url[]" placeholder="https://...">
+        </div>
+        <div class="field field-priority">
+          <label>Priority</label>
+          <input type="number" name="mobile_banner_new_priority[]" value="0">
+        </div>
+        <button type="button" class="btn btn-outline btn-sm mobile-banner-remove-new">✕</button>
       </div>
     </template>
   </fieldset>
@@ -234,6 +310,7 @@ $banners = $project['banners'] ?? [];
 
 <script>
 (function () {
+  // ── Web banner slides ─────────────────────────────
   var addBtn = document.getElementById('banner-add-btn');
   var template = document.getElementById('banner-slide-template');
   var container = document.getElementById('banner-new-slides');
@@ -251,6 +328,25 @@ $banners = $project['banners'] ?? [];
     }
   });
 
+  // ── Mobile banner slides ────────────────────────────
+  var mobileAddBtn   = document.getElementById('mobile-banner-add-btn');
+  var mobileTemplate = document.getElementById('mobile-banner-slide-template');
+  var mobileContainer = document.getElementById('mobile-banner-new-slides');
+
+  if (mobileAddBtn && mobileTemplate && mobileContainer) {
+    mobileAddBtn.addEventListener('click', function () {
+      mobileContainer.appendChild(mobileTemplate.content.cloneNode(true));
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('mobile-banner-remove-new')) {
+      var row = e.target.closest('.banner-slide');
+      if (row) row.remove();
+    }
+  });
+
+  // ── Video mode panels ───────────────────────────────
   var radios = document.querySelectorAll('input[name="video_mode"]');
   var panels = {
     youtube: document.getElementById('video-panel-youtube'),

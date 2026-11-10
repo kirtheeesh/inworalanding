@@ -44,7 +44,7 @@ $banners = $product['banners'] ?? [];
     <div class="grid-2">
       <div class="field">
         <label for="slug">URL slug <span class="hint">— leave blank to generate from the title</span></label>
-        <input type="text" id="slug" name="slug" value="<?= $val('slug') ?>" placeholder="whatsapp-crm">
+        <input type="text" id="slug" name="slug" value="<?= $val('slug') ?>" placeholder="unified-business-erp">
       </div>
       <div class="field">
         <label for="badge">Badge <span class="hint">— small pill on the card, e.g. "Marketing CRM"</span></label>

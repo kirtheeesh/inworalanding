@@ -1,0 +1,50 @@
+================================================================================
+IMAGE GENERATION PROMPTS: SUBRA RESIDENCY
+Type: Portfolio Project
+Category: Hospitality
+Live URL: https://subraresidency.com
+================================================================================
+
+OVERVIEW & AESTHETIC GUIDELINES:
+- Aspect Ratio: 16:9 (--ar 16:9) for slideshow banners, web headers, and presentation decks.
+- Style: Ultra-photorealistic, high-end commercial tech & corporate editorial aesthetic.
+- Key Goal: Look like authentic, production-grade software and real commercial environments. AVOID generic cartoonish AI vectors, fake 3D blobs, or illegible text.
+- Recommended Midjourney Parameters: --ar 16:9 --style raw --v 6.1
+- Recommended Flux Parameters: 1920x1080 resolution, steps: 35, guidance: 3.5
+
+--------------------------------------------------------------------------------
+SLIDE 1: MAIN HERO BANNER & SPOTLIGHT SHOWCASE (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+Hotel website showcase on a sleek laptop set against a warm hotel reception desk with polished granite and traditional brass accents. The laptop displays the Subra Residency Kumbakonam homepage featuring comfortable deluxe family rooms, proximity to historic sacred temples, and booking inquiry workflows. Warm hospitality lighting, temple city heritage ambiance, 8k.
+
+NEGATIVE PROMPT:
+cartoon, anime, 3d render illustration, low resolution, blurry, distorted text, mutated hands, bad anatomy, artificial floating plastic blobs, watermarks, stock photo watermark, oversaturated colors, cheap vector clip-art.
+
+--------------------------------------------------------------------------------
+SLIDE 2: REAL-WORLD OPERATIONAL / IN-ACTION ENVIRONMENT (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+An authentic deluxe hotel room at Subra Residency: spacious air-conditioned room with king-size bed, clean white linens, modern ensuite bathroom, and amenities tailored for pilgrimage travelers in Kumbakonam.
+
+NEGATIVE PROMPT:
+deformed faces, extra fingers, cartoonish, oversaturated, staged fake smile, plastic skin, uncanny valley, watermark, text errors, low-res, out of frame, blurry background text.
+
+--------------------------------------------------------------------------------
+SLIDE 3: DEEP FEATURE SCREEN / MULTI-DEVICE WORKFLOW (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+Subra Residency web booking interface: detailed room category cards, pilgrimage tour package highlights for Kumbakonam temples, 24/7 front desk contact options, and direct reservation form with date selection.
+
+NEGATIVE PROMPT:
+gibberish text, chaotic layouts, pixelated UI, neon cartoon vectors, low quality, warped perspective, bad typography, clutter, blurry lines, watermark.
+
+================================================================================
+HOW TO USE IN POPULAR AI IMAGE GENERATORS:
+1. Midjourney v6.1:
+   Paste: /imagine prompt: [PASTE PROMPT HERE] --ar 16:9 --style raw --v 6.1
+2. Flux 1.1 Pro / Dev:
+   Paste the prompt with aspect ratio set to 16:9 (1920x1080).
+3. DALL-E 3:
+   Paste the prompt directly; ensure you specify "16:9 widescreen landscape".
+================================================================================

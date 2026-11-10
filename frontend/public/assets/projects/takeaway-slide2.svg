@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="twBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D1204"/>
+      <stop offset="60%" stop-color="#4A1E06"/>
+      <stop offset="100%" stop-color="#1B0A02"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#twBg)"/>
+  <g transform="translate(80, 50)">
+    <rect width="220" height="30" rx="15" fill="#EA580C" fill-opacity="0.25" stroke="#FB923C" stroke-width="1"/>
+    <text x="110" y="20" fill="#FB923C" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">COUNTER TOKEN DISPLAY</text>
+    <text x="0" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="34" font-weight="800">Takeaway Billing &amp; Tokens</text>
+    <text x="0" y="92" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="14">Split-second counter checkout, token numbers, and pickup station dispatch</text>
+  </g>
+  <g transform="translate(80, 160)">
+    <!-- Ready for Pickup Screen -->
+    <rect width="500" height="450" rx="16" fill="#180C05" stroke="#EA580C" stroke-width="1.5"/>
+    <rect width="500" height="46" rx="16" fill="#321609"/>
+    <text x="24" y="28" fill="#FB923C" font-family="'Montserrat', sans-serif" font-size="13" font-weight="700">NOW SERVING / READY FOR PICKUP</text>
+    <g transform="translate(24, 70)">
+      <rect width="210" height="150" rx="12" fill="#321609" stroke="#10B981" stroke-width="2"/>
+      <text x="105" y="45" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700" text-anchor="middle">TOKEN</text>
+      <text x="105" y="115" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="64" font-weight="900" text-anchor="middle">48</text>
+    </g>
+    <g transform="translate(260, 70)">
+      <rect width="210" height="150" rx="12" fill="#321609" stroke="#10B981" stroke-width="2"/>
+      <text x="105" y="45" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700" text-anchor="middle">TOKEN</text>
+      <text x="105" y="115" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="64" font-weight="900" text-anchor="middle">49</text>
+    </g>
+    <g transform="translate(24, 250)">
+      <text x="0" y="25" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="13" font-weight="700">PREPARING IN KITCHEN:</text>
+      <text x="0" y="60" fill="#FBBF24" font-family="'Montserrat', sans-serif" font-size="28" font-weight="800">Tokens: 50, 51, 52, 53, 54</text>
+    </g>
+  </g>
+  <g transform="translate(620, 160)">
+    <!-- Thermal Receipt Preview -->
+    <rect width="500" height="450" rx="16" fill="#180C05" stroke="#334155" stroke-width="1.2"/>
+    <rect width="500" height="46" rx="16" fill="#321609"/>
+    <text x="24" y="28" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="700">INSTANT THERMAL RECEIPT &amp; KOT</text>
+    <g transform="translate(50, 70)">
+      <rect width="400" height="340" rx="8" fill="#FFFDF8"/>
+      <text x="200" y="40" fill="#000000" font-family="'Courier New', monospace" font-size="16" font-weight="700" text-anchor="middle">*** INWORA TAKEAWAY ***</text>
+      <text x="200" y="65" fill="#555555" font-family="'Courier New', monospace" font-size="13" text-anchor="middle">Order Token #48</text>
+      <line x1="20" y1="80" x2="380" y2="80" stroke="#000000" stroke-dasharray="4 4"/>
+      <text x="30" y="115" fill="#000000" font-family="'Courier New', monospace" font-size="13">1x Chicken Dum Biryani</text>
+      <text x="360" y="115" fill="#000000" font-family="'Courier New', monospace" font-size="13" text-anchor="end">220.00</text>
+      <text x="30" y="145" fill="#000000" font-family="'Courier New', monospace" font-size="13">2x Butter Roti</text>
+      <text x="360" y="145" fill="#000000" font-family="'Courier New', monospace" font-size="13" text-anchor="end">60.00</text>
+      <text x="30" y="175" fill="#000000" font-family="'Courier New', monospace" font-size="13">1x Paneer Butter Masala</text>
+      <text x="360" y="175" fill="#000000" font-family="'Courier New', monospace" font-size="13" text-anchor="end">180.00</text>
+      <line x1="20" y1="200" x2="380" y2="200" stroke="#000000"/>
+      <text x="30" y="235" fill="#000000" font-family="'Courier New', monospace" font-size="16" font-weight="700">TOTAL PAID (UPI)</text>
+      <text x="360" y="235" fill="#000000" font-family="'Courier New', monospace" font-size="16" font-weight="700" text-anchor="end">₹ 460.00</text>
+      <text x="200" y="280" fill="#555555" font-family="'Courier New', monospace" font-size="12" text-anchor="middle">Thank you! Please visit again.</text>
+    </g>
+  </g>
+</svg>

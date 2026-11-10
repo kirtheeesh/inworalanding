@@ -1,0 +1,50 @@
+================================================================================
+IMAGE GENERATION PROMPTS: STORE GROCERY PANEL
+Type: Portfolio Project
+Category: E-commerce & Retail
+Live URL: https://storegrocery.inwora.com
+================================================================================
+
+OVERVIEW & AESTHETIC GUIDELINES:
+- Aspect Ratio: 16:9 (--ar 16:9) for slideshow banners, web headers, and presentation decks.
+- Style: Ultra-photorealistic, high-end commercial tech & corporate editorial aesthetic.
+- Key Goal: Look like authentic, production-grade software and real commercial environments. AVOID generic cartoonish AI vectors, fake 3D blobs, or illegible text.
+- Recommended Midjourney Parameters: --ar 16:9 --style raw --v 6.1
+- Recommended Flux Parameters: 1920x1080 resolution, steps: 35, guidance: 3.5
+
+--------------------------------------------------------------------------------
+SLIDE 1: MAIN HERO BANNER & SPOTLIGHT SHOWCASE (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+Supermarket vendor management portal on a rugged store counter terminal. The screen highlights live inventory stock toggles (In Stock / Out of Stock), real-time grocery orders awaiting packaging, customer delivery time-slots, and daily sales counter. Surrounding store shelves filled with fresh produce and packaged groceries in soft bokeh. 8k commercial retail photography.
+
+NEGATIVE PROMPT:
+cartoon, anime, 3d render illustration, low resolution, blurry, distorted text, mutated hands, bad anatomy, artificial floating plastic blobs, watermarks, stock photo watermark, oversaturated colors, cheap vector clip-art.
+
+--------------------------------------------------------------------------------
+SLIDE 2: REAL-WORLD OPERATIONAL / IN-ACTION ENVIRONMENT (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+A grocery store order fulfillment associate in an apron holding a handheld scanner verifying freshly packed grocery bags at the pickup counter while checking the Store Grocery Panel order status queue.
+
+NEGATIVE PROMPT:
+deformed faces, extra fingers, cartoonish, oversaturated, staged fake smile, plastic skin, uncanny valley, watermark, text errors, low-res, out of frame, blurry background text.
+
+--------------------------------------------------------------------------------
+SLIDE 3: DEEP FEATURE SCREEN / MULTI-DEVICE WORKFLOW (16:9)
+--------------------------------------------------------------------------------
+PROMPT:
+Detailed UI screen of the store inventory catalog editor: quick price adjustments, instant stock availability toggles, bulk category updates, and order packing stage indicators (Received &rarr; Packing &rarr; Ready for Dispatch).
+
+NEGATIVE PROMPT:
+gibberish text, chaotic layouts, pixelated UI, neon cartoon vectors, low quality, warped perspective, bad typography, clutter, blurry lines, watermark.
+
+================================================================================
+HOW TO USE IN POPULAR AI IMAGE GENERATORS:
+1. Midjourney v6.1:
+   Paste: /imagine prompt: [PASTE PROMPT HERE] --ar 16:9 --style raw --v 6.1
+2. Flux 1.1 Pro / Dev:
+   Paste the prompt with aspect ratio set to 16:9 (1920x1080).
+3. DALL-E 3:
+   Paste the prompt directly; ensure you specify "16:9 widescreen landscape".
+================================================================================

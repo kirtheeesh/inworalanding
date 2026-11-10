@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="tbBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#061B2B"/>
+      <stop offset="60%" stop-color="#0C3454"/>
+      <stop offset="100%" stop-color="#04121E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#tbBg)"/>
+  <g transform="translate(80, 50)">
+    <rect width="220" height="30" rx="15" fill="#0284C7" fill-opacity="0.25" stroke="#38BDF8" stroke-width="1"/>
+    <text x="110" y="20" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">EXPENSE BREAKDOWN</text>
+    <text x="0" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="34" font-weight="800">Travel Budget Application</text>
+    <text x="0" y="92" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="14">Multi-currency trip wallets, real-time receipt scanning &amp; split-bill expense reports</text>
+  </g>
+  <g transform="translate(80, 160)">
+    <rect width="1040" height="460" rx="16" fill="#081E31" stroke="#0284C7" stroke-width="1.2"/>
+    <rect width="1040" height="46" rx="16" fill="#0F2E4A"/>
+    <text x="30" y="28" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="13" font-weight="700">TRIP ITINERARY BUDGET: SOUTHEAST ASIA TOUR 2026</text>
+    
+    <g transform="translate(30, 70)">
+      <rect width="300" height="130" rx="10" fill="#133654"/>
+      <text x="20" y="32" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">TOTAL ALLOCATED BUDGET</text>
+      <text x="20" y="75" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="32" font-weight="800">₹ 2,50,000</text>
+      <text x="20" y="105" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="12">Flights, Stay, Transit &amp; Dining</text>
+    </g>
+    <g transform="translate(370, 70)">
+      <rect width="300" height="130" rx="10" fill="#133654"/>
+      <text x="20" y="32" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">ACTUAL SPENT TO DATE</text>
+      <text x="20" y="75" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="32" font-weight="800">₹ 1,62,400</text>
+      <text x="20" y="105" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="12">65% of budget used (On track)</text>
+    </g>
+    <g transform="translate(710, 70)">
+      <rect width="300" height="130" rx="10" fill="#133654"/>
+      <text x="20" y="32" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">SURPLUS WALLET</text>
+      <text x="20" y="75" fill="#FBBF24" font-family="'Montserrat', sans-serif" font-size="32" font-weight="800">₹ 87,600</text>
+      <text x="20" y="105" fill="#FBBF24" font-family="'Montserrat', sans-serif" font-size="12">Available for remaining 4 days</text>
+    </g>
+
+    <g transform="translate(30, 225)">
+      <rect width="980" height="200" rx="10" fill="#0C263D"/>
+      <text x="24" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Category Spending Distribution</text>
+      
+      <g transform="translate(24, 60)">
+        <text x="0" y="16" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13">Accommodations &amp; Resorts (₹ 82,000)</text>
+        <rect y="26" width="930" height="12" rx="6" fill="#143755"/>
+        <rect y="26" width="480" height="12" rx="6" fill="#38BDF8"/>
+      </g>
+      <g transform="translate(24, 120)">
+        <text x="0" y="16" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13">Dining &amp; Local Cuisine (₹ 45,200)</text>
+        <rect y="26" width="930" height="12" rx="6" fill="#143755"/>
+        <rect y="26" width="280" height="12" rx="6" fill="#34D399"/>
+      </g>
+    </g>
+  </g>
+</svg>

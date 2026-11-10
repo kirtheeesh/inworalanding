@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="agdBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#041F28"/>
+      <stop offset="60%" stop-color="#083849"/>
+      <stop offset="100%" stop-color="#02141A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#agdBg)"/>
+  <g transform="translate(80, 50)">
+    <rect width="220" height="30" rx="15" fill="#0284C7" fill-opacity="0.25" stroke="#38BDF8" stroke-width="1"/>
+    <text x="110" y="20" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">PLATFORM GMV ANALYTICS</text>
+    <text x="0" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="34" font-weight="800">Admin Grocery Command Center</text>
+    <text x="0" y="92" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="14">Multi-store sales revenues, vendor commissions, and delivery fleet performance</text>
+  </g>
+  <g transform="translate(80, 160)">
+    <rect width="1040" height="460" rx="16" fill="#071822" stroke="#0284C7" stroke-width="1.2"/>
+    <rect width="1040" height="46" rx="16" fill="#0D2636"/>
+    <text x="30" y="28" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="13" font-weight="700">EXECUTIVE PLATFORM REVENUE BREAKDOWN</text>
+    
+    <!-- 3 Big Metric Cards -->
+    <g transform="translate(30, 70)">
+      <rect width="300" height="120" rx="10" fill="#0E2D3E"/>
+      <text x="20" y="32" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">TODAY'S GROSS GMV</text>
+      <text x="20" y="75" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="32" font-weight="800">₹ 8,45,200</text>
+      <text x="20" y="102" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="12">↑ 18.4% vs last week</text>
+    </g>
+    <g transform="translate(370, 70)">
+      <rect width="300" height="120" rx="10" fill="#0E2D3E"/>
+      <text x="20" y="32" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">TOTAL ORDERS COMPLETED</text>
+      <text x="20" y="75" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="32" font-weight="800">3,892 Orders</text>
+      <text x="20" y="102" fill="#38BDF8" font-family="'Montserrat', sans-serif" font-size="12">99.1% on-time fulfillment</text>
+    </g>
+    <g transform="translate(710, 70)">
+      <rect width="300" height="120" rx="10" fill="#0E2D3E"/>
+      <text x="20" y="32" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">ACTIVE DELIVERY RIDERS</text>
+      <text x="20" y="75" fill="#FBBF24" font-family="'Montserrat', sans-serif" font-size="32" font-weight="800">148 Online</text>
+      <text x="20" y="102" fill="#FBBF24" font-family="'Montserrat', sans-serif" font-size="12">Average rating 4.85 ★</text>
+    </g>
+
+    <!-- Visual Chart / Grid -->
+    <g transform="translate(30, 215)">
+      <rect width="980" height="215" rx="10" fill="#0A2230"/>
+      <text x="24" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="14" font-weight="700">Top Performing Stores by Revenue</text>
+      
+      <g transform="translate(24, 60)">
+        <text x="0" y="16" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13">1. Chennai Central Dark Store (₹ 3,40,000)</text>
+        <rect y="26" width="930" height="12" rx="6" fill="#13364B"/>
+        <rect y="26" width="780" height="12" rx="6" fill="#34D399"/>
+      </g>
+      <g transform="translate(24, 120)">
+        <text x="0" y="16" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13">2. Anna Nagar Hub (₹ 2,90,000)</text>
+        <rect y="26" width="930" height="12" rx="6" fill="#13364B"/>
+        <rect y="26" width="620" height="12" rx="6" fill="#38BDF8"/>
+      </g>
+    </g>
+  </g>
+</svg>

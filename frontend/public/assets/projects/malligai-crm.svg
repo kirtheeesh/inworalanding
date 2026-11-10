@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="crmBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="50%" stop-color="#1E1B4B"/>
+      <stop offset="100%" stop-color="#0A0A1F"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#C084FC"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#crmBg)"/>
+
+  <g transform="translate(90, 160)">
+    <rect x="0" y="0" width="170" height="32" rx="16" fill="#4F46E5" fill-opacity="0.2" stroke="#818CF8" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="85" y="21" fill="#A5B4FC" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="middle">BUSINESS SOFTWARE</text>
+
+    <text x="0" y="90" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="52" font-weight="800" letter-spacing="-1">Malligai CRM</text>
+    <text x="0" y="130" fill="url(#purpleGrad)" font-family="'Montserrat', sans-serif" font-size="22" font-weight="600">Customer Relationship &amp; Lead Management</text>
+
+    <text x="0" y="185" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="16" font-weight="400">Structured CRM workspace designed to capture customer leads, log interaction</text>
+    <text x="0" y="215" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="16" font-weight="400">histories, set automated follow-up reminders, and evaluate staff velocity.</text>
+
+    <g transform="translate(0, 270)">
+      <rect x="0" y="0" width="160" height="40" rx="8" fill="#1E1B4B" stroke="#818CF8" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="80" y="25" fill="#E0E7FF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600" text-anchor="middle">Lead Records</text>
+
+      <rect x="175" y="0" width="170" height="40" rx="8" fill="#1E1B4B" stroke="#818CF8" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="260" y="25" fill="#E0E7FF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600" text-anchor="middle">Follow-up Alerts</text>
+
+      <rect x="360" y="0" width="180" height="40" rx="8" fill="#1E1B4B" stroke="#818CF8" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="450" y="25" fill="#E0E7FF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600" text-anchor="middle">Pipeline Reports</text>
+    </g>
+  </g>
+
+  <!-- Right Visual: Kanban Lead Pipeline Visualizer -->
+  <g transform="translate(730, 140)">
+    <rect x="0" y="0" width="400" height="400" rx="16" fill="#1E1B4B" fill-opacity="0.7" stroke="#4338CA" stroke-width="1.5"/>
+    <rect x="0" y="0" width="400" height="45" rx="16" fill="#312E81"/>
+    <text x="25" y="28" fill="#E0E7FF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="700">Lead Pipeline Board</text>
+    <rect x="310" y="12" width="70" height="22" rx="11" fill="#4338CA"/>
+    <text x="345" y="27" fill="#C7D2FE" font-family="'Montserrat', sans-serif" font-size="11" font-weight="600" text-anchor="middle">24 Active</text>
+
+    <!-- Column 1: New Leads -->
+    <g transform="translate(20, 65)">
+      <rect x="0" y="0" width="170" height="315" rx="10" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="25" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">INCOMING LEADS</text>
+
+      <!-- Card 1 -->
+      <rect x="12" y="40" width="146" height="75" rx="6" fill="#1E293B" stroke="#6366F1" stroke-width="1"/>
+      <text x="24" y="62" fill="#F8FAFC" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">Enterprise Inquiry</text>
+      <text x="24" y="80" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="10">Source: Web Direct</text>
+      <circle cx="140" cy="98" r="6" fill="#22C55E"/>
+
+      <!-- Card 2 -->
+      <rect x="12" y="125" width="146" height="75" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="24" y="147" fill="#F8FAFC" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">Retail Proposal</text>
+      <text x="24" y="165" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="10">Follow-up: Today</text>
+      <circle cx="140" cy="183" r="6" fill="#F59E0B"/>
+    </g>
+
+    <!-- Column 2: In Negotiation -->
+    <g transform="translate(210, 65)">
+      <rect x="0" y="0" width="170" height="315" rx="10" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="25" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">NEGOTIATION</text>
+
+      <!-- Card 3 -->
+      <rect x="12" y="40" width="146" height="85" rx="6" fill="#1E293B" stroke="#228B22" stroke-width="1.2"/>
+      <text x="24" y="62" fill="#F8FAFC" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">Annual Contract</text>
+      <text x="24" y="80" fill="#86EFAC" font-family="'Montserrat', sans-serif" font-size="11" font-weight="600">Stage: Approved</text>
+      <rect x="24" y="94" width="70" height="16" rx="4" fill="#228B22" fill-opacity="0.3"/>
+      <text x="59" y="106" fill="#4ADE80" font-family="'Montserrat', sans-serif" font-size="9" font-weight="700" text-anchor="middle">HIGH PRIORITY</text>
+    </g>
+  </g>
+</svg>

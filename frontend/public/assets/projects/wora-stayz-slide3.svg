@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="ws3Bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#041E1A"/>
+      <stop offset="60%" stop-color="#0B3931"/>
+      <stop offset="100%" stop-color="#021411"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#ws3Bg)"/>
+  <g transform="translate(80, 50)">
+    <rect width="230" height="30" rx="15" fill="#0D9488" fill-opacity="0.25" stroke="#2DD4BF" stroke-width="1"/>
+    <text x="115" y="20" fill="#2DD4BF" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">LUXURY VILLA RESERVATIONS</text>
+    <text x="0" y="65" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="34" font-weight="800">Wora Stayz Availability Engine</text>
+    <text x="0" y="92" fill="#99F6E4" font-family="'Montserrat', sans-serif" font-size="14">Interactive booking calendar, private infinity pool villas, and automated guest concierge</text>
+  </g>
+  <g transform="translate(80, 160)">
+    <rect width="1040" height="460" rx="16" fill="#061C18" stroke="#0D9488" stroke-width="1.2"/>
+    <rect width="1040" height="46" rx="16" fill="#0E2C26"/>
+    <text x="30" y="28" fill="#2DD4BF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="700">VILLA AVAILABILITY CALENDAR &amp; TARIFF MANAGEMENT</text>
+    <g transform="translate(30, 70)">
+      <rect width="470" height="150" rx="10" fill="#133D35"/>
+      <text x="24" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="16" font-weight="700">Infinity Cliffside Villa (Suite 401)</text>
+      <text x="24" y="60" fill="#99F6E4" font-family="'Montserrat', sans-serif" font-size="13">• Private heated infinity plunge pool &amp; deck</text>
+      <text x="24" y="85" fill="#99F6E4" font-family="'Montserrat', sans-serif" font-size="13">• Panoramic sunset valley view, king plush bed</text>
+      <text x="24" y="115" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="18" font-weight="800">₹ 14,500 / Night</text>
+      <rect x="330" y="95" width="120" height="36" rx="6" fill="#0D9488"/>
+      <text x="390" y="118" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700" text-anchor="middle">Book Suite</text>
+    </g>
+    <g transform="translate(540, 70)">
+      <rect width="470" height="150" rx="10" fill="#133D35"/>
+      <text x="24" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="16" font-weight="700">Tropical Garden Estate (4 BHK)</text>
+      <text x="24" y="60" fill="#99F6E4" font-family="'Montserrat', sans-serif" font-size="13">• Private lawn, outdoor barbecue &amp; jacuzzi</text>
+      <text x="24" y="85" fill="#99F6E4" font-family="'Montserrat', sans-serif" font-size="13">• Accommodates up to 10 guests with chef service</text>
+      <text x="24" y="115" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="18" font-weight="800">₹ 28,000 / Night</text>
+      <rect x="330" y="95" width="120" height="36" rx="6" fill="#0D9488"/>
+      <text x="390" y="118" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700" text-anchor="middle">Book Suite</text>
+    </g>
+    <g transform="translate(30, 245)">
+      <rect width="980" height="180" rx="10" fill="#0A241F"/>
+      <text x="24" y="32" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="15" font-weight="700">Guest Hospitality &amp; Experience Ratings</text>
+      <g transform="translate(24, 60)">
+        <rect width="210" height="90" rx="8" fill="#133E35"/>
+        <text x="16" y="28" fill="#99F6E4" font-family="'Montserrat', sans-serif" font-size="11">AVERAGE GUEST RATING</text>
+        <text x="16" y="62" fill="#FBBF24" font-family="'Montserrat', sans-serif" font-size="28" font-weight="800">4.92 ★</text>
+      </g>
+      <g transform="translate(260, 60)">
+        <rect width="210" height="90" rx="8" fill="#133E35"/>
+        <text x="16" y="28" fill="#99F6E4" font-family="'Montserrat', sans-serif" font-size="11">WEEKEND OCCUPANCY</text>
+        <text x="16" y="62" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="28" font-weight="800">96% Sold</text>
+      </g>
+      <g transform="translate(500, 60)">
+        <rect width="210" height="90" rx="8" fill="#133E35"/>
+        <text x="16" y="28" fill="#99F6E4" font-family="'Montserrat', sans-serif" font-size="11">INSTANT CONFIRMATION</text>
+        <text x="16" y="62" fill="#2DD4BF" font-family="'Montserrat', sans-serif" font-size="28" font-weight="800">WhatsApp Key</text>
+      </g>
+      <g transform="translate(740, 60)">
+        <rect width="210" height="90" rx="8" fill="#133E35"/>
+        <text x="16" y="28" fill="#99F6E4" font-family="'Montserrat', sans-serif" font-size="11">RETURNING GUESTS</text>
+        <text x="16" y="62" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="28" font-weight="800">42%</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="userAppBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#022C22"/>
+      <stop offset="50%" stop-color="#064E3B"/>
+      <stop offset="100%" stop-color="#065F46"/>
+    </linearGradient>
+    <linearGradient id="mintGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#6EE7B7"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#userAppBg)"/>
+
+  <g transform="translate(90, 160)">
+    <rect x="0" y="0" width="180" height="32" rx="16" fill="#10B981" fill-opacity="0.2" stroke="#34D399" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="90" y="21" fill="#6EE7B7" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="middle">GROCERY APP</text>
+
+    <text x="0" y="90" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="52" font-weight="800" letter-spacing="-1">User Grocery App</text>
+    <text x="0" y="130" fill="url(#mintGrad)" font-family="'Montserrat', sans-serif" font-size="22" font-weight="600">Consumer Online Grocery Shopping Web App</text>
+
+    <text x="0" y="185" fill="#D1FAE5" font-family="'Montserrat', sans-serif" font-size="16" font-weight="400" opacity="0.9">Customer-facing shopping experience featuring categorized produce browsing,</text>
+    <text x="0" y="215" fill="#D1FAE5" font-family="'Montserrat', sans-serif" font-size="16" font-weight="400" opacity="0.9">instant product search, interactive cart, and authenticated order history.</text>
+
+    <g transform="translate(0, 270)">
+      <rect x="0" y="0" width="160" height="40" rx="8" fill="#065F46" stroke="#34D399" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="80" y="25" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600" text-anchor="middle">Cart &amp; Checkout</text>
+
+      <rect x="175" y="0" width="160" height="40" rx="8" fill="#065F46" stroke="#34D399" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="255" y="25" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600" text-anchor="middle">Category Filters</text>
+
+      <rect x="350" y="0" width="160" height="40" rx="8" fill="#065F46" stroke="#34D399" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="430" y="25" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="13" font-weight="600" text-anchor="middle">Order History</text>
+    </g>
+  </g>
+
+  <!-- Right Visual: Mobile App Frame with Cart & Categories -->
+  <g transform="translate(800, 110)">
+    <!-- Smartphone Shell -->
+    <rect x="0" y="0" width="280" height="450" rx="36" fill="#0B131E" stroke="#10B981" stroke-width="3" filter="drop-shadow(0 20px 30px rgba(0,0,0,0.6))"/>
+    <rect x="80" y="12" width="120" height="18" rx="9" fill="#022C22"/>
+
+    <!-- Screen Content -->
+    <g transform="translate(18, 42)">
+      <!-- App Header -->
+      <rect x="0" y="0" width="244" height="40" rx="8" fill="#064E3B"/>
+      <text x="15" y="24" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700">Fresh Supermarket</text>
+      <circle cx="218" cy="20" r="12" fill="#10B981"/>
+      <text x="218" y="24" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="10" font-weight="800" text-anchor="middle">3</text>
+
+      <!-- Category Pills -->
+      <g transform="translate(0, 50)">
+        <rect x="0" y="0" width="55" height="24" rx="12" fill="#10B981"/>
+        <text x="27" y="16" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="9" font-weight="700" text-anchor="middle">All</text>
+
+        <rect x="62" y="0" width="85" height="24" rx="12" fill="#064E3B"/>
+        <text x="104" y="16" fill="#A7F3D0" font-family="'Montserrat', sans-serif" font-size="9" font-weight="600" text-anchor="middle">Vegetables</text>
+
+        <rect x="154" y="0" width="65" height="24" rx="12" fill="#064E3B"/>
+        <text x="186" y="16" fill="#A7F3D0" font-family="'Montserrat', sans-serif" font-size="9" font-weight="600" text-anchor="middle">Fruits</text>
+      </g>
+
+      <!-- Shopping Grid Item 1 -->
+      <rect x="0" y="86" width="116" height="130" rx="8" fill="#064E3B" stroke="#059669" stroke-width="0.8"/>
+      <rect x="10" y="10" width="96" height="50" rx="6" fill="#022C22"/>
+      <text x="10" y="76" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="10" font-weight="700">Organic Tomato</text>
+      <text x="10" y="90" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="9">₹35 / 500g</text>
+      <rect x="10" y="100" width="96" height="20" rx="4" fill="#10B981"/>
+      <text x="58" y="114" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="9" font-weight="700" text-anchor="middle">Add to Cart</text>
+
+      <!-- Shopping Grid Item 2 -->
+      <rect x="128" y="86" width="116" height="130" rx="8" fill="#064E3B" stroke="#059669" stroke-width="0.8"/>
+      <rect x="138" y="10" width="96" height="50" rx="6" fill="#022C22"/>
+      <text x="138" y="76" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="10" font-weight="700">Alphonso Mango</text>
+      <text x="138" y="90" fill="#34D399" font-family="'Montserrat', sans-serif" font-size="9">₹280 / kg</text>
+      <rect x="138" y="100" width="96" height="20" rx="4" fill="#10B981"/>
+      <text x="186" y="114" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="9" font-weight="700" text-anchor="middle">Add to Cart</text>
+
+      <!-- Cart Preview Footer Ribbon -->
+      <rect x="0" y="320" width="244" height="42" rx="8" fill="#10B981"/>
+      <text x="20" y="346" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="11" font-weight="700">3 Items in Basket</text>
+      <text x="224" y="346" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="11" font-weight="800" text-anchor="end">₹495 →</text>
+    </g>
+  </g>
+</svg>
