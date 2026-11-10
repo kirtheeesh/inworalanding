@@ -52,3 +52,7 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Deployment bundles (contain production DB credentials)
+inwora-deploy.zip
+inwora-database.zip
