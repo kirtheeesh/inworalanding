@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import { Check, ExternalLink, MessageCircle, PlayCircle, Calendar } from "lucide-react";
+import { trackEvent } from "@/lib/meta-pixel";
 import { SiGoogleplay } from "react-icons/si";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { BannerSlider } from "@/components/ui/banner-slider";
 import { resolveProductIcon, getProductBanners, type Product } from "@/lib/products-data";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const WHATSAPP_NUMBER = "919025728998";
 const waLink = (text: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
@@ -22,6 +25,18 @@ export function ProductDetailsDialog({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
+  const viewedId = open && product ? product.id : null;
+  useEffect(() => {
+    if (!viewedId || !product) return;
+    trackEvent("ViewContent", {
+      content_type: "product",
+      content_ids: [product.id],
+      content_name: product.title,
+      content_category: "Product",
+    });
+    // One ViewContent each time the dialog opens for a product.
+  }, [viewedId]);
+
   if (!product) return null;
 
   const Icon = resolveProductIcon(product.icon);
@@ -29,7 +44,7 @@ export function ProductDetailsDialog({
   const hasVideo = (product.videoType === "youtube" && product.videoUrl) || (product.videoType === "upload" && product.videoFileUrl);
 
   const handleQuote = () =>
-    window.open(waLink(`Hello INWORA! I'm interested in "${product.title}". Could you share pricing and more details?`), "_blank");
+    openWhatsApp(waLink(`Hello INWORA! I'm interested in "${product.title}". Could you share pricing and more details?`), `Product quote: ${product.title}`);
 
   const handleRequestDemo = () => {
     onOpenChange(false);

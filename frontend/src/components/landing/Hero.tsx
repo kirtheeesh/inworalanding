@@ -96,7 +96,7 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p variants={item} className="max-w-lg text-base md:text-lg leading-relaxed text-muted-foreground">
-              INWORA delivers bespoke enterprise web and mobile applications, scalable SaaS portals, and dedicated white-collar engineering teams to automate workflows and drive high-velocity business growth.
+              Inwora Technologies builds ERP, POS &amp; KOT, Factory OS and Construction ERP software, plus custom applications, AI solutions and business automation that help companies innovate, automate and scale.
             </motion.p>
 
             <motion.div variants={item} className="flex flex-wrap items-center gap-3 pt-1">

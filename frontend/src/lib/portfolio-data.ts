@@ -99,7 +99,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     videoUrl: null,
     videoFileUrl: null,
     pdfUrl: null,
-    liveUrl: "https://balajijwellers.aimstorm.in",
+    liveUrl: null,
     tags: ["Jewellery Showcase", "Brand Website", "Catalogue", "Luxury Retail"],
     features: [
       "High-definition jewellery collection catalogues & galleries",
@@ -131,7 +131,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     videoUrl: null,
     videoFileUrl: null,
     pdfUrl: null,
-    liveUrl: "https://sriabnaya.aimstorm.in",
+    liveUrl: null,
     tags: ["Business Profile", "Corporate Web", "Lead Capture", "Responsive Design"],
     features: [
       "Comprehensive business profile & service showcase",

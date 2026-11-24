@@ -1,19 +1,6 @@
-/* Montserrat Typeface loaded locally and via Google Fonts fallback */
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
+/* Montserrat is loaded from Google Fonts in index.html (woff2, latin subset,
+   font-display: swap). The local 690 KB TTF files were downloaded in addition to
+   it, so their @font-face rules were removed. */
 
 @import "tailwindcss";
 @import "tw-animate-css";

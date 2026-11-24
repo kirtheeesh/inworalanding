@@ -1,7 +1,10 @@
+import { useSeo } from "@/hooks/use-seo";
+import { NOT_FOUND } from "@/seo/site";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
+  useSeo(NOT_FOUND);
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-background px-4 text-foreground">
       <div className="text-center">

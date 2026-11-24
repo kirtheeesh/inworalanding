@@ -1,3 +1,5 @@
+import { useSeo } from "@/hooks/use-seo";
+import { getStaticPageSeo } from "@/seo/site";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
@@ -17,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { fetchProducts } from "@/lib/api";
 import { resolveProductIcon, FALLBACK_PRODUCTS, type Product } from "@/lib/products-data";
 import { cn } from "@/lib/utils";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const WHATSAPP_NUMBER = "919025728998";
 const waLink = (text: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
@@ -30,6 +33,7 @@ function hostOf(url: string): string {
 }
 
 export default function ProductsPage() {
+  useSeo(getStaticPageSeo("/products"));
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["products"],
     queryFn: fetchProducts,
@@ -40,49 +44,14 @@ export default function ProductsPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    const originalTitle = document.title;
-    document.title = "Unified Business ERP & Software Products | Inwora Technologies";
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    const originalDesc = metaDesc?.getAttribute("content") ?? "";
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        "content",
-        "Explore Inwora's enterprise software suite: Unified Business ERP with GST billing & multi-warehouse inventory, Gold Poster Automation SaaS, and restaurant POS & KOT software. Schedule a personalized demo."
-      );
-    }
-
-    let canonical = document.querySelector('link[rel="canonical"]');
-    let createdCanonical = false;
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-      createdCanonical = true;
-    }
-    const originalCanonical = canonical.getAttribute("href") ?? "";
-    canonical.setAttribute("href", "https://inwora.com/products");
-
-    return () => {
-      document.title = originalTitle;
-      if (metaDesc) metaDesc.setAttribute("content", originalDesc);
-      if (canonical) {
-        if (createdCanonical) {
-          canonical.remove();
-        } else {
-          canonical.setAttribute("href", originalCanonical);
-        }
-      }
-    };
   }, []);
 
   const products = data && data.length > 0 ? data : FALLBACK_PRODUCTS;
 
   const handleEnquiry = (productTitle: string) => {
-    window.open(
+    openWhatsApp(
       waLink(`Hello INWORA! I would like to request details and pricing for "${productTitle}".`),
-      "_blank"
+      `Product enquiry: ${productTitle}`
     );
   };
 
@@ -93,9 +62,9 @@ export default function ProductsPage() {
   };
 
   const handleWhiteLabelEnquiry = () => {
-    window.open(
+    openWhatsApp(
       waLink("Hello INWORA! I am interested in white-label licensing / custom deployment of your software products."),
-      "_blank"
+      "White-label enquiry"
     );
   };
 

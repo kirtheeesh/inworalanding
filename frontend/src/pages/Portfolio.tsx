@@ -1,3 +1,5 @@
+import { useSeo } from "@/hooks/use-seo";
+import { getStaticPageSeo } from "@/seo/site";
 import { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
@@ -13,6 +15,7 @@ import { Link } from "wouter";
 import { resolveIcon, FALLBACK_PROJECTS, type Project } from "@/lib/portfolio-data";
 import { fetchProjects } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const ALL_CATEGORY = "All Projects";
 
@@ -45,6 +48,7 @@ const portfolioPillars = [
 ];
 
 export default function Portfolio() {
+  useSeo(getStaticPageSeo("/portfolio"));
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["projects"],
     queryFn: fetchProjects,
@@ -58,25 +62,6 @@ export default function Portfolio() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // Primary SEO Metadata
-    document.title = "Our Work & Technical Expertise | Inwora Portfolio";
-
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute("href", "https://inwora.com/portfolio");
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        "content",
-        "Explore selected projects across Business Software, E-commerce, Food & Beverage, Jewellery, Hospitality, and Business Websites demonstrating Inwora's software engineering expertise."
-      );
-    }
   }, []);
 
   // Compute categories from distinct values in the actual project records in defined order
@@ -430,9 +415,9 @@ export default function Portfolio() {
                   size="lg"
                   className="rounded-full bg-[#E0EEE0] hover:bg-white text-[#165b16] font-semibold px-8 h-12 shadow-lg transition-transform hover:scale-105 cursor-pointer"
                   onClick={() =>
-                    window.open(
+                    openWhatsApp(
                       "https://wa.me/919025728998?text=Hello%20INWORA!%20I%20have%20a%20project%20in%20mind%20and%20would%20like%20to%20discuss%20requirements.",
-                      "_blank"
+                      "Portfolio: Start a conversation"
                     )
                   }
                   data-testid="portfolio-cta-btn"

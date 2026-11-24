@@ -49,7 +49,7 @@ return [
         ],
         'video_url'  => null,
         'pdf_url'    => null,
-        'live_url'   => 'https://balajijwellers.aimstorm.in',
+        'live_url'   => null,
         'tags'       => ['Jewellery Showcase', 'Brand Website', 'Catalogue', 'Luxury Retail'],
         'features'   => [
             'High-definition jewellery collection catalogues & galleries',
@@ -75,7 +75,7 @@ return [
         ],
         'video_url'  => null,
         'pdf_url'    => null,
-        'live_url'   => 'https://sriabnaya.aimstorm.in',
+        'live_url'   => null,
         'tags'       => ['Business Profile', 'Corporate Web', 'Lead Capture', 'Responsive Design'],
         'features'   => [
             'Comprehensive business profile & service showcase',

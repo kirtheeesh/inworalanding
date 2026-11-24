@@ -1,3 +1,5 @@
+import { useSeo } from "@/hooks/use-seo";
+import { getStaticPageSeo } from "@/seo/site";
 import { useEffect, useState, useRef } from "react";
 import { Link } from "wouter";
 import { motion, useInView } from "framer-motion";
@@ -72,6 +74,7 @@ const values = [
 ];
 
 export default function AboutPage() {
+  useSeo(getStaticPageSeo("/about"));
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -117,7 +120,7 @@ export default function AboutPage() {
               className="inline-flex items-center gap-2 rounded-full border border-[#228B22]/20 bg-[#E0EEE0]/80 dark:bg-[#228B22]/15 px-3.5 py-1 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c] mb-6"
             >
               <Sparkles className="h-3.5 w-3.5 text-[#228B22]" />
-              About INWORA
+              About Inwora Technologies
             </motion.div>
 
             <motion.h1
@@ -138,7 +141,7 @@ export default function AboutPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-6 text-base md:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto"
             >
-              INWORA is a premium IT product brand built by engineers, designers, and business strategists united by a single mission: build software that transforms businesses.
+              Inwora Technologies is an independent technology and SaaS company in Madurai, Tamil Nadu, built by engineers, designers, and business strategists united by a single mission: build software that transforms businesses.
             </motion.p>
           </div>
         </section>
@@ -159,7 +162,7 @@ export default function AboutPage() {
                     Most IT service agencies prioritize billing hours over building enduring software. They use off-the-shelf templates that break as soon as your business scales.
                   </p>
                   <p>
-                    Started in 2023, INWORA was created to be different. We are a specialized software product studio engineering custom mobile applications, enterprise SaaS platforms, and intelligent automation systems tailored to the exact workflows of businesses across Tamil Nadu.
+                    Started in 2023, Inwora Technologies was created to be different. From Madurai, we provide ERP software, POS and KOT, Factory OS, Construction ERP, custom software development, AI solutions and AI video marketing, business automation, digital marketing solutions, and a digital invitation platform, tailored to the exact workflows of the businesses we serve.
                   </p>
                   <p>
                     Our philosophy is simple: software should be beautiful, reliable, and commercially impactful. From jewelry showroom automation to hospital electronic health records and restaurant kitchen displays, our products deliver tangible efficiency and measurable revenue.
@@ -169,7 +172,7 @@ export default function AboutPage() {
                 <div className="mt-8 flex items-center gap-4 rounded-xl border border-primary/20 bg-primary/5 p-4">
                   <div className="h-10 w-1 bg-primary rounded-full" />
                   <div>
-                    <p className="text-sm font-bold text-foreground">"Innovate, Automate, Scale"</p>
+                    <p className="text-sm font-bold text-foreground">"Innovate. Automate. Scale."</p>
                     <p className="text-xs text-muted-foreground">The foundational motto behind every line of code we ship.</p>
                   </div>
                 </div>

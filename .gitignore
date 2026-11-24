@@ -56,3 +56,11 @@ Thumbs.db
 # Deployment bundles (contain production DB credentials)
 inwora-deploy.zip
 inwora-database.zip
+inwora-update-*.zip
+inwora-full-*.zip
+inwora-logos.zip
+
+# Meta CAPI private config: lives outside public_html on the server, never in Git
+meta-capi.config.php
+private/
+capi-storage/

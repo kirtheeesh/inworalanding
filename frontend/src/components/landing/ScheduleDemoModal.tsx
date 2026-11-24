@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Clock, X, Boxes } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const AVAILABLE_PRODUCTS = [
   "Unified Business ERP",
@@ -49,7 +50,7 @@ export default function ScheduleDemoModal() {
     });
 
     const msg = `Hello INWORA! I would like to schedule a product demo for "${product}" on ${formattedDate} at ${time}. Could you please confirm the slot?`;
-    window.open(`https://wa.me/919025728998?text=${encodeURIComponent(msg)}`, "_blank");
+    openWhatsApp(`https://wa.me/919025728998?text=${encodeURIComponent(msg)}`, "Schedule demo");
     setIsOpen(false);
   };
 

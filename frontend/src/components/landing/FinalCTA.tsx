@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, Check } from "lucide-react";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const perks = ["Free consultation", "On-time delivery", "Dedicated project manager"];
 
 export default function FinalCTA() {
   const handleContactSales = () => {
     const msg = "Hello INWORA! I am interested in your custom development/enterprise plans and would like to connect with your sales team.";
-    window.open(`https://wa.me/919025728998?text=${encodeURIComponent(msg)}`, "_blank");
+    openWhatsApp(`https://wa.me/919025728998?text=${encodeURIComponent(msg)}`, "Final CTA: Contact sales");
   };
 
   const handleScheduleDemo = () => {

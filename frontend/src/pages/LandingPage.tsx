@@ -1,3 +1,5 @@
+import { useSeo } from "@/hooks/use-seo";
+import { getStaticPageSeo } from "@/seo/site";
 import Navbar from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero";
 import TrustStrip from "@/components/landing/TrustStrip";
@@ -10,6 +12,7 @@ import Footer from "@/components/landing/Footer";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
 
 export default function LandingPage() {
+  useSeo(getStaticPageSeo("/"));
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground overflow-x-hidden">
       <Navbar />

@@ -13,6 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 import { fetchProducts } from "@/lib/api";
 import { resolveProductIcon, FALLBACK_PRODUCTS, type Product } from "@/lib/products-data";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const WHATSAPP_NUMBER = "919025728998";
 const waLink = (text: string) =>
@@ -30,9 +31,9 @@ function ProductCard({
   const Icon = resolveProductIcon(product.icon);
 
   const handleEnquiry = () =>
-    window.open(
+    openWhatsApp(
       waLink(`Hello INWORA! I have an enquiry about the "${product.title}" product. Could you share pricing and more details?`),
-      "_blank",
+      `Product enquiry: ${product.title}`,
     );
 
   const handleRequestDemo = () =>

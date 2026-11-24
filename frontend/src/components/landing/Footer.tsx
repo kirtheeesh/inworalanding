@@ -1,8 +1,11 @@
 import { Link } from "wouter";
-import { SiX, SiInstagram, SiFacebook, SiYoutube } from "react-icons/si";
-import { Mail, Phone, MapPin, Linkedin } from "lucide-react";
+import { SiInstagram } from "react-icons/si";
+import { Mail, Phone, MapPin } from "lucide-react";
 import inworaStacked from "@assets/inwora-stacked.png";
 import inworaStackedWhite from "@assets/inwora-stacked-white.png";
+import { SITE } from "@/seo/site";
+import { openConsentBanner } from "@/lib/meta-pixel";
+import { trackWhatsAppClick } from "@/lib/whatsapp";
 
 const productLinks = [
   { label: "Inwora Daily Gold (Google Play)", href: "https://play.google.com/store/apps/details?id=com.kirtheeshh.usermobile&pli=1", external: true },
@@ -29,12 +32,10 @@ const companyLinks = [
   { label: "Contact Us", href: "https://wa.me/919025728998", external: true },
 ];
 
+// Only confirmed profiles are shown (see SITE.social). Facebook, LinkedIn and
+// YouTube stay hidden until their official URLs are provided.
 const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: SiX, label: "X", href: "#" },
-  { icon: SiInstagram, label: "Instagram", href: "#" },
-  { icon: SiFacebook, label: "Facebook", href: "#" },
-  { icon: SiYoutube, label: "YouTube", href: "#" },
+  { icon: SiInstagram, label: "Instagram", href: SITE.social.instagram },
 ];
 
 export default function Footer() {
@@ -59,10 +60,10 @@ export default function Footer() {
             </Link>
             <div className="inline-flex items-center gap-1.5 self-start rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-3 py-1 text-[11px] font-bold tracking-wide text-[#185e18] dark:text-[#8ce68c]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#228B22]" />
-              Innovate, Automate, Scale
+              Innovate. Automate. Scale.
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              A premium IT product &amp; engineering company delivering scalable mobile apps, turnkey SaaS portals, and subscription software for businesses across Tamil Nadu.
+              Inwora Technologies is a technology and SaaS company in Madurai, providing ERP, POS &amp; KOT, Factory OS, Construction ERP, custom software, AI solutions, business automation and digital marketing.
             </p>
 
             {/* Social Links */}
@@ -71,7 +72,9 @@ export default function Footer() {
                 <a
                   key={s.label}
                   href={s.href}
-                  aria-label={s.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Inwora Technologies on ${s.label}`}
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E0EEE0] dark:border-border bg-card text-muted-foreground hover:text-[#228B22] hover:border-[#228B22]/50 hover:bg-[#E0EEE0]/40 transition-all shadow-2xs"
                   data-testid={`link-social-${s.label.toLowerCase()}`}
                 >
@@ -145,6 +148,7 @@ export default function Footer() {
                       href={l.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={l.href.startsWith("https://wa.me/") ? () => trackWhatsAppClick(`Footer: ${l.label}`) : undefined}
                       className="text-sm text-muted-foreground hover:text-[#228B22] transition-colors"
                     >
                       {l.label}
@@ -192,7 +196,7 @@ export default function Footer() {
                   <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] mt-0.5">
                     <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
                   </span>
-                  <span>Tamil Nadu, India</span>
+                  <span>Madurai, Tamil Nadu, India</span>
                 </li>
               </ul>
             </address>
@@ -202,9 +206,17 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#E0EEE0] dark:border-border/80 pt-6">
           <p className="text-xs text-muted-foreground text-center sm:text-left">
-            &copy; {new Date().getFullYear()} INWORA. All rights reserved.
+            &copy; {new Date().getFullYear()} Inwora Technologies. All rights reserved.
           </p>
           <div className="flex gap-4">
+            <button
+              type="button"
+              onClick={openConsentBanner}
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              data-testid="button-cookie-preferences"
+            >
+              Cookie preferences
+            </button>
             <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
               Privacy Policy
             </a>

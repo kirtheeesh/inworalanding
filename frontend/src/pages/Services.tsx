@@ -13,6 +13,9 @@ import Footer from "@/components/landing/Footer";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useSeo } from "@/hooks/use-seo";
+import { getStaticPageSeo } from "@/seo/site";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const WHATSAPP_NUMBER = "919025728998";
 const waLink = (text: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
@@ -366,25 +369,6 @@ const clientTypes = [
 ];
 
 // ── Structured Data Definitions for SEO (Schema.org) ────────────
-const breadcrumbStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://inwora.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Services",
-      "item": "https://inwora.com/services"
-    }
-  ]
-};
-
 const servicesCatalogueStructuredData = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -398,11 +382,7 @@ const servicesCatalogueStructuredData = {
       "@type": "Service",
       "name": svc.title,
       "description": svc.desc,
-      "provider": {
-        "@type": "Organization",
-        "name": "Inwora Technologies",
-        "url": "https://inwora.com"
-      },
+      "provider": { "@id": "https://inwora.com/#organization" },
       "areaServed": {
         "@type": "Country",
         "name": "India"
@@ -412,72 +392,15 @@ const servicesCatalogueStructuredData = {
 };
 
 export default function ServicesPage() {
+  useSeo(getStaticPageSeo("/services"));
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("all");
   const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // ── Primary SEO Metadata ─────────────────────────────────────
-    document.title = "IT Services & Software Development Company in India | Inwora";
-
-    const setMeta = (name: string, content: string, isProperty = false) => {
-      const selector = isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`;
-      let el = document.querySelector(selector) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        if (isProperty) el.setAttribute("property", name);
-        else el.setAttribute("name", name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    // Remove obsolete meta keywords if present (as it is not used by Google)
-    const keywordsMeta = document.querySelector('meta[name="keywords"]');
-    if (keywordsMeta) keywordsMeta.remove();
-
-    // Concise, unique meta description
-    setMeta(
-      "description",
-      "Explore Inwora's software development, application maintenance, QA automation, IT outsourcing and API integration services for businesses across Tamil Nadu."
-    );
-
-    // Canonical tag (ensuring no self-conflicting or duplicate canonical tags)
-    let canonicalEl = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-    if (!canonicalEl) {
-      canonicalEl = document.createElement("link");
-      canonicalEl.setAttribute("rel", "canonical");
-      document.head.appendChild(canonicalEl);
-    }
-    canonicalEl.setAttribute("href", "https://inwora.com/services");
-
-    // Open Graph Metadata
-    setMeta("og:title", "IT Services & Software Development Company in Tamil Nadu | Inwora", true);
-    setMeta("og:description", "Explore Inwora's software development, application maintenance, QA automation, IT outsourcing and API integration services for businesses across Tamil Nadu.", true);
-    setMeta("og:url", "https://inwora.com/services", true);
-    setMeta("og:type", "website", true);
-    setMeta("og:site_name", "Inwora Technologies", true);
-    setMeta("og:locale", "en_IN", true);
-    setMeta("og:image", "https://inwora.com/opengraph.jpg", true);
-
-    // Twitter Card Metadata
-    setMeta("twitter:card", "summary_large_image");
-    setMeta("twitter:title", "IT Services & Software Development Company in Tamil Nadu | Inwora");
-    setMeta("twitter:description", "Explore Inwora's software development, application maintenance, QA automation, IT outsourcing and API integration services for businesses across Tamil Nadu.");
-    setMeta("twitter:image", "https://inwora.com/opengraph.jpg");
-
-    // ── Structured Data Injection (JSON-LD) ──────────────────────
-    const breadcrumbScriptId = "inwora-services-breadcrumb-jsonld";
-    let breadcrumbScript = document.getElementById(breadcrumbScriptId) as HTMLScriptElement | null;
-    if (!breadcrumbScript) {
-      breadcrumbScript = document.createElement("script");
-      breadcrumbScript.id = breadcrumbScriptId;
-      breadcrumbScript.type = "application/ld+json";
-      document.head.appendChild(breadcrumbScript);
-    }
-    breadcrumbScript.textContent = JSON.stringify(breadcrumbStructuredData);
-
+    // Title, description, canonical, Open Graph and breadcrumb come from
+    // useSeo() / src/seo/site.ts. Only the services catalogue is page-specific.
     const servicesScriptId = "inwora-services-catalogue-jsonld";
     let servicesScript = document.getElementById(servicesScriptId) as HTMLScriptElement | null;
     if (!servicesScript) {
@@ -490,7 +413,6 @@ export default function ServicesPage() {
 
     return () => {
       // Clean up injected structured data when navigating away
-      document.getElementById(breadcrumbScriptId)?.remove();
       document.getElementById(servicesScriptId)?.remove();
     };
   }, []);
@@ -500,7 +422,7 @@ export default function ServicesPage() {
   };
 
   const handleOpenConsultation = (query: string) => {
-    window.open(waLink(query), "_blank");
+    openWhatsApp(waLink(query), "Services: consultation");
   };
 
   const handleScheduleDemo = () => {

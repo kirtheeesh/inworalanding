@@ -51,19 +51,19 @@ export default function About() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
           >
-            <Eyebrow>About INWORA</Eyebrow>
+            <Eyebrow>About Inwora Technologies</Eyebrow>
             <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight text-foreground">
               Built on innovation, driven by purpose
             </h2>
 
             <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground">
               <p>
-                INWORA is a premium IT product brand built by engineers, designers, and business strategists united by a
-                single mission: build software that transforms businesses.
+                Inwora Technologies is an independent technology and SaaS company based in Madurai, Tamil Nadu, built by
+                engineers, designers, and business strategists united by a single mission: build software that transforms businesses.
               </p>
               <p>
-                We specialize in mobile application development, subscription-based SaaS platforms, and enterprise business automation.
-                Every digital solution we engineer is built with precision, scalable architecture, and commercial purpose.
+                We provide ERP software, POS and KOT, Factory OS, Construction ERP, custom software development, AI solutions
+                and AI video marketing, business automation, digital marketing solutions, and a digital invitation platform.
               </p>
               <p>
                 Our philosophy is simple: software should be beautiful, reliable, and commercially impactful. We don't
@@ -73,7 +73,7 @@ export default function About() {
 
             <div className="mt-8 flex items-center gap-3">
               <div className="h-px w-10 bg-primary" />
-              <p className="text-sm font-medium text-foreground">"Innovate, Automate, Scale"</p>
+              <p className="text-sm font-medium text-foreground">"Innovate. Automate. Scale."</p>
             </div>
           </motion.div>
 

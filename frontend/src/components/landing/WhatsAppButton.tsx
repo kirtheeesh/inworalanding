@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiWhatsapp } from "react-icons/si";
+import { trackWhatsAppClick } from "@/lib/whatsapp";
 
 const WHATSAPP_NUMBER = "919025728998";
 const DEFAULT_MESSAGE =
@@ -25,6 +26,7 @@ export default function WhatsAppButton() {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick("Floating WhatsApp button")}
           aria-label="Chat with INWORA on WhatsApp"
           data-testid="button-whatsapp-float"
           initial={{ opacity: 0, scale: 0.6, y: 12 }}

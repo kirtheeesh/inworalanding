@@ -104,7 +104,7 @@ writeSlide(
       <text x="20" y="52" fill="#94A3B8" font-family="'Montserrat', sans-serif" font-size="12">Automated proposal generation with dynamic pricing tiers</text>
     </g>
     <rect x="24" y="325" width="432" height="60" rx="8" fill="url(#abAccent)"/>
-    <text x="240" y="360" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="15" font-weight="700" text-anchor="middle">Experience sriabnaya.aimstorm.in</text>
+    <text x="240" y="360" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="15" font-weight="700" text-anchor="middle">Experience Sri Abnaya</text>
   </g>
 </svg>`
 );

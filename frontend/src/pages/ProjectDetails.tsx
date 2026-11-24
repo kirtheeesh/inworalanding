@@ -1,3 +1,5 @@
+import { useSeo } from "@/hooks/use-seo";
+import { NOT_FOUND, projectSeo } from "@/seo/site";
 import { useParams, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
@@ -13,6 +15,8 @@ import { useEffect, useRef, useState } from "react";
 import { ApiError, fetchProject } from "@/lib/api";
 import { BannerSlider } from "@/components/ui/banner-slider";
 import { cn } from "@/lib/utils";
+import { openWhatsApp } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/meta-pixel";
 
 const mobileSlideVariants = {
   enter: (dir: number) => ({
@@ -251,44 +255,27 @@ export default function ProjectDetails() {
     window.scrollTo(0, 0);
   }, [id]);
 
-  // Dynamic SEO meta tags for project case study
+  // Title, description, canonical, Open Graph and breadcrumb for the case study.
+  // A missing project falls back to the noindex 404 metadata.
+  useSeo(
+    project
+      ? projectSeo(project)
+      : isError && error instanceof ApiError && error.status === 404
+        ? NOT_FOUND
+        : null,
+  );
+
+  // One Meta ViewContent per case study opened (only with consent).
+  const viewedProjectId = project?.id;
   useEffect(() => {
     if (!project) return;
-    const originalTitle = document.title;
-    document.title = `${project.title} — Case Study | Inwora Technologies`;
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    const originalDesc = metaDesc?.getAttribute("content") ?? "";
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        "content",
-        project.desc || `${project.title} technical case study, architecture, and engineering overview by Inwora Technologies.`
-      );
-    }
-
-    let canonical = document.querySelector('link[rel="canonical"]');
-    let createdCanonical = false;
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-      createdCanonical = true;
-    }
-    const originalCanonical = canonical.getAttribute("href") ?? "";
-    canonical.setAttribute("href", `https://inwora.com/portfolio/${project.id}`);
-
-    return () => {
-      document.title = originalTitle;
-      if (metaDesc) metaDesc.setAttribute("content", originalDesc);
-      if (canonical) {
-        if (createdCanonical) {
-          canonical.remove();
-        } else {
-          canonical.setAttribute("href", originalCanonical);
-        }
-      }
-    };
-  }, [project]);
+    trackEvent("ViewContent", {
+      content_type: "product",
+      content_ids: [project.id],
+      content_name: project.title,
+      content_category: "Portfolio case study",
+    });
+  }, [viewedProjectId]);
 
   // Auto-select the first available view when project loads.
   useEffect(() => {
@@ -303,7 +290,7 @@ export default function ProjectDetails() {
   const handleRequestQuote = () => {
     if (!project) return;
     const msg = `Hello INWORA! I am interested in a custom solution similar to the "${project.title}" case study. I'd like to request a quote.`;
-    window.open(`https://wa.me/919025728998?text=${encodeURIComponent(msg)}`, "_blank");
+    openWhatsApp(`https://wa.me/919025728998?text=${encodeURIComponent(msg)}`, `Case study quote: ${project.title}`);
   };
 
   if (isPending) {

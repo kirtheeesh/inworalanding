@@ -1,16 +1,10 @@
+# robots.txt for https://inwora.com
+# One group for all crawlers. (A separate "User-agent: Googlebot" group would
+# make Googlebot ignore every rule in the "*" group.)
 User-agent: *
 Allow: /
-Disallow: /api/
+Disallow: /admin
+# /api/ stays crawlable: Google needs it to render portfolio and product
+# content. API responses carry "X-Robots-Tag: noindex" (see .htaccess).
 
-# Sitemaps
 Sitemap: https://inwora.com/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 10
-
-# Popular search engines
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
