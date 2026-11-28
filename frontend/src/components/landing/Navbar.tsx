@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import inworaStacked from "@assets/inwora-stacked.png";
-import inworaStackedWhite from "@assets/inwora-stacked-white.png";
+// Same horizontal logo as inwora.in
+import inworaLogo from "@assets/inwora-horizontal.png";
+import inworaLogoWhite from "@assets/inwora-horizontal-white.png";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -54,14 +55,14 @@ export default function Navbar() {
             aria-label="INWORA home"
           >
             <img
-              src={inworaStacked}
-              alt="INWORA Technologies"
-              className="h-14 sm:h-16 w-auto object-contain dark:hidden"
+              src={inworaLogo}
+              alt="Inwora Technologies"
+              className="h-8 sm:h-9 w-auto object-contain dark:hidden"
             />
             <img
-              src={inworaStackedWhite}
-              alt="INWORA Technologies"
-              className="h-14 sm:h-16 w-auto object-contain hidden dark:block"
+              src={inworaLogoWhite}
+              alt="Inwora Technologies"
+              className="h-8 sm:h-9 w-auto object-contain hidden dark:block"
             />
           </Link>
 

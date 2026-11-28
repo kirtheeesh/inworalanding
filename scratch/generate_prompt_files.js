@@ -83,7 +83,7 @@ const portfolioProjects = [
     filename: '02-balaji-jewellers.txt',
     title: 'Balaji Jewellers',
     category: 'Jewellery',
-    url: 'https://balajijwellers.aimstorm.in',
+    url: null,
     slide1: 'Luxury jewellery brand website showcase on a sleek MacBook Pro set against a dark royal mahogany and gold studio backdrop. The screen displays the Balaji Jewellers homepage featuring high-definition bridal necklace collections, hallmarked gold purity stamps, and an elegant customer enquiry modal. Polished gold jewellery pieces and soft warm spotlight reflections around the laptop. 8k, luxury commercial photography.',
     slide2: 'Close-up lifestyle photography in an authentic Indian jewellery showroom: a customer and showroom attendant looking at a collection of handcrafted 22K gold temple jewellery while browsing the Balaji Jewellers digital catalogue on an iPad Pro tablet. Warm velvet trays, glowing display showcases.',
     slide3: 'Full-bleed web interface view of Balaji Jewellers collection gallery: organized filter tabs ("Bridal Gold", "Antique Sets", "Diamond Bangles"), high-res product cards with zoom-on-hover effect, and direct WhatsApp showroom consultation buttons. Premium dark luxury aesthetic with gold accents.'
@@ -92,7 +92,7 @@ const portfolioProjects = [
     filename: '03-sri-abnaya.txt',
     title: 'Sri Abnaya',
     category: 'Business Websites',
-    url: 'https://sriabnaya.aimstorm.in',
+    url: null,
     slide1: 'Modern corporate business website presentation on an ultra-slim aluminum laptop. The screen features the Sri Abnaya corporate homepage with structured service offerings, executive company profile, and interactive contact touchpoints. Clean navy blue and mint accent palette, corporate office desk background with a warm cup of coffee and architectural plans. 8k, sharp focus.',
     slide2: 'A modern consulting firm reception lobby with a digital kiosk display showing the Sri Abnaya corporate service portfolio. Professional, welcoming atmosphere, soft natural lighting, marble accents, architectural elegance.',
     slide3: 'Responsive multi-device layout showcasing Sri Abnaya across desktop, iPad tablet, and mobile views. Clean card architecture, transparent lead capture forms, verified client credentials, and smooth typography hierarchy.'

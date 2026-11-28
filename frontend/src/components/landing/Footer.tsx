@@ -1,8 +1,11 @@
 import { Link } from "wouter";
-import { SiX, SiInstagram, SiFacebook, SiYoutube } from "react-icons/si";
-import { Mail, Phone, MapPin, Linkedin } from "lucide-react";
-import inworaStacked from "@assets/inwora-stacked.png";
-import inworaStackedWhite from "@assets/inwora-stacked-white.png";
+import { SiInstagram } from "react-icons/si";
+import { Mail, Phone, MapPin } from "lucide-react";
+// Same white horizontal logo as the inwora.in footer
+import inworaLogoWhite from "@assets/inwora-horizontal-white.png";
+import { SITE } from "@/seo/site";
+import { openConsentBanner } from "@/lib/meta-pixel";
+import { trackWhatsAppClick } from "@/lib/whatsapp";
 
 const productLinks = [
   { label: "Inwora Daily Gold (Google Play)", href: "https://play.google.com/store/apps/details?id=com.kirtheeshh.usermobile&pli=1", external: true },
@@ -29,17 +32,15 @@ const companyLinks = [
   { label: "Contact Us", href: "https://wa.me/919025728998", external: true },
 ];
 
+// Only confirmed profiles are shown (see SITE.social). Facebook, LinkedIn and
+// YouTube stay hidden until their official URLs are provided.
 const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: SiX, label: "X", href: "#" },
-  { icon: SiInstagram, label: "Instagram", href: "#" },
-  { icon: SiFacebook, label: "Facebook", href: "#" },
-  { icon: SiYoutube, label: "YouTube", href: "#" },
+  { icon: SiInstagram, label: "Instagram", href: SITE.social.instagram },
 ];
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-[#E0EEE0] dark:border-border/70 bg-[#E0EEE0]/20 dark:bg-muted/15 pt-16 pb-10">
+    <footer className="relative bg-[#083A2E] text-[#F6EBD3]/85 pt-16 pb-10">
       <div className="container mx-auto px-4 md:px-8">
         {/* Top Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
@@ -47,22 +48,17 @@ export default function Footer() {
           <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block transition-opacity hover:opacity-90 self-start" aria-label="INWORA home">
               <img
-                src={inworaStacked}
-                alt="INWORA Technologies"
-                className="h-24 sm:h-28 w-auto object-contain dark:hidden"
-              />
-              <img
-                src={inworaStackedWhite}
-                alt="INWORA Technologies"
-                className="h-24 sm:h-28 w-auto object-contain hidden dark:block"
+                src={inworaLogoWhite}
+                alt="Inwora Technologies"
+                className="h-10 sm:h-11 w-auto object-contain"
               />
             </Link>
-            <div className="inline-flex items-center gap-1.5 self-start rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-3 py-1 text-[11px] font-bold tracking-wide text-[#185e18] dark:text-[#8ce68c]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#228B22]" />
-              Innovate, Automate, Scale
+            <div className="inline-flex items-center gap-1.5 self-start rounded-full bg-white/10 px-3 py-1 text-[11px] font-bold tracking-wide text-[#F6EBD3]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#F57C00]" />
+              Innovate. Automate. Scale.
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              A premium IT product &amp; engineering company delivering scalable mobile apps, turnkey SaaS portals, and subscription software for businesses across Tamil Nadu.
+            <p className="text-sm text-[#F6EBD3]/75 leading-relaxed max-w-xs">
+              Inwora Technologies is a technology and SaaS company in Madurai, providing ERP, POS &amp; KOT, Factory OS, Construction ERP, custom software, AI solutions, business automation and digital marketing.
             </p>
 
             {/* Social Links */}
@@ -71,8 +67,10 @@ export default function Footer() {
                 <a
                   key={s.label}
                   href={s.href}
-                  aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E0EEE0] dark:border-border bg-card text-muted-foreground hover:text-[#228B22] hover:border-[#228B22]/50 hover:bg-[#E0EEE0]/40 transition-all shadow-2xs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Inwora Technologies on ${s.label}`}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-[#F6EBD3] hover:text-white hover:border-[#F57C00] hover:bg-white/10 transition-all shadow-2xs"
                   data-testid={`link-social-${s.label.toLowerCase()}`}
                 >
                   <s.icon className="h-4 w-4" />
@@ -84,7 +82,7 @@ export default function Footer() {
           {/* Products */}
           <div>
             <div className="brand-structure-bar mb-4">
-              <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">Products</h4>
+              <h4 className="text-xs font-bold text-[#F6EBD3] uppercase tracking-wider">Products</h4>
             </div>
             <ul className="space-y-3">
               {productLinks.map((l) => (
@@ -94,7 +92,7 @@ export default function Footer() {
                       href={l.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-[#228B22] transition-colors flex items-center gap-1"
+                      className="text-sm text-[#F6EBD3]/75 hover:text-white transition-colors flex items-center gap-1"
                       data-testid={`link-product-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
                     >
                       {l.label}
@@ -102,7 +100,7 @@ export default function Footer() {
                   ) : (
                     <Link
                       href={l.href}
-                      className="text-sm text-muted-foreground hover:text-[#228B22] transition-colors flex items-center gap-1"
+                      className="text-sm text-[#F6EBD3]/75 hover:text-white transition-colors flex items-center gap-1"
                       data-testid={`link-product-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
                     >
                       {l.label}
@@ -116,14 +114,14 @@ export default function Footer() {
           {/* Services */}
           <div>
             <div className="brand-structure-bar mb-4">
-              <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">Services</h4>
+              <h4 className="text-xs font-bold text-[#F6EBD3] uppercase tracking-wider">Services</h4>
             </div>
             <ul className="space-y-3">
               {serviceLinks.map((l) => (
                 <li key={l.label}>
                   <Link
                     href={l.href}
-                    className="text-sm text-muted-foreground hover:text-[#228B22] transition-colors"
+                    className="text-sm text-[#F6EBD3]/75 hover:text-white transition-colors"
                   >
                     {l.label}
                   </Link>
@@ -135,7 +133,7 @@ export default function Footer() {
           {/* Company + Contact */}
           <div>
             <div className="brand-structure-bar mb-4">
-              <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">Company</h4>
+              <h4 className="text-xs font-bold text-[#F6EBD3] uppercase tracking-wider">Company</h4>
             </div>
             <ul className="space-y-3 mb-7">
               {companyLinks.map((l) => (
@@ -145,21 +143,22 @@ export default function Footer() {
                       href={l.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-[#228B22] transition-colors"
+                      onClick={l.href.startsWith("https://wa.me/") ? () => trackWhatsAppClick(`Footer: ${l.label}`) : undefined}
+                      className="text-sm text-[#F6EBD3]/75 hover:text-white transition-colors"
                     >
                       {l.label}
                     </a>
                   ) : l.href.startsWith("/#") ? (
                     <a
                       href={l.href}
-                      className="text-sm text-muted-foreground hover:text-[#228B22] transition-colors"
+                      className="text-sm text-[#F6EBD3]/75 hover:text-white transition-colors"
                     >
                       {l.label}
                     </a>
                   ) : (
                     <Link
                       href={l.href}
-                      className="text-sm text-muted-foreground hover:text-[#228B22] transition-colors"
+                      className="text-sm text-[#F6EBD3]/75 hover:text-white transition-colors"
                     >
                       {l.label}
                     </Link>
@@ -169,30 +168,30 @@ export default function Footer() {
             </ul>
 
             <div className="brand-structure-bar mb-3">
-              <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">Contact</h4>
+              <h4 className="text-xs font-bold text-[#F6EBD3] uppercase tracking-wider">Contact</h4>
             </div>
             <address className="not-italic">
               <ul className="space-y-2.5">
-                <li className="flex items-center gap-2.5 text-sm text-muted-foreground">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22]">
+                <li className="flex items-center gap-2.5 text-sm text-[#F6EBD3]/75">
+                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-[#F57C00]">
                     <Mail className="h-3.5 w-3.5" aria-hidden="true" />
                   </span>
-                  <a href="mailto:info@inwora.com" className="hover:text-[#228B22] transition-colors">info@inwora.com</a>
+                  <a href="mailto:info@inwora.com" className="hover:text-white transition-colors">info@inwora.com</a>
                 </li>
-                <li className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] mt-0.5">
+                <li className="flex items-start gap-2.5 text-sm text-[#F6EBD3]/75">
+                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-[#F57C00] mt-0.5">
                     <Phone className="h-3.5 w-3.5" aria-hidden="true" />
                   </span>
                   <div className="flex flex-col gap-1">
-                    <a href="tel:+919025728998" className="hover:text-[#228B22] transition-colors font-medium">+91 90257 28998</a>
-                    <a href="tel:+917904242107" className="hover:text-[#228B22] transition-colors font-medium">+91 79042 42107</a>
+                    <a href="tel:+919025728998" className="hover:text-white transition-colors font-medium">+91 90257 28998</a>
+                    <a href="tel:+917904242107" className="hover:text-white transition-colors font-medium">+91 79042 42107</a>
                   </div>
                 </li>
-                <li className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] mt-0.5">
+                <li className="flex items-start gap-2.5 text-sm text-[#F6EBD3]/75">
+                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-[#F57C00] mt-0.5">
                     <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
                   </span>
-                  <span>Tamil Nadu, India</span>
+                  <span>Madurai, Tamil Nadu, India</span>
                 </li>
               </ul>
             </address>
@@ -200,15 +199,23 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#E0EEE0] dark:border-border/80 pt-6">
-          <p className="text-xs text-muted-foreground text-center sm:text-left">
-            &copy; {new Date().getFullYear()} INWORA. All rights reserved.
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/15 pt-6">
+          <p className="text-xs text-[#F6EBD3]/75 text-center sm:text-left">
+            &copy; {new Date().getFullYear()} Inwora Technologies. All rights reserved.
           </p>
           <div className="flex gap-4">
-            <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            <button
+              type="button"
+              onClick={openConsentBanner}
+              className="text-xs text-[#F6EBD3]/75 hover:text-white transition-colors cursor-pointer"
+              data-testid="button-cookie-preferences"
+            >
+              Cookie preferences
+            </button>
+            <a href="#" className="text-xs text-[#F6EBD3]/75 hover:text-white transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            <a href="#" className="text-xs text-[#F6EBD3]/75 hover:text-white transition-colors">
               Terms of Service
             </a>
           </div>

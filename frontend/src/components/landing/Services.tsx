@@ -5,6 +5,7 @@ import {
   Users, UserCheck, Database, Sliders, ShoppingBag, Globe,
   GraduationCap, Calculator, Sparkles, Receipt, Activity,
   Factory, Compass, HardHat, Wrench, Building2, ArrowRight,
+  Clapperboard, Megaphone, MailOpen,
 } from "lucide-react";
 import { SectionHeading } from "./_shared";
 
@@ -52,6 +53,9 @@ const services: ServiceItem[] = [
   { icon: Package, title: "SaaS Product Development", desc: "Subscription-based software platforms built for scale. Multi-tenant, revenue-generating products from the ground up.", category: "saas" },
   { icon: Palette, title: "UI/UX Design for Apps", desc: "Interfaces that users love — intuitive, visually premium, and conversion-optimized. Every pixel has a purpose.", category: "custom" },
   { icon: Cpu, title: "Business Automation Solutions", desc: "Streamline operations with intelligent workflows. Reduce manual effort and let software run your business logic.", category: "automation" },
+  { icon: Clapperboard, title: "AI Solutions & AI Video Marketing", desc: "AI features built into your business software, and AI-generated promotional and advertisement videos for your brand.", category: "automation" },
+  { icon: Megaphone, title: "Digital Marketing Solutions", desc: "Campaigns, social media creatives and online promotion that bring customers to your business.", category: "custom" },
+  { icon: MailOpen, title: "Digital Invitation Platform", desc: "Create and share digital invitations for weddings, functions and business events online.", category: "apps" },
   { icon: Cloud, title: "Cloud-Ready App Deployment", desc: "Infrastructure that scales with you — CI/CD, monitoring, and zero-downtime releases on modern cloud platforms.", category: "custom" },
   { icon: Layers, title: "Subscription Product Architecture", desc: "Billing, plan management, feature gating, and growth-ready product infrastructure, designed and implemented.", category: "custom" },
   { icon: Users, title: "CRM Solutions", desc: "Manage customer relationships, sales pipelines, and teams efficiently with a CRM built to fit your workflow.", category: "saas" },

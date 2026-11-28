@@ -1,33 +1,87 @@
-# Hostinger Apache configuration for INWORA landing site & backend routing
+# Hostinger (LiteSpeed/Apache) configuration for the INWORA landing site & backend
 
 Options -Indexes
+DirectoryIndex index.html
+
+# Unknown URLs return a real 404 status (not a "soft 404"). 404.html is the
+# app shell with noindex metadata, generated at build time; React renders the
+# "Page not found" screen.
+ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
 
-    # Route /admin and /api requests directly to PHP backend front controller
+    # ── Canonical host: www → non-www (http → https is enforced by Hostinger) ──
+    RewriteCond %{HTTP_HOST} ^www\.inwora\.com$ [NC]
+    RewriteRule ^(.*)$ https://inwora.com/$1 [R=301,L]
+
+    # ── PHP backend: admin panel, JSON API and uploads ──
     RewriteRule ^admin(/.*)?$ backend/index.php [QSA,L]
     RewriteRule ^api(/.*)?$ backend/index.php [QSA,L]
     RewriteRule ^uploads/(.*)$ backend/uploads/$1 [L]
 
-    # Serve existing static files and directories directly
+    # ── Duplicate URLs → canonical URL ──
+    # /index.html → /
+    RewriteCond %{THE_REQUEST} \s/+index\.html[\s?]
+    RewriteRule ^index\.html$ https://inwora.com/ [R=301,L]
+    # Direct requests for the pre-rendered copies → the clean URL
+    RewriteCond %{THE_REQUEST} \s/+_pages/(\S+?)\.html[\s?]
+    RewriteRule ^_pages/ https://inwora.com/%1 [R=301,L]
+    # Trailing slash → no trailing slash (except real directories)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.+)/$ https://inwora.com/$1 [R=301,L]
+
+    # ── Serve existing static files and directories directly ──
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
 
-    # Fallback all React SPA routes (like /portfolio, /services) to index.html
-    RewriteRule ^ index.html [L]
+    # ── App routes → pre-rendered HTML with route-specific <head> ──
+    # Keep this list in sync with STATIC_PAGES in src/seo/site.ts.
+    RewriteRule ^(services|products|portfolio|about)$ _pages/$1.html [L]
+
+    # Portfolio case studies pre-rendered at build time
+    RewriteCond %{DOCUMENT_ROOT}/_pages/portfolio/$1.html -f
+    RewriteRule ^portfolio/([A-Za-z0-9_-]+)$ _pages/portfolio/$1.html [L]
+    # Case studies added in the admin after the last build: neutral app shell
+    # (no canonical); the page sets its own tags once it loads. Rebuild to
+    # pre-render them and add them to sitemap.xml.
+    RewriteRule ^portfolio/[A-Za-z0-9_-]+$ _pages/portfolio-shell.html [L]
+
+    # Anything else is not a page → 404 (ErrorDocument above)
 </IfModule>
 
-# Correct MIME types for static assets
+# ── Correct MIME types for static assets ──
 <IfModule mod_mime.c>
     AddType application/javascript .js .mjs
     AddType text/css .css
     AddType image/svg+xml .svg
+    AddType image/webp .webp
+    AddType font/woff2 .woff2
 </IfModule>
 
-# Protect hidden dotfiles (.env, .git)
+# ── Browser caching ──
+<IfModule mod_headers.c>
+    # HTML: always revalidate so new deployments are picked up immediately.
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+    # JS/CSS are content-hashed by Vite (index-<hash>.js), safe to cache for a year.
+    <FilesMatch "\.(js|mjs|css)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    # Images, video and fonts keep their names, so cache for 30 days.
+    <FilesMatch "\.(png|jpe?g|webp|gif|svg|ico|mp4|webm|woff2?|ttf)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+    # sitemap/robots: short cache.
+    <FilesMatch "\.(xml|txt)$">
+        Header set Cache-Control "public, max-age=3600"
+    </FilesMatch>
+</IfModule>
+
+# ── Protect hidden dotfiles (.env, .git) ──
 <FilesMatch "^\.">
     Require all denied
 </FilesMatch>

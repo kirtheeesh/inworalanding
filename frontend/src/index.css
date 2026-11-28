@@ -1,19 +1,6 @@
-/* Montserrat Typeface loaded locally and via Google Fonts fallback */
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
+/* Montserrat is loaded from Google Fonts in index.html (woff2, latin subset,
+   font-display: swap). The local 690 KB TTF files were downloaded in addition to
+   it, so their @font-face rules were removed. */
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -70,64 +57,64 @@
 /* LIGHT MODE */
 :root {
   --button-outline: rgba(128, 128, 128, 0.22);
-  --badge-outline: rgba(34, 139, 34, 0.15);
+  --badge-outline: rgba(11, 79, 62, 0.15);
 
   --opaque-button-border-intensity: -8;
 
-  --elevate-1: rgba(34, 139, 34, 0.04);
-  --elevate-2: rgba(34, 139, 34, 0.08);
+  --elevate-1: rgba(11, 79, 62, 0.04);
+  --elevate-2: rgba(11, 79, 62, 0.08);
 
   /* Clean, airy mint-tinted white (prevents plain flat starkness) */
-  --background: 120 20% 98%;
+  --background: 42 68% 95%;
   /* Rich deep charcoal black for high-contrast, editorial typography */
-  --foreground: 120 18% 12%;
+  --foreground: 158 30% 11%;
 
   /* Soft mint-charcoal structure borders */
-  --border: 120 16% 88%;
+  --border: 43 34% 84%;
 
   /* Crisp white cards with mint accent borders */
   --card: 0 0% 100%;
-  --card-foreground: 120 18% 12%;
-  --card-border: 120 25% 91%; /* #E0EEE0 */
+  --card-foreground: 158 30% 11%;
+  --card-border: 42 48% 86%; /* #F6EBD3 */
 
-  --sidebar: 120 20% 96%;
-  --sidebar-foreground: 120 18% 15%;
-  --sidebar-border: 120 16% 88%;
-  --sidebar-primary: 120 61% 34%; /* #228B22 */
+  --sidebar: 41 66% 90%;
+  --sidebar-foreground: 158 30% 11%;
+  --sidebar-border: 43 34% 84%;
+  --sidebar-primary: 165 76% 18%; /* #0B4F3E */
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 120 25% 91%; /* #E0EEE0 */
-  --sidebar-accent-foreground: 120 61% 22%;
-  --sidebar-ring: 120 61% 34%;
+  --sidebar-accent: 41 66% 90%; /* #F6EBD3 */
+  --sidebar-accent-foreground: 166 76% 13%;
+  --sidebar-ring: 165 76% 18%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 120 18% 12%;
-  --popover-border: 120 25% 91%;
+  --popover-foreground: 158 30% 11%;
+  --popover-border: 42 48% 86%;
 
-  /* ELEGANT GREEN (#228B22) */
-  --primary: 120 61% 34%;
+  /* ELEGANT GREEN (#0B4F3E) */
+  --primary: 165 76% 18%;
   --primary-foreground: 0 0% 100%;
 
-  /* MINT ACCENT (#E0EEE0) */
-  --secondary: 120 25% 91%;
-  --secondary-foreground: 120 61% 22%;
+  /* MINT ACCENT (#F6EBD3) */
+  --secondary: 41 66% 90%;
+  --secondary-foreground: 166 76% 13%;
 
   /* Subtle mint-tinted muted backgrounds */
-  --muted: 120 20% 94%;
-  /* CHARCOAL GREY (#808080) / #616F61 for clear readable text */
-  --muted-foreground: 120 6% 40%;
+  --muted: 42 49% 91%;
+  /* CHARCOAL GREY (#808080) / #52635B for clear readable text */
+  --muted-foreground: 152 9% 35%;
 
-  --accent: 120 25% 91%;
-  --accent-foreground: 120 61% 22%;
+  --accent: 41 66% 90%;
+  --accent-foreground: 166 76% 13%;
 
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
 
-  --input: 120 16% 88%;
-  --ring: 120 61% 34%;
+  --input: 43 34% 84%;
+  --ring: 165 76% 18%;
   
-  --chart-1: 120 61% 34%;
-  --chart-2: 120 40% 45%;
-  --chart-3: 120 25% 65%;
+  --chart-1: 165 76% 18%;
+  --chart-2: 30 100% 48%;
+  --chart-3: 161 50% 57%;
   --chart-4: 43 74% 66%;
   --chart-5: 27 87% 67%;
 
@@ -136,14 +123,14 @@
   --app-font-serif: 'Montserrat', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --app-font-mono: ui-monospace, Menlo, monospace;
   --radius: 0.75rem;
-  --shadow-2xs: 0 1px 2px 0 rgba(34, 139, 34, 0.04);
-  --shadow-xs: 0 1px 2px 0 rgba(34, 139, 34, 0.06);
-  --shadow-sm: 0 1px 3px 0 rgba(34, 139, 34, 0.08), 0 1px 2px -1px rgba(34, 139, 34, 0.05);
-  --shadow: 0 2px 4px 0 rgba(34, 139, 34, 0.07), 0 1px 2px -1px rgba(34, 139, 34, 0.05);
-  --shadow-md: 0 4px 8px -1px rgba(34, 139, 34, 0.09), 0 2px 4px -2px rgba(34, 139, 34, 0.06);
-  --shadow-lg: 0 10px 20px -3px rgba(34, 139, 34, 0.11), 0 4px 6px -4px rgba(34, 139, 34, 0.06);
-  --shadow-xl: 0 20px 25px -5px rgba(34, 139, 34, 0.12), 0 8px 10px -6px rgba(34, 139, 34, 0.05);
-  --shadow-2xl: 0 25px 50px -12px rgba(34, 139, 34, 0.18);
+  --shadow-2xs: 0 1px 2px 0 rgba(11, 79, 62, 0.04);
+  --shadow-xs: 0 1px 2px 0 rgba(11, 79, 62, 0.06);
+  --shadow-sm: 0 1px 3px 0 rgba(11, 79, 62, 0.08), 0 1px 2px -1px rgba(11, 79, 62, 0.05);
+  --shadow: 0 2px 4px 0 rgba(11, 79, 62, 0.07), 0 1px 2px -1px rgba(11, 79, 62, 0.05);
+  --shadow-md: 0 4px 8px -1px rgba(11, 79, 62, 0.09), 0 2px 4px -2px rgba(11, 79, 62, 0.06);
+  --shadow-lg: 0 10px 20px -3px rgba(11, 79, 62, 0.11), 0 4px 6px -4px rgba(11, 79, 62, 0.06);
+  --shadow-xl: 0 20px 25px -5px rgba(11, 79, 62, 0.12), 0 8px 10px -6px rgba(11, 79, 62, 0.05);
+  --shadow-2xl: 0 25px 50px -12px rgba(11, 79, 62, 0.18);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
@@ -151,42 +138,42 @@
   --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
   --sidebar-accent-border: hsl(var(--sidebar-accent));
   --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
-  --primary-border: hsl(120 62% 27%);
-  --secondary-border: hsl(120 25% 85%);
-  --muted-border: hsl(120 20% 90%);
-  --accent-border: hsl(120 25% 85%);
+  --primary-border: hsl(166 76% 13%);
+  --secondary-border: hsl(42 52% 83%);
+  --muted-border: hsl(43 34% 84%);
+  --accent-border: hsl(42 52% 83%);
   --destructive-border: hsl(var(--destructive));
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
 .dark {
-  --background: 120 16% 7%;
-  --foreground: 120 15% 96%;
-  --border: 120 15% 17%;
-  --card: 120 14% 10%;
-  --card-foreground: 120 15% 96%;
-  --card-border: 120 15% 17%;
-  --sidebar: 120 14% 9%;
-  --sidebar-foreground: 120 15% 96%;
-  --sidebar-border: 120 15% 17%;
-  --sidebar-primary: 120 55% 42%;
+  --background: 162 50% 8%;
+  --foreground: 41 66% 90%;
+  --border: 161 32% 17%;
+  --card: 162 46% 11%;
+  --card-foreground: 41 66% 90%;
+  --card-border: 161 32% 17%;
+  --sidebar: 162 48% 10%;
+  --sidebar-foreground: 41 66% 90%;
+  --sidebar-border: 161 32% 17%;
+  --sidebar-primary: 162 54% 39%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 120 20% 16%;
-  --sidebar-accent-foreground: 120 35% 85%;
-  --sidebar-ring: 120 55% 42%;
-  --popover: 120 14% 10%;
-  --popover-foreground: 120 15% 96%;
-  --popover-border: 120 15% 17%;
-  --primary: 120 55% 42%;
+  --sidebar-accent: 163 45% 16%;
+  --sidebar-accent-foreground: 155 41% 89%;
+  --sidebar-ring: 162 54% 39%;
+  --popover: 162 46% 11%;
+  --popover-foreground: 41 66% 90%;
+  --popover-border: 161 32% 17%;
+  --primary: 162 54% 39%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 120 20% 16%;
-  --secondary-foreground: 120 35% 85%;
-  --muted: 120 15% 14%;
-  --muted-foreground: 120 8% 68%;
-  --accent: 120 20% 16%;
-  --accent-foreground: 120 35% 85%;
-  --input: 120 15% 17%;
-  --ring: 120 55% 42%;
+  --secondary: 163 45% 16%;
+  --secondary-foreground: 155 41% 89%;
+  --muted: 163 42% 13%;
+  --muted-foreground: 148 10% 69%;
+  --accent: 163 45% 16%;
+  --accent-foreground: 155 41% 89%;
+  --input: 161 32% 17%;
+  --ring: 162 54% 39%;
 }
 
 @layer base {
@@ -311,62 +298,74 @@ html {
     font-family: var(--app-font-display);
     font-style: normal;
     font-weight: 800;
-    color: #228B22;
+    color: #0B4F3E;
   }
   .dark .accent-italic-green,
   .dark .accent-green-highlight {
-    color: #3cd43c;
+    color: #5CC9A7;
   }
   .mint-accent-bg {
-    background-color: #E0EEE0;
+    background-color: #F6EBD3;
   }
   .dark .mint-accent-bg {
-    background-color: rgba(224, 238, 224, 0.12);
+    background-color: rgba(246, 235, 211, 0.12);
   }
   .mint-glow-mesh {
     background-image: 
-      radial-gradient(at 0% 0%, rgba(224, 238, 224, 0.75) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(224, 238, 224, 0.5) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(34, 139, 34, 0.08) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(246, 235, 211, 0.75) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(246, 235, 211, 0.5) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(11, 79, 62, 0.08) 0px, transparent 50%);
   }
   .dark .mint-glow-mesh {
     background-image: 
-      radial-gradient(at 0% 0%, rgba(34, 139, 34, 0.15) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(224, 238, 224, 0.06) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(34, 139, 34, 0.12) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(11, 79, 62, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(246, 235, 211, 0.06) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(11, 79, 62, 0.12) 0px, transparent 50%);
   }
   .brand-btn-primary {
-    background: linear-gradient(135deg, #228B22 0%, #176617 100%);
+    background: linear-gradient(135deg, #0B4F3E 0%, #083A2E 100%);
     color: #ffffff;
-    box-shadow: 0 4px 14px -2px rgba(34, 139, 34, 0.35);
+    box-shadow: 0 4px 14px -2px rgba(11, 79, 62, 0.35);
     transition: all 0.2s ease-in-out;
   }
   .brand-btn-primary:hover {
-    background: linear-gradient(135deg, #279f27 0%, #1a721a 100%);
-    box-shadow: 0 6px 20px -2px rgba(34, 139, 34, 0.45);
+    background: linear-gradient(135deg, #0F6450 0%, #0F6450 100%);
+    box-shadow: 0 6px 20px -2px rgba(11, 79, 62, 0.45);
     transform: translateY(-1px);
   }
   .brand-btn-secondary {
-    background: #E0EEE0;
-    color: #165b16;
-    border: 1px solid rgba(34, 139, 34, 0.25);
+    background: #F6EBD3;
+    color: #083A2E;
+    border: 1px solid rgba(11, 79, 62, 0.25);
     transition: all 0.2s ease-in-out;
   }
   .brand-btn-secondary:hover {
-    background: #d4e8d4;
-    color: #104910;
+    background: #EADCBC;
+    color: #083A2E;
   }
   .dark .brand-btn-secondary {
-    background: rgba(224, 238, 224, 0.12);
-    color: #8ce68c;
-    border: 1px solid rgba(140, 230, 140, 0.25);
+    background: rgba(246, 235, 211, 0.12);
+    color: #9FD9C4;
+    border: 1px solid rgba(159, 217, 196, 0.25);
   }
   .dark .brand-btn-secondary:hover {
-    background: rgba(224, 238, 224, 0.18);
-    color: #a3f0a3;
+    background: rgba(246, 235, 211, 0.18);
+    color: #B8E8D6;
+  }
+  /* Orange accent button (inworain): deep-green text keeps it readable */
+  .brand-btn-accent {
+    background: #F57C00;
+    color: #083A2E;
+    box-shadow: 0 8px 20px -8px rgba(245, 124, 0, 0.65);
+    transition: all 0.2s ease-in-out;
+  }
+  .brand-btn-accent:hover {
+    background: #FF8C14;
+    color: #083A2E;
+    transform: translateY(-1px);
   }
   .brand-structure-bar {
-    border-left: 3px solid #228B22;
+    border-left: 3px solid #F57C00;
     padding-left: 0.75rem;
   }
 }

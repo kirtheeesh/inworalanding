@@ -13,6 +13,9 @@ import Footer from "@/components/landing/Footer";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useSeo } from "@/hooks/use-seo";
+import { getStaticPageSeo } from "@/seo/site";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const WHATSAPP_NUMBER = "919025728998";
 const waLink = (text: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
@@ -366,25 +369,6 @@ const clientTypes = [
 ];
 
 // ── Structured Data Definitions for SEO (Schema.org) ────────────
-const breadcrumbStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://inwora.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Services",
-      "item": "https://inwora.com/services"
-    }
-  ]
-};
-
 const servicesCatalogueStructuredData = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -398,11 +382,7 @@ const servicesCatalogueStructuredData = {
       "@type": "Service",
       "name": svc.title,
       "description": svc.desc,
-      "provider": {
-        "@type": "Organization",
-        "name": "Inwora Technologies",
-        "url": "https://inwora.com"
-      },
+      "provider": { "@id": "https://inwora.com/#organization" },
       "areaServed": {
         "@type": "Country",
         "name": "India"
@@ -412,72 +392,15 @@ const servicesCatalogueStructuredData = {
 };
 
 export default function ServicesPage() {
+  useSeo(getStaticPageSeo("/services"));
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("all");
   const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // ── Primary SEO Metadata ─────────────────────────────────────
-    document.title = "IT Services & Software Development Company in India | Inwora";
-
-    const setMeta = (name: string, content: string, isProperty = false) => {
-      const selector = isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`;
-      let el = document.querySelector(selector) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        if (isProperty) el.setAttribute("property", name);
-        else el.setAttribute("name", name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    // Remove obsolete meta keywords if present (as it is not used by Google)
-    const keywordsMeta = document.querySelector('meta[name="keywords"]');
-    if (keywordsMeta) keywordsMeta.remove();
-
-    // Concise, unique meta description
-    setMeta(
-      "description",
-      "Explore Inwora's software development, application maintenance, QA automation, IT outsourcing and API integration services for businesses across Tamil Nadu."
-    );
-
-    // Canonical tag (ensuring no self-conflicting or duplicate canonical tags)
-    let canonicalEl = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-    if (!canonicalEl) {
-      canonicalEl = document.createElement("link");
-      canonicalEl.setAttribute("rel", "canonical");
-      document.head.appendChild(canonicalEl);
-    }
-    canonicalEl.setAttribute("href", "https://inwora.com/services");
-
-    // Open Graph Metadata
-    setMeta("og:title", "IT Services & Software Development Company in Tamil Nadu | Inwora", true);
-    setMeta("og:description", "Explore Inwora's software development, application maintenance, QA automation, IT outsourcing and API integration services for businesses across Tamil Nadu.", true);
-    setMeta("og:url", "https://inwora.com/services", true);
-    setMeta("og:type", "website", true);
-    setMeta("og:site_name", "Inwora Technologies", true);
-    setMeta("og:locale", "en_IN", true);
-    setMeta("og:image", "https://inwora.com/opengraph.jpg", true);
-
-    // Twitter Card Metadata
-    setMeta("twitter:card", "summary_large_image");
-    setMeta("twitter:title", "IT Services & Software Development Company in Tamil Nadu | Inwora");
-    setMeta("twitter:description", "Explore Inwora's software development, application maintenance, QA automation, IT outsourcing and API integration services for businesses across Tamil Nadu.");
-    setMeta("twitter:image", "https://inwora.com/opengraph.jpg");
-
-    // ── Structured Data Injection (JSON-LD) ──────────────────────
-    const breadcrumbScriptId = "inwora-services-breadcrumb-jsonld";
-    let breadcrumbScript = document.getElementById(breadcrumbScriptId) as HTMLScriptElement | null;
-    if (!breadcrumbScript) {
-      breadcrumbScript = document.createElement("script");
-      breadcrumbScript.id = breadcrumbScriptId;
-      breadcrumbScript.type = "application/ld+json";
-      document.head.appendChild(breadcrumbScript);
-    }
-    breadcrumbScript.textContent = JSON.stringify(breadcrumbStructuredData);
-
+    // Title, description, canonical, Open Graph and breadcrumb come from
+    // useSeo() / src/seo/site.ts. Only the services catalogue is page-specific.
     const servicesScriptId = "inwora-services-catalogue-jsonld";
     let servicesScript = document.getElementById(servicesScriptId) as HTMLScriptElement | null;
     if (!servicesScript) {
@@ -490,7 +413,6 @@ export default function ServicesPage() {
 
     return () => {
       // Clean up injected structured data when navigating away
-      document.getElementById(breadcrumbScriptId)?.remove();
       document.getElementById(servicesScriptId)?.remove();
     };
   }, []);
@@ -500,7 +422,7 @@ export default function ServicesPage() {
   };
 
   const handleOpenConsultation = (query: string) => {
-    window.open(waLink(query), "_blank");
+    openWhatsApp(waLink(query), "Services: consultation");
   };
 
   const handleScheduleDemo = () => {
@@ -518,11 +440,11 @@ export default function ServicesPage() {
 
       <main className="flex-1">
         {/* ── SECTION 1: SERVICES HERO & SEMANTIC H1 ───────────── */}
-        <section className="relative overflow-hidden pt-28 md:pt-36 pb-16 md:pb-24 border-b border-border bg-gradient-to-b from-[#E0EEE0]/35 via-background to-background dark:from-[#228B22]/10 dark:via-background dark:to-background">
+        <section className="relative overflow-hidden pt-28 md:pt-36 pb-16 md:pb-24 border-b border-border bg-gradient-to-b from-[#F6EBD3]/35 via-background to-background dark:from-[#0B4F3E]/10 dark:via-background dark:to-background">
           {/* Organic Mint Wave Accents */}
           <svg
             aria-hidden="true"
-            className="pointer-events-none absolute -top-12 -left-12 w-80 md:w-[28rem] text-[#E0EEE0]/80 dark:text-[#228B22]/10 z-0 opacity-80"
+            className="pointer-events-none absolute -top-12 -left-12 w-80 md:w-[28rem] text-[#F6EBD3]/80 dark:text-[#0B4F3E]/10 z-0 opacity-80"
             viewBox="0 0 400 400"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -534,7 +456,7 @@ export default function ServicesPage() {
           </svg>
           <svg
             aria-hidden="true"
-            className="pointer-events-none absolute -top-12 -right-12 w-80 md:w-[28rem] text-[#E0EEE0]/75 dark:text-[#228B22]/10 z-0 opacity-75"
+            className="pointer-events-none absolute -top-12 -right-12 w-80 md:w-[28rem] text-[#F6EBD3]/75 dark:text-[#0B4F3E]/10 z-0 opacity-75"
             viewBox="0 0 400 400"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -548,11 +470,11 @@ export default function ServicesPage() {
           {/* Soft Ambient Radial Mint Glows */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute top-10 left-1/4 w-96 h-96 rounded-full bg-[#E0EEE0]/60 dark:bg-[#228B22]/10 blur-3xl -z-10"
+            className="pointer-events-none absolute top-10 left-1/4 w-96 h-96 rounded-full bg-[#F6EBD3]/60 dark:bg-[#0B4F3E]/10 blur-3xl -z-10"
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute top-40 right-10 w-80 h-80 rounded-full bg-[#E0EEE0]/50 dark:bg-[#228B22]/10 blur-3xl -z-10"
+            className="pointer-events-none absolute top-40 right-10 w-80 h-80 rounded-full bg-[#F6EBD3]/50 dark:bg-[#0B4F3E]/10 blur-3xl -z-10"
           />
 
           <div className="container relative z-10 mx-auto px-4 md:px-8 text-center max-w-4xl">
@@ -561,9 +483,9 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 rounded-full border border-[#228B22]/20 bg-[#E0EEE0]/80 dark:bg-[#228B22]/15 px-4 py-1.5 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c] mb-6"
+              className="inline-flex items-center gap-2 rounded-full border border-[#0B4F3E]/20 bg-[#F6EBD3]/80 dark:bg-[#0B4F3E]/15 px-4 py-1.5 text-xs font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-6"
             >
-              <Building2 className="h-3.5 w-3.5 text-[#228B22]" />
+              <Building2 className="h-3.5 w-3.5 text-[#0B4F3E]" />
               Software Development, Application Maintenance &amp; IT Outsourcing Partner
             </motion.div>
 
@@ -575,7 +497,7 @@ export default function ServicesPage() {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.12]"
             >
               IT Services, Software Development{" "}
-              <span className="text-[#228B22] dark:text-[#3cd43c] block sm:inline">
+              <span className="text-[#0B4F3E] dark:text-[#5CC9A7] block sm:inline">
                 &amp; Application Support
               </span>
             </motion.h1>
@@ -627,26 +549,26 @@ export default function ServicesPage() {
               transition={{ duration: 0.5, delay: 0.35 }}
               className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto pt-8 border-t border-border/70 text-left"
             >
-              <div className="flex items-center gap-2.5 rounded-xl bg-card p-3 border border-[#E0EEE0] dark:border-border shadow-2xs">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] shrink-0">
+              <div className="flex items-center gap-2.5 rounded-xl bg-card p-3 border border-[#F6EBD3] dark:border-border shadow-2xs">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] shrink-0">
                   <CheckCircle2 className="h-3.5 w-3.5" />
                 </div>
                 <span className="text-xs font-semibold text-foreground/90 leading-tight">100% Client Code &amp; IP Ownership</span>
               </div>
-              <div className="flex items-center gap-2.5 rounded-xl bg-card p-3 border border-[#E0EEE0] dark:border-border shadow-2xs">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] shrink-0">
+              <div className="flex items-center gap-2.5 rounded-xl bg-card p-3 border border-[#F6EBD3] dark:border-border shadow-2xs">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] shrink-0">
                   <CheckCircle2 className="h-3.5 w-3.5" />
                 </div>
                 <span className="text-xs font-semibold text-foreground/90 leading-tight">Transparent Defined Scopes</span>
               </div>
-              <div className="flex items-center gap-2.5 rounded-xl bg-card p-3 border border-[#E0EEE0] dark:border-border shadow-2xs">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] shrink-0">
+              <div className="flex items-center gap-2.5 rounded-xl bg-card p-3 border border-[#F6EBD3] dark:border-border shadow-2xs">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] shrink-0">
                   <CheckCircle2 className="h-3.5 w-3.5" />
                 </div>
                 <span className="text-xs font-semibold text-foreground/90 leading-tight">Structured QA &amp; Testing Checks</span>
               </div>
-              <div className="flex items-center gap-2.5 rounded-xl bg-card p-3 border border-[#E0EEE0] dark:border-border shadow-2xs">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] shrink-0">
+              <div className="flex items-center gap-2.5 rounded-xl bg-card p-3 border border-[#F6EBD3] dark:border-border shadow-2xs">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] shrink-0">
                   <CheckCircle2 className="h-3.5 w-3.5" />
                 </div>
                 <span className="text-xs font-semibold text-foreground/90 leading-tight">Ongoing Support &amp; Retainers</span>
@@ -663,31 +585,31 @@ export default function ServicesPage() {
               <span className="text-muted-foreground font-medium mr-1">Jump to section:</span>
               <a
                 href="#service-categories"
-                className="inline-flex items-center rounded-full border border-[#E0EEE0] dark:border-border bg-card px-3.5 py-1 font-medium text-foreground/85 hover:border-[#228B22] hover:text-[#228B22] transition-colors"
+                className="inline-flex items-center rounded-full border border-[#F6EBD3] dark:border-border bg-card px-3.5 py-1 font-medium text-foreground/85 hover:border-[#0B4F3E] hover:text-[#0B4F3E] transition-colors"
               >
                 01. Services
               </a>
               <a
                 href="#who-we-serve"
-                className="inline-flex items-center rounded-full border border-[#E0EEE0] dark:border-border bg-card px-3.5 py-1 font-medium text-foreground/85 hover:border-[#228B22] hover:text-[#228B22] transition-colors"
+                className="inline-flex items-center rounded-full border border-[#F6EBD3] dark:border-border bg-card px-3.5 py-1 font-medium text-foreground/85 hover:border-[#0B4F3E] hover:text-[#0B4F3E] transition-colors"
               >
                 02. Who We Help
               </a>
               <a
                 href="#how-we-work"
-                className="inline-flex items-center rounded-full border border-[#E0EEE0] dark:border-border bg-card px-3.5 py-1 font-medium text-foreground/85 hover:border-[#228B22] hover:text-[#228B22] transition-colors"
+                className="inline-flex items-center rounded-full border border-[#F6EBD3] dark:border-border bg-card px-3.5 py-1 font-medium text-foreground/85 hover:border-[#0B4F3E] hover:text-[#0B4F3E] transition-colors"
               >
                 03. How We Work
               </a>
               <a
                 href="#engagement-models"
-                className="inline-flex items-center rounded-full border border-[#E0EEE0] dark:border-border bg-card px-3.5 py-1 font-medium text-foreground/85 hover:border-[#228B22] hover:text-[#228B22] transition-colors"
+                className="inline-flex items-center rounded-full border border-[#F6EBD3] dark:border-border bg-card px-3.5 py-1 font-medium text-foreground/85 hover:border-[#0B4F3E] hover:text-[#0B4F3E] transition-colors"
               >
                 04. Engagement Models
               </a>
               <a
                 href="#technologies"
-                className="inline-flex items-center rounded-full border border-[#E0EEE0] dark:border-border bg-card px-3.5 py-1 font-medium text-foreground/85 hover:border-[#228B22] hover:text-[#228B22] transition-colors"
+                className="inline-flex items-center rounded-full border border-[#F6EBD3] dark:border-border bg-card px-3.5 py-1 font-medium text-foreground/85 hover:border-[#0B4F3E] hover:text-[#0B4F3E] transition-colors"
               >
                 05. Technologies
               </a>
@@ -699,9 +621,9 @@ export default function ServicesPage() {
         <section id="service-categories" className="py-20 md:py-28 border-b border-border scroll-mt-20">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#228B22]">Our Core Services</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#0B4F3E]">Our Core Services</span>
               <h2 className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-                Software Development, Maintenance &amp; <span className="text-[#228B22] dark:text-[#3cd43c]">IT Services</span>
+                Software Development, Maintenance &amp; <span className="text-[#0B4F3E] dark:text-[#5CC9A7]">IT Services</span>
               </h2>
               <p className="mt-3 text-base text-muted-foreground">
                 Explore our full spectrum of custom software development, application maintenance, quality assurance and technical operations capabilities tailored for modern businesses.
@@ -716,7 +638,7 @@ export default function ServicesPage() {
                     "rounded-full px-4 py-1.5 text-xs font-semibold transition-all cursor-pointer",
                     activeFilter === "all"
                       ? "brand-btn-primary shadow-xs"
-                      : "border border-[#E0EEE0] dark:border-border bg-card text-muted-foreground hover:text-foreground"
+                      : "border border-[#F6EBD3] dark:border-border bg-card text-muted-foreground hover:text-foreground"
                   )}
                 >
                   All Services (8)
@@ -728,7 +650,7 @@ export default function ServicesPage() {
                     "rounded-full px-4 py-1.5 text-xs font-semibold transition-all cursor-pointer",
                     activeFilter === "core-dev"
                       ? "brand-btn-primary shadow-xs"
-                      : "border border-[#E0EEE0] dark:border-border bg-card text-muted-foreground hover:text-foreground"
+                      : "border border-[#F6EBD3] dark:border-border bg-card text-muted-foreground hover:text-foreground"
                   )}
                 >
                   Software &amp; Web Development
@@ -740,7 +662,7 @@ export default function ServicesPage() {
                     "rounded-full px-4 py-1.5 text-xs font-semibold transition-all cursor-pointer",
                     activeFilter === "maintenance-qa"
                       ? "brand-btn-primary shadow-xs"
-                      : "border border-[#E0EEE0] dark:border-border bg-card text-muted-foreground hover:text-foreground"
+                      : "border border-[#F6EBD3] dark:border-border bg-card text-muted-foreground hover:text-foreground"
                   )}
                 >
                   Maintenance &amp; QA Testing
@@ -752,7 +674,7 @@ export default function ServicesPage() {
                     "rounded-full px-4 py-1.5 text-xs font-semibold transition-all cursor-pointer",
                     activeFilter === "systems-ops"
                       ? "brand-btn-primary shadow-xs"
-                      : "border border-[#E0EEE0] dark:border-border bg-card text-muted-foreground hover:text-foreground"
+                      : "border border-[#F6EBD3] dark:border-border bg-card text-muted-foreground hover:text-foreground"
                   )}
                 >
                   APIs, Operations &amp; Automation
@@ -772,21 +694,21 @@ export default function ServicesPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: (idx % 2) * 0.1 }}
-                    className="group flex flex-col justify-between rounded-2xl border border-[#E0EEE0] dark:border-border bg-card p-6 sm:p-8 shadow-xs hover:border-[#228B22]/50 hover:shadow-lg transition-all duration-300"
+                    className="group flex flex-col justify-between rounded-2xl border border-[#F6EBD3] dark:border-border bg-card p-6 sm:p-8 shadow-xs hover:border-[#0B4F3E]/50 hover:shadow-lg transition-all duration-300"
                   >
                     <div>
                       {/* Card Header */}
                       <div className="flex items-center justify-between mb-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] group-hover:scale-105 transition-all duration-200">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] group-hover:scale-105 transition-all duration-200">
                           <service.icon className="h-6 w-6" />
                         </div>
-                        <span className="rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-3 py-1 text-[11px] font-semibold text-[#185e18] dark:text-[#8ce68c]">
+                        <span className="rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-3 py-1 text-[11px] font-semibold text-[#083A2E] dark:text-[#9FD9C4]">
                           {service.badge}
                         </span>
                       </div>
 
                       {/* Semantic H3 */}
-                      <h3 className="text-xl font-bold text-foreground mb-2.5 group-hover:text-[#228B22] transition-colors">
+                      <h3 className="text-xl font-bold text-foreground mb-2.5 group-hover:text-[#0B4F3E] transition-colors">
                         {service.title}
                       </h3>
 
@@ -796,8 +718,8 @@ export default function ServicesPage() {
 
                       {/* Tool Callout (e.g. DoSmokeTest CLI on QA card) */}
                       {service.toolBadge && (
-                        <div className="mb-5 rounded-xl border border-[#228B22]/30 bg-[#E0EEE0]/50 dark:bg-primary/10 p-3 flex items-start gap-2.5 text-xs text-[#165b16] dark:text-[#8ce68c]">
-                          <Terminal className="h-4 w-4 text-[#228B22] shrink-0 mt-0.5" />
+                        <div className="mb-5 rounded-xl border border-[#0B4F3E]/30 bg-[#F6EBD3]/50 dark:bg-primary/10 p-3 flex items-start gap-2.5 text-xs text-[#083A2E] dark:text-[#9FD9C4]">
+                          <Terminal className="h-4 w-4 text-[#0B4F3E] shrink-0 mt-0.5" />
                           <span className="font-medium leading-relaxed">{service.toolBadge}</span>
                         </div>
                       )}
@@ -817,7 +739,7 @@ export default function ServicesPage() {
                         <ul className="space-y-2.5">
                           {service.keyCapabilities.map((item) => (
                             <li key={item} className="flex items-start gap-2.5 text-xs sm:text-sm text-foreground/90">
-                              <CheckCircle2 className="h-4 w-4 text-[#228B22] flex-shrink-0 mt-0.5" />
+                              <CheckCircle2 className="h-4 w-4 text-[#0B4F3E] flex-shrink-0 mt-0.5" />
                               <span>{item}</span>
                             </li>
                           ))}
@@ -837,7 +759,7 @@ export default function ServicesPage() {
                             <ul className="space-y-2.5 pt-1 border-t border-dashed border-border/60">
                               {service.additionalCapabilities.map((item) => (
                                 <li key={item} className="flex items-start gap-2.5 text-xs sm:text-sm text-foreground/90">
-                                  <Check className="h-4 w-4 text-[#228B22] flex-shrink-0 mt-0.5" />
+                                  <Check className="h-4 w-4 text-[#0B4F3E] flex-shrink-0 mt-0.5" />
                                   <span>{item}</span>
                                 </li>
                               ))}
@@ -850,7 +772,7 @@ export default function ServicesPage() {
                       <button
                         type="button"
                         onClick={() => toggleExpand(service.id)}
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#228B22] hover:text-[#176617] mb-5 cursor-pointer transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0B4F3E] hover:text-[#083A2E] mb-5 cursor-pointer transition-colors"
                         aria-expanded={isExpanded}
                       >
                         {isExpanded ? (
@@ -881,7 +803,7 @@ export default function ServicesPage() {
                       <button
                         type="button"
                         onClick={handleScheduleDemo}
-                        className="text-xs text-muted-foreground hover:text-[#228B22] font-medium text-center transition-colors cursor-pointer"
+                        className="text-xs text-muted-foreground hover:text-[#0B4F3E] font-medium text-center transition-colors cursor-pointer"
                       >
                         Or schedule demo
                       </button>
@@ -894,12 +816,12 @@ export default function ServicesPage() {
         </section>
 
         {/* ── WHO WE SERVE SECTION ─────────────────────────────── */}
-        <section id="who-we-serve" className="py-20 md:py-24 bg-[#E0EEE0]/15 dark:bg-muted/10 border-b border-border scroll-mt-20">
+        <section id="who-we-serve" className="py-20 md:py-24 bg-[#F6EBD3]/15 dark:bg-muted/10 border-b border-border scroll-mt-20">
           <div className="container mx-auto px-4 md:px-8 max-w-6xl">
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#228B22]">Who We Partner With</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#0B4F3E]">Who We Partner With</span>
               <h2 className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-                Who We Serve: <span className="text-[#228B22] dark:text-[#3cd43c]">Software Companies, Startups &amp; Growing Businesses</span>
+                Who We Serve: <span className="text-[#0B4F3E] dark:text-[#5CC9A7]">Software Companies, Startups &amp; Growing Businesses</span>
               </h2>
               <p className="mt-3 text-sm md:text-base text-muted-foreground">
                 We act as a practical extension to your technical leadership, product roadmaps and operational objectives.
@@ -910,9 +832,9 @@ export default function ServicesPage() {
               {clientTypes.map((type) => (
                 <div
                   key={type.title}
-                  className="flex flex-col rounded-2xl border border-[#E0EEE0] dark:border-border bg-card p-6 shadow-xs hover:border-[#228B22]/50 hover:-translate-y-1 transition-all duration-300"
+                  className="flex flex-col rounded-2xl border border-[#F6EBD3] dark:border-border bg-card p-6 shadow-xs hover:border-[#0B4F3E]/50 hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] mb-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] mb-4">
                     <type.icon className="h-5 w-5" />
                   </div>
                   <h3 className="text-base font-bold text-foreground mb-2">{type.title}</h3>
@@ -929,9 +851,9 @@ export default function ServicesPage() {
         <section id="how-we-work" className="py-20 md:py-28 border-b border-border scroll-mt-20">
           <div className="container mx-auto px-4 md:px-8 max-w-6xl">
             <div className="text-center max-w-2xl mx-auto mb-14">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#228B22]">Execution Process</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#0B4F3E]">Execution Process</span>
               <h2 className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-                How We Work: <span className="text-[#228B22] dark:text-[#3cd43c]">Structured Technical Delivery Process</span>
+                How We Work: <span className="text-[#0B4F3E] dark:text-[#5CC9A7]">Structured Technical Delivery Process</span>
               </h2>
               <p className="mt-3 text-sm md:text-base text-muted-foreground">
                 A simple, predictable five-step engineering workflow built on transparency, technical rigor and clear communication.
@@ -942,10 +864,10 @@ export default function ServicesPage() {
               {workflowSteps.map((step) => (
                 <div
                   key={step.step}
-                  className="relative flex flex-col justify-between rounded-2xl border border-[#E0EEE0] dark:border-border bg-card p-6 shadow-xs hover:border-[#228B22]/50 hover:shadow-md transition-all duration-300"
+                  className="relative flex flex-col justify-between rounded-2xl border border-[#F6EBD3] dark:border-border bg-card p-6 shadow-xs hover:border-[#0B4F3E]/50 hover:shadow-md transition-all duration-300"
                 >
                   <div>
-                    <span className="font-mono text-2xl font-black text-[#228B22] mb-3 block">
+                    <span className="font-mono text-2xl font-black text-[#0B4F3E] mb-3 block">
                       {step.step}
                     </span>
                     <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
@@ -956,7 +878,7 @@ export default function ServicesPage() {
                       {step.details}
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-border/60 flex items-center gap-1.5 text-[11px] font-medium text-[#228B22]">
+                  <div className="mt-4 pt-3 border-t border-border/60 flex items-center gap-1.5 text-[11px] font-medium text-[#0B4F3E]">
                     <CheckCheck className="h-3.5 w-3.5" />
                     <span>Phase Milestone</span>
                   </div>
@@ -967,12 +889,12 @@ export default function ServicesPage() {
         </section>
 
         {/* ── SECTION 4: FLEXIBLE ENGAGEMENT MODELS (4 MODELS) ─── */}
-        <section id="engagement-models" className="py-20 md:py-28 bg-[#E0EEE0]/15 dark:bg-muted/10 border-b border-border scroll-mt-20">
+        <section id="engagement-models" className="py-20 md:py-28 bg-[#F6EBD3]/15 dark:bg-muted/10 border-b border-border scroll-mt-20">
           <div className="container mx-auto px-4 md:px-8 max-w-6xl">
             <div className="text-center max-w-2xl mx-auto mb-14">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#228B22]">Contractual Flexibility</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#0B4F3E]">Contractual Flexibility</span>
               <h2 className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-                Flexible Engagement Models for <span className="text-[#228B22] dark:text-[#3cd43c]">Software &amp; IT Services</span>
+                Flexible Engagement Models for <span className="text-[#0B4F3E] dark:text-[#5CC9A7]">Software &amp; IT Services</span>
               </h2>
               <p className="mt-3 text-sm md:text-base text-muted-foreground">
                 Select the engagement structure that aligns with your timeline, budget constraints and technical roadmap.
@@ -983,10 +905,10 @@ export default function ServicesPage() {
               {engagementOptions.map((model) => (
                 <div
                   key={model.id}
-                  className="flex flex-col justify-between rounded-2xl border border-[#E0EEE0] dark:border-border bg-card p-6 shadow-xs hover:border-[#228B22]/50 hover:shadow-lg transition-all duration-300"
+                  className="flex flex-col justify-between rounded-2xl border border-[#F6EBD3] dark:border-border bg-card p-6 shadow-xs hover:border-[#0B4F3E]/50 hover:shadow-lg transition-all duration-300"
                 >
                   <div>
-                    <span className="inline-block rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-3 py-1 text-[11px] font-semibold text-[#185e18] dark:text-[#8ce68c] mb-3">
+                    <span className="inline-block rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-3 py-1 text-[11px] font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-3">
                       {model.badge}
                     </span>
                     <h3 className="text-lg font-bold text-foreground mb-2">{model.title}</h3>
@@ -1001,7 +923,7 @@ export default function ServicesPage() {
                       <ul className="space-y-2">
                         {model.points.map((pt) => (
                           <li key={pt} className="flex items-start gap-2 text-xs text-foreground/90 leading-tight">
-                            <CheckCircle2 className="h-3.5 w-3.5 text-[#228B22] shrink-0 mt-0.5" />
+                            <CheckCircle2 className="h-3.5 w-3.5 text-[#0B4F3E] shrink-0 mt-0.5" />
                             <span>{pt}</span>
                           </li>
                         ))}
@@ -1031,9 +953,9 @@ export default function ServicesPage() {
         <section id="technologies" className="py-20 md:py-28 border-b border-border scroll-mt-20">
           <div className="container mx-auto px-4 md:px-8 max-w-6xl">
             <div className="text-center max-w-2xl mx-auto mb-14">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#228B22]">Technical Competency</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#0B4F3E]">Technical Competency</span>
               <h2 className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-                Technologies &amp; <span className="text-[#228B22] dark:text-[#3cd43c]">Engineering Stack Supported</span>
+                Technologies &amp; <span className="text-[#0B4F3E] dark:text-[#5CC9A7]">Engineering Stack Supported</span>
               </h2>
               <p className="mt-3 text-sm md:text-base text-muted-foreground">
                 We work strictly with robust, production-proven technologies that ensure long-term stability and maintainability.
@@ -1044,7 +966,7 @@ export default function ServicesPage() {
               {techStackGroups.map((group) => (
                 <div
                   key={group.title}
-                  className="flex flex-col rounded-2xl border border-[#E0EEE0] dark:border-border bg-card p-6 shadow-xs hover:border-[#228B22]/50 hover:shadow-md transition-all duration-300"
+                  className="flex flex-col rounded-2xl border border-[#F6EBD3] dark:border-border bg-card p-6 shadow-xs hover:border-[#0B4F3E]/50 hover:shadow-md transition-all duration-300"
                 >
                   <h3 className="text-base font-bold text-foreground mb-1">{group.title}</h3>
                   <p className="text-xs text-muted-foreground mb-4">{group.desc}</p>
@@ -1052,9 +974,9 @@ export default function ServicesPage() {
                     {group.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-[#E0EEE0] dark:border-border/80 bg-[#E0EEE0]/30 dark:bg-muted/40 px-2.5 py-1 text-xs font-medium text-foreground/90"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-[#F6EBD3] dark:border-border/80 bg-[#F6EBD3]/30 dark:bg-muted/40 px-2.5 py-1 text-xs font-medium text-foreground/90"
                       >
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#228B22]" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#0B4F3E]" />
                         {skill}
                       </span>
                     ))}
@@ -1066,21 +988,21 @@ export default function ServicesPage() {
         </section>
 
         {/* ── SECTION 6: FINAL CTA ─────────────────────────────── */}
-        <section id="contact-cta" className="py-20 md:py-28 bg-gradient-to-b from-background to-[#E0EEE0]/25 dark:to-muted/10">
+        <section id="contact-cta" className="py-20 md:py-28 bg-gradient-to-b from-background to-[#F6EBD3]/25 dark:to-muted/10">
           <div className="container mx-auto px-4 md:px-8 max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#228B22] via-[#1a741a] to-[#124d12] px-6 py-14 text-center md:px-12 md:py-18 shadow-2xl text-white"
+              className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0B4F3E] via-[#0F6450] to-[#083A2E] px-6 py-14 text-center md:px-12 md:py-18 shadow-2xl text-white"
             >
               {/* Subtle background mesh */}
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 opacity-[0.14]"
                 style={{
-                  backgroundImage: "radial-gradient(circle, #E0EEE0 1px, transparent 1px)",
+                  backgroundImage: "radial-gradient(circle, #F6EBD3 1px, transparent 1px)",
                   backgroundSize: "24px 24px",
                 }}
               />
@@ -1102,7 +1024,7 @@ export default function ServicesPage() {
                   <Button
                     size="lg"
                     onClick={() => handleOpenConsultation("Hello INWORA! I would like to discuss our application requirements with your team.")}
-                    className="rounded-full bg-[#E0EEE0] text-[#165b16] hover:bg-white hover:text-[#114b11] px-7 h-12 text-sm font-semibold shadow-md cursor-pointer transition-all"
+                    className="rounded-full bg-[#F6EBD3] text-[#083A2E] hover:bg-white hover:text-[#083A2E] px-7 h-12 text-sm font-semibold shadow-md cursor-pointer transition-all"
                     data-testid="final-primary-cta"
                   >
                     <MessageCircle className="mr-2 h-4 w-4" />
@@ -1123,15 +1045,15 @@ export default function ServicesPage() {
 
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-6 border-t border-white/15">
                   <div className="flex items-center gap-2 text-xs sm:text-sm text-white/90 font-medium">
-                    <Check className="h-4 w-4 text-[#E0EEE0]" />
+                    <Check className="h-4 w-4 text-[#F6EBD3]" />
                     Direct engineer consultation
                   </div>
                   <div className="flex items-center gap-2 text-xs sm:text-sm text-white/90 font-medium">
-                    <Check className="h-4 w-4 text-[#E0EEE0]" />
+                    <Check className="h-4 w-4 text-[#F6EBD3]" />
                     Defined-scope delivery
                   </div>
                   <div className="flex items-center gap-2 text-xs sm:text-sm text-white/90 font-medium">
-                    <Check className="h-4 w-4 text-[#E0EEE0]" />
+                    <Check className="h-4 w-4 text-[#F6EBD3]" />
                     100% intellectual property transfer
                   </div>
                 </div>

@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { SectionHeading, fadeUpDelay } from "./_shared";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const plans = [
   {
@@ -57,7 +58,7 @@ export default function Pricing() {
       planName === "Enterprise"
         ? "Hello INWORA! I am interested in custom integrations and would like to contact sales for the Enterprise Plan."
         : `Hello INWORA! I would like to get a quote/book a demo for the ${planName} Plan.`;
-    window.open(`https://wa.me/919025728998?text=${encodeURIComponent(msg)}`, "_blank");
+    openWhatsApp(`https://wa.me/919025728998?text=${encodeURIComponent(msg)}`, `Pricing: ${planName}`);
   };
 
   return (

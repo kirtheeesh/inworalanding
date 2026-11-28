@@ -13,6 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 import { fetchProducts } from "@/lib/api";
 import { resolveProductIcon, FALLBACK_PRODUCTS, type Product } from "@/lib/products-data";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const WHATSAPP_NUMBER = "919025728998";
 const waLink = (text: string) =>
@@ -30,9 +31,9 @@ function ProductCard({
   const Icon = resolveProductIcon(product.icon);
 
   const handleEnquiry = () =>
-    window.open(
+    openWhatsApp(
       waLink(`Hello INWORA! I have an enquiry about the "${product.title}" product. Could you share pricing and more details?`),
-      "_blank",
+      `Product enquiry: ${product.title}`,
     );
 
   const handleRequestDemo = () =>
@@ -45,21 +46,21 @@ function ProductCard({
       className={cn(
         "group relative flex h-full flex-col rounded-2xl border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl",
         product.featured
-          ? "border-[#228B22]/50 ring-2 ring-[#228B22]/15 shadow-md shadow-[#228B22]/5"
-          : "border-[#E0EEE0] dark:border-border/70 hover:border-[#228B22]/40",
+          ? "border-[#0B4F3E]/50 ring-2 ring-[#0B4F3E]/15 shadow-md shadow-[#0B4F3E]/5"
+          : "border-[#F6EBD3] dark:border-border/70 hover:border-[#0B4F3E]/40",
       )}
       data-testid={`card-product-${index}`}
     >
       {product.image ? (
         <div className="mb-4 flex items-start justify-between gap-3">
-          <div className="h-14 w-20 overflow-hidden rounded-xl border border-[#E0EEE0] dark:border-border bg-muted shadow-2xs">
+          <div className="h-14 w-20 overflow-hidden rounded-xl border border-[#F6EBD3] dark:border-border bg-muted shadow-2xs">
             <img src={product.image} alt={product.title} className="h-full w-full object-cover" loading="lazy" />
           </div>
           <Badge product={product} />
         </div>
       ) : (
         <div className="mb-4 flex items-start justify-between gap-3">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] shadow-2xs">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] shadow-2xs">
             <Icon className="h-6 w-6" />
           </div>
           <Badge product={product} />
@@ -67,14 +68,14 @@ function ProductCard({
       )}
 
       <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">{product.title}</h3>
-      {product.subtitle && <p className="mt-1 text-xs font-semibold text-[#228B22] dark:text-[#8ce68c]">{product.subtitle}</p>}
+      {product.subtitle && <p className="mt-1 text-xs font-semibold text-[#0B4F3E] dark:text-[#9FD9C4]">{product.subtitle}</p>}
       {product.desc && <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{product.desc}</p>}
 
       {product.features.length > 0 && (
         <ul className="mt-4 mb-4 space-y-2 border-t border-border/60 pt-3">
           {product.features.slice(0, 4).map((f) => (
             <li key={f} className="flex items-start gap-2 text-xs text-foreground/90">
-              <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-[#228B22]" />
+              <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-[#0B4F3E]" />
               <span className="line-clamp-1">{f}</span>
             </li>
           ))}
@@ -88,9 +89,9 @@ function ProductCard({
             href={product.playStoreUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#E0EEE0] dark:border-border bg-background px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[#F6EBD3] dark:border-border bg-background px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
-            <SiGoogleplay className="h-3.5 w-3.5 text-[#228B22]" />
+            <SiGoogleplay className="h-3.5 w-3.5 text-[#0B4F3E]" />
             Google Play
           </a>
         )}
@@ -99,15 +100,15 @@ function ProductCard({
             href={product.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#E0EEE0] dark:border-border bg-background px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[#F6EBD3] dark:border-border bg-background px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#228B22]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#0B4F3E]" />
             {hostOf(product.liveUrl)}
           </a>
         ) : (
           !product.playStoreUrl && (
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-[#E0EEE0] dark:border-border px-2.5 py-1 text-xs font-medium text-muted-foreground">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#228B22]" />
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-[#F6EBD3] dark:border-border px-2.5 py-1 text-xs font-medium text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#0B4F3E]" />
               Demo on request
             </span>
           )
@@ -127,7 +128,7 @@ function ProductCard({
         <div className="flex gap-2">
           <button
             onClick={() => onLearnMore(product)}
-            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-[#228B22]/40 hover:text-[#228B22] cursor-pointer"
+            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-[#0B4F3E]/40 hover:text-[#0B4F3E] cursor-pointer"
             data-testid={`button-product-learn-more-${index}`}
           >
             <Info className="h-3.5 w-3.5" />
@@ -135,7 +136,7 @@ function ProductCard({
           </button>
           <button
             onClick={handleEnquiry}
-            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-[#228B22]/40 hover:text-[#228B22] cursor-pointer"
+            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-[#0B4F3E]/40 hover:text-[#0B4F3E] cursor-pointer"
             data-testid={`button-product-enquiry-${index}`}
           >
             <MessageCircle className="h-3.5 w-3.5" />
@@ -200,7 +201,7 @@ export default function Products() {
   const products = data && data.length > 0 ? data : FALLBACK_PRODUCTS;
 
   return (
-    <section id="products" className="border-y border-border bg-gradient-to-b from-background via-[#E0EEE0]/15 to-background dark:via-[#228B22]/5 py-20 md:py-28">
+    <section id="products" className="border-y border-border bg-gradient-to-b from-background via-[#F6EBD3]/15 to-background dark:via-[#0B4F3E]/5 py-20 md:py-28">
       <div className="container mx-auto px-4 md:px-8">
         <SectionHeading
           eyebrow="Proprietary Business Suite"

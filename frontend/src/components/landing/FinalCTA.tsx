@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, Check } from "lucide-react";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const perks = ["Free consultation", "On-time delivery", "Dedicated project manager"];
 
 export default function FinalCTA() {
   const handleContactSales = () => {
     const msg = "Hello INWORA! I am interested in your custom development/enterprise plans and would like to connect with your sales team.";
-    window.open(`https://wa.me/919025728998?text=${encodeURIComponent(msg)}`, "_blank");
+    openWhatsApp(`https://wa.me/919025728998?text=${encodeURIComponent(msg)}`, "Final CTA: Contact sales");
   };
 
   const handleScheduleDemo = () => {
@@ -22,14 +23,15 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#228B22] to-[#155e15] px-6 py-14 text-center md:px-12 md:py-20 shadow-2xl"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0B4F3E] to-[#083A2E] px-6 py-14 text-center md:px-12 md:py-20 shadow-2xl"
         >
+          <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(245,124,0,0.28),transparent_65%)]" />
           {/* Subtle highlight */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage: "radial-gradient(circle, #E0EEE0 1px, transparent 1px)",
+              backgroundImage: "radial-gradient(circle, #F6EBD3 1px, transparent 1px)",
               backgroundSize: "28px 28px",
               maskImage: "radial-gradient(ellipse 70% 70% at 50% 0%, #000, transparent)",
               WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 0%, #000, transparent)",
@@ -43,7 +45,7 @@ export default function FinalCTA() {
 
             <h2 className="mt-5 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.15]">
               Build Smarter Digital Products{" "}
-              <span className="text-[#E0EEE0] block sm:inline">with INWORA</span>
+              <span className="text-[#F6EBD3] block sm:inline">with Inwora</span>
             </h2>
 
             <p className="mx-auto mt-5 max-w-xl text-base md:text-lg leading-relaxed text-white/90">
@@ -54,7 +56,7 @@ export default function FinalCTA() {
               <Button
                 onClick={handleContactSales}
                 size="lg"
-                className="rounded-full bg-[#E0EEE0] text-[#165b16] hover:bg-white hover:text-[#114b11] px-7 h-11 text-sm font-semibold shadow-md cursor-pointer transition-all"
+                className="brand-btn-accent rounded-full px-7 h-11 text-sm font-bold cursor-pointer"
                 data-testid="button-contact-sales"
               >
                 Contact Sales

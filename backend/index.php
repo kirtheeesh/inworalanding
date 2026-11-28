@@ -7,7 +7,8 @@ declare(strict_types=1);
  *
  *   Public API      GET  /api/projects
  *                   GET  /api/projects/{slug}
- *   Admin panel          /admin/...   (session auth, see admin/controller.php)
+ *                   POST /api/events  (Meta Conversions API, src/MetaCapi.php)
+ *   Admin panel         /admin/...   (session auth, see admin/controller.php)
  *   Uploaded files       /uploads/... (served directly by the web server)
  */
 
@@ -36,6 +37,11 @@ if (str_starts_with($requestPath, '/backend')) {
 }
 $path = '/' . trim(rawurldecode($requestPath), '/');
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+
+// API JSON and admin pages must never appear in search results. /api/ stays
+// crawlable (Google needs it to render the portfolio), so use a header
+// rather than robots.txt.
+header('X-Robots-Tag: noindex, nofollow');
 
 $isApi = str_starts_with($path, '/api');
 if ($isApi) {
@@ -104,6 +110,13 @@ function dispatch(string $path, string $method, bool $isApi): void
         json_response(['status' => 'ok', 'database' => env('DB_DATABASE')]);
     }
 
+    // Meta Conversions API: consented browser Pixel events (see src/MetaCapi.php).
+    // Loaded only here, so it can never affect the routes above.
+    if ($path === '/api/events' && $method === 'POST') {
+        require_once __DIR__ . '/src/MetaCapi.php';
+        MetaCapi::handleBrowserEvent();
+    }
+
     if ($isApi) {
         json_response(['error' => 'Unknown endpoint: ' . $path], 404);
     }
@@ -123,6 +136,11 @@ function dispatch(string $path, string $method, bool $isApi): void
 
     if (str_starts_with($path, '/admin')) {
         Auth::requireLogin();
+
+        if ($path === '/admin/diagnostics' && $method === 'GET') {
+            require_once __DIR__ . '/admin/diagnostics.php';
+            admin_diagnostics();
+        }
 
         if ($path === '/admin/projects' && $method === 'GET') {
             admin_projects_index();

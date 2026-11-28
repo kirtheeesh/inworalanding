@@ -1,0 +1,57 @@
+# Hostinger (LiteSpeed/Apache) configuration for inwora.in — same SEO rules as inwora.com
+
+Options -Indexes
+DirectoryIndex index.html
+
+# Unknown URLs return a real 404 status (not a "soft 404"), with a noindex page.
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # http → https: switch on "Force HTTPS" for inwora.in in hPanel (as on inwora.com).
+    # Not done here because Hostinger's CDN ends HTTPS before this file runs,
+    # which can cause a redirect loop.
+
+    # ── Canonical host: www → non-www ──
+    RewriteCond %{HTTP_HOST} ^www\.inwora\.in$ [NC]
+    RewriteRule ^(.*)$ https://inwora.in/$1 [R=301,L]
+
+    # ── Duplicate URL → canonical URL: /index.html → / ──
+    RewriteCond %{THE_REQUEST} \s/+index\.html[\s?]
+    RewriteRule ^index\.html$ https://inwora.in/ [R=301,L]
+</IfModule>
+
+# ── Correct MIME types ──
+<IfModule mod_mime.c>
+    AddType application/javascript .js
+    AddType text/css .css
+    AddType image/svg+xml .svg
+    AddType image/webp .webp
+</IfModule>
+
+# ── Browser caching ──
+<IfModule mod_headers.c>
+    # HTML: always revalidate so updates show immediately.
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+    # CSS/JS keep their names (no build hashes), so cache for 1 day only.
+    <FilesMatch "\.(js|css)$">
+        Header set Cache-Control "public, max-age=86400"
+    </FilesMatch>
+    # Images: 30 days. Use a new file name when an image changes.
+    <FilesMatch "\.(png|jpe?g|webp|gif|svg|ico)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+    # sitemap/robots: short cache.
+    <FilesMatch "\.(xml|txt)$">
+        Header set Cache-Control "public, max-age=3600"
+    </FilesMatch>
+</IfModule>
+
+# ── Protect hidden dotfiles ──
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

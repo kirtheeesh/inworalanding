@@ -60,7 +60,7 @@
     <circle cx="25" cy="22" r="5" fill="#EF4444"/>
     <circle cx="42" cy="22" r="5" fill="#F59E0B"/>
     <circle cx="59" cy="22" r="5" fill="#10B981"/>
-    <text x="185" y="27" fill="#64748B" font-family="'Montserrat', sans-serif" font-size="11" text-anchor="middle">sriabnaya.aimstorm.in</text>
+    <text x="185" y="27" fill="#64748B" font-family="'Montserrat', sans-serif" font-size="11" text-anchor="middle">Sri Abnaya</text>
 
     <!-- Wireframe blocks -->
     <rect x="25" y="70" width="180" height="18" rx="4" fill="url(#abnayaAccent)" opacity="0.8"/>

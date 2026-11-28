@@ -45,6 +45,118 @@ export const iconMap: Record<string, LucideIcon> = {
 };
 
 export const FALLBACK_PROJECTS: Project[] = [
+
+  // ── Digital Wedding Invitation ──────────────────────────────────────────────────────────
+  {
+    id: "digital-wedding-invitation",
+    title: "Digital Wedding Invitation",
+    category: "Digital Invitations",
+    desc: "Cinematic digital wedding invitation: an animated invitation website and AI invitation video that guests open on their phone from one WhatsApp link.",
+    fullDesc:
+      "Inwora Digital Invitation puts your wedding invitation on every guest's phone. Each invitation is a beautifully designed, animated invitation website with an opening animation, Tamil and English content, Google Maps directions and a live countdown to the big day, paired with a cinematic AI-generated invitation video. Everything is shared with one link on WhatsApp. Designs are fully customised for weddings, birthdays and every kind of event, and the same platform creates birthday wishes and greetings.",
+    icon: "Smartphone",
+    banner: "/assets/projects/live/digital-wedding-invitation-1.jpg",
+    banners: [
+      "/assets/projects/live/digital-wedding-invitation-1.jpg",
+      "/assets/projects/live/digital-wedding-invitation-2.jpg",
+      "/assets/projects/live/digital-wedding-invitation-3.jpg",
+    ],
+    mobileBanners: [
+      "/assets/projects/live/mobile/digital-wedding-invitation-1.jpg",
+      "/assets/projects/live/mobile/digital-wedding-invitation-2.jpg",
+      "/assets/projects/live/mobile/digital-wedding-invitation-3.jpg",
+    ],
+    showWebView: true,
+    showMobileView: true,
+    videoType: null,
+    videoUrl: null,
+    videoFileUrl: null,
+    pdfUrl: null,
+    liveUrl: "https://digitalinvitation.inwora.com",
+    tags: ["Digital Invitation", "Wedding", "AI Video", "WhatsApp Sharing"],
+    features: [
+      "Cinematic invitation website with opening animation",
+      "AI-generated invitation video with Tamil voice-over",
+      "Tamil and English invitation content",
+      "Google Maps directions and live wedding countdown",
+      "One link to share with every guest on WhatsApp",
+      "Fully customised designs for weddings, birthdays and all events",
+    ],
+  },
+
+  // ── Nexus Space India ──────────────────────────────────────────────────────────
+  {
+    id: "nexus-space-india",
+    title: "Nexus Space India",
+    category: "Branding Websites",
+    desc: "Animated, interactive brand website with a dark space theme for India's first commercial lunar legacy payload service.",
+    fullDesc:
+      "Nexus Space India, a division of Yoposh Nexus Private Limited, offers a commercial lunar archival and legacy payload service that carries personal memories and milestones on a journey to the Moon. We built a brand website to match that ambition: a dark space theme, animated scroll-driven chapters that move the story from Earth to the Moon, and clear entry points to explore the Moonbox and find stored memories. The site is fully responsive, so the experience holds up on every phone.",
+    icon: "Rocket",
+    banner: "/assets/projects/live/nexus-space-india-1.jpg",
+    banners: [
+      "/assets/projects/live/nexus-space-india-1.jpg",
+      "/assets/projects/live/nexus-space-india-2.jpg",
+      "/assets/projects/live/nexus-space-india-3.jpg",
+    ],
+    mobileBanners: [
+      "/assets/projects/live/mobile/nexus-space-india-1.jpg",
+      "/assets/projects/live/mobile/nexus-space-india-2.jpg",
+      "/assets/projects/live/mobile/nexus-space-india-3.jpg",
+    ],
+    showWebView: true,
+    showMobileView: true,
+    videoType: null,
+    videoUrl: null,
+    videoFileUrl: null,
+    pdfUrl: null,
+    liveUrl: "https://yoposhnexusdark.inwora.com",
+    tags: ["Branding", "Animated Website", "Space Tech", "Storytelling"],
+    features: [
+      "Animated, scroll-driven storytelling from Earth to the Moon",
+      "Dark space theme with interactive visuals",
+      "Moonbox explorer and memory search entry points",
+      "Fully responsive brand experience on mobile and desktop",
+    ],
+  },
+
+  // ── Karur Connect ──────────────────────────────────────────────────────────
+  {
+    id: "karur-connect",
+    title: "Karur Connect",
+    category: "Branding Websites",
+    desc: "Local digital media and community platform connecting Karur's creators, businesses and families, with verified creator profiles and local bookings.",
+    fullDesc:
+      "KARUR CONNECT is a local digital media and community platform focused on promoting Karur's businesses, creators, talents and culture. We designed and built its brand website around the line \"Discover Karur. Connect with Karur. Grow with Karur.\": a warm, illustrated identity inspired by Karur's fields, river and looms, a clear story of the platform's mission and vision, and a free creator registration flow. Photographers, videographers, food bloggers, influencers and local artists register in under two minutes, the team reviews each profile, and verified creators go live to receive bookings from local businesses, event organisers and families.",
+    icon: "Users",
+    banner: "/assets/projects/live/karur-connect-1.jpg",
+    banners: [
+      "/assets/projects/live/karur-connect-1.jpg",
+      "/assets/projects/live/karur-connect-2.jpg",
+      "/assets/projects/live/karur-connect-3.jpg",
+    ],
+    mobileBanners: [
+      "/assets/projects/live/mobile/karur-connect-1.jpg",
+      "/assets/projects/live/mobile/karur-connect-2.jpg",
+      "/assets/projects/live/mobile/karur-connect-3.jpg",
+    ],
+    showWebView: true,
+    showMobileView: true,
+    videoType: null,
+    videoUrl: null,
+    videoFileUrl: null,
+    pdfUrl: null,
+    liveUrl: "https://karurconnect.inwora.com",
+    tags: ["Branding", "Community Platform", "Creator Directory", "Local Business"],
+    features: [
+      "Illustrated local brand identity inspired by Karur's fields, river and looms",
+      "Free creator registration form with category, location and social links",
+      "Three-step flow: register, team review, go live with a verified profile",
+      "Searchable creator directory for local businesses, events and families",
+      "Booking requests for weddings, functions, shop launches and brand shoots",
+      "Fully responsive experience on mobile and desktop",
+    ],
+  },
   // ── 1. Inwora ERP ──────────────────────────────────────────────────────────
   {
     id: "inwora-erp",
@@ -99,7 +211,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     videoUrl: null,
     videoFileUrl: null,
     pdfUrl: null,
-    liveUrl: "https://balajijwellers.aimstorm.in",
+    liveUrl: null,
     tags: ["Jewellery Showcase", "Brand Website", "Catalogue", "Luxury Retail"],
     features: [
       "High-definition jewellery collection catalogues & galleries",
@@ -131,7 +243,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     videoUrl: null,
     videoFileUrl: null,
     pdfUrl: null,
-    liveUrl: "https://sriabnaya.aimstorm.in",
+    liveUrl: null,
     tags: ["Business Profile", "Corporate Web", "Lead Capture", "Responsive Design"],
     features: [
       "Comprehensive business profile & service showcase",
@@ -182,11 +294,11 @@ export const FALLBACK_PROJECTS: Project[] = [
     fullDesc:
       "JCI Malligai is a comprehensive organizational operations portal developed to coordinate member management and chapter initiatives. The platform digitizes member directories, tracks leadership workflows, and logs chapter projects and community activities in one central hub. Administrative dashboards provide officers with role-based governance, attendance verification, and automated reporting to keep organizational operations transparent and efficient.",
     icon: "Users",
-    banner: "/assets/projects/jci-malligai.svg",
+    banner: "/assets/projects/live/jci-malligai-1.jpg",
     banners: [
-      "/assets/projects/jci-malligai.svg",
-      "/assets/projects/jci-malligai-slide2.svg",
-      "/assets/projects/jci-malligai-slide3.svg",
+      "/assets/projects/live/jci-malligai-1.jpg",
+      "/assets/projects/live/jci-malligai-2.jpg",
+      "/assets/projects/live/jci-malligai-3.jpg",
     ],
     mobileBanners: [],
     showWebView: true,
@@ -338,10 +450,9 @@ export const FALLBACK_PROJECTS: Project[] = [
     fullDesc:
       "Takeaway is a digital food ordering platform created for restaurants and quick-service food outlets to take direct customer pickup and takeaway orders online. Diners can explore digital menus organized by meal categories, customize portion selections, and place orders smoothly through a mobile-optimized checkout. The system bridges customer orders directly to kitchen counters, streamlining preparation times and pickup coordination.",
     icon: "Utensils",
-    banner: "/assets/projects/takeaway.svg",
+    banner: "/assets/projects/live/takeaway-1.jpg",
     banners: [
-      "/assets/projects/takeaway.svg",
-      "/assets/projects/takeaway-slide2.svg",
+      "/assets/projects/live/takeaway-1.jpg",
     ],
     mobileBanners: [],
     showWebView: true,
@@ -369,20 +480,22 @@ export const FALLBACK_PROJECTS: Project[] = [
     fullDesc:
       "Wallmark is a corporate brand website representing Wallmark Facades and Structures, a specialist in architectural glazing, curtain walls, ACP cladding, and structural steel works. The website presents past commercial architectural projects, detailing technical engineering standards, materials, and exterior design execution. Prospective architects and property developers can examine completed project portfolios and connect directly with structural engineering consultants.",
     icon: "HardHat",
-    banner: "/assets/projects/wallmark.svg",
+    banner: "/assets/projects/live/wallmark-1.jpg",
     banners: [
-      "/assets/projects/wallmark.svg",
-      "/assets/projects/wallmark-slide2.jpg",
-      "/assets/projects/wallmark-slide3.svg",
+      "/assets/projects/live/wallmark-1.jpg",
+      "/assets/projects/live/wallmark-2.jpg",
     ],
-    mobileBanners: [],
+    mobileBanners: [
+      "/assets/projects/live/mobile/wallmark-1.jpg",
+      "/assets/projects/live/mobile/wallmark-2.jpg",
+    ],
     showWebView: true,
-    showMobileView: false,
+    showMobileView: true,
     videoType: null,
     videoUrl: null,
     videoFileUrl: null,
     pdfUrl: null,
-    liveUrl: "https://wallmark.inwora.com",
+    liveUrl: "https://wallmarkfacades.com",
     tags: ["Architectural Facades", "Structural Engineering", "Brand Website", "Commercial Projects"],
     features: [
       "Architectural facade, curtain wall & structural glazing showcase",
@@ -401,11 +514,11 @@ export const FALLBACK_PROJECTS: Project[] = [
     fullDesc:
       "Thambalam is a boutique showcase website highlighting handcrafted wedding thambalam bags and traditional gift packaging for auspicious celebrations. The platform features curated collections of silk, jute, and raw-silk return-gift bags adorned with traditional motifs and zari embroidery. Wedding planners and families can view customization options, explore fabric finishes, and submit bulk order enquiries for festive occasions.",
     icon: "Layout",
-    banner: "/assets/projects/thambalam.svg",
+    banner: "/assets/projects/live/thambalam-1.jpg",
     banners: [
-      "/assets/projects/thambalam.svg",
-      "/assets/projects/thambalam-slide2.jpg",
-      "/assets/projects/thambalam-slide3.svg",
+      "/assets/projects/live/thambalam-1.jpg",
+      "/assets/projects/live/thambalam-2.jpg",
+      "/assets/projects/live/thambalam-3.jpg",
     ],
     mobileBanners: [],
     showWebView: true,
@@ -433,11 +546,9 @@ export const FALLBACK_PROJECTS: Project[] = [
     fullDesc:
       "Chai Fi is a specialized café web platform and modern billing application built for specialty tea and beverage outlets. Combining contemporary café branding with swift point-of-sale functionality, the interface displays signature chai varieties, snacks, and beverage collections. Counter staff can issue speedy customer bills, track ingredient consumption, and handle customer queues during peak café hours with a lightweight, responsive interface.",
     icon: "Coffee",
-    banner: "/assets/projects/chai-fi.svg",
+    banner: "/assets/projects/live/chai-fi-1.jpg",
     banners: [
-      "/assets/projects/chai-fi.svg",
-      "/assets/projects/chai-fi-slide2.jpg",
-      "/assets/projects/chai-fi-slide3.svg",
+      "/assets/projects/live/chai-fi-1.jpg",
     ],
     mobileBanners: [],
     showWebView: true,
@@ -465,10 +576,11 @@ export const FALLBACK_PROJECTS: Project[] = [
     fullDesc:
       "Grocery Website is a full-featured customer grocery e-commerce storefront designed for fast, accessible household provisioning on desktop and mobile web browsers. It provides shoppers with intuitive department browsing—spanning fresh produce, grains, dairy, and household essentials. With category filters, persistent cart states, transparent delivery slot selection, and past order reordering, customers enjoy a dependable grocery purchasing journey.",
     icon: "ShoppingCart",
-    banner: "/assets/projects/grocery-website.svg",
+    banner: "/assets/projects/live/grocery-website-1.jpg",
     banners: [
-      "/assets/projects/grocery-website.svg",
-      "/assets/projects/grocery-website-slide2.svg",
+      "/assets/projects/live/grocery-website-1.jpg",
+      "/assets/projects/live/grocery-website-2.jpg",
+      "/assets/projects/live/grocery-website-3.jpg",
     ],
     mobileBanners: [],
     showWebView: true,
@@ -523,19 +635,24 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     id: "priyam",
     title: "Priyam",
-    category: "Food & Beverage",
+    category: "Branding Websites",
     desc: "Authentic South Indian agro foods website showcasing traditional pastes, thuvaiyals, and culinary relishes with brand storytelling and customer enquiries.",
     fullDesc:
       "Priyam is the official digital brand platform for Priyam Agro Foods, a Madurai-based producer of authentic South Indian culinary pastes, traditional thuvaiyals, and natural food seasonings. The website presents their culinary heritage, natural ingredient philosophy, and product range—including classic garlic, curry leaf, and ginger pastes. Retailers and consumers can learn about hygiene standards, explore recipes, and place direct distribution enquiries.",
     icon: "Utensils",
-    banner: "/assets/projects/priyam.svg",
+    banner: "/assets/projects/live/priyam-1.jpg",
     banners: [
-      "/assets/projects/priyam.svg",
-      "/assets/projects/priyam-slide2.svg",
+      "/assets/projects/live/priyam-1.jpg",
+      "/assets/projects/live/priyam-2.jpg",
+      "/assets/projects/live/priyam-3.jpg",
     ],
-    mobileBanners: [],
+    mobileBanners: [
+      "/assets/projects/live/mobile/priyam-1.jpg",
+      "/assets/projects/live/mobile/priyam-2.jpg",
+      "/assets/projects/live/mobile/priyam-3.jpg",
+    ],
     showWebView: true,
-    showMobileView: false,
+    showMobileView: true,
     videoType: null,
     videoUrl: null,
     videoFileUrl: null,
@@ -559,11 +676,10 @@ export const FALLBACK_PROJECTS: Project[] = [
     fullDesc:
       "Gold Platform (formerly Inwora Gold Poster) is a specialized digital platform engineered for jewelry showrooms and bullion merchants. The system automates daily bullion rate publication (24K, 22K, 18K gold and silver), embedding verified market prices onto high-resolution showroom-branded promotional templates. Showroom managers can generate customized marketing graphics with their showroom logos and contact details in a single tap, streamlining daily rate communication across social channels.",
     icon: "Gem",
-    banner: "/assets/projects/gold-poster.jpg",
+    banner: "/assets/projects/live/gold-poster-1.jpg",
     banners: [
-      "/assets/projects/gold-poster.jpg",
-      "/assets/projects/gold-poster-slide2.jpg",
-      "/assets/projects/gold-poster-slide3.jpg",
+      "/assets/projects/live/gold-poster-1.jpg",
+      "/assets/projects/live/gold-poster-2.jpg",
     ],
     mobileBanners: [],
     showWebView: true,
@@ -591,10 +707,9 @@ export const FALLBACK_PROJECTS: Project[] = [
     fullDesc:
       "Subra Residency is the official hospitality website for a hotel located in the historic temple city of Kumbakonam. The website presents air-conditioned deluxe and family rooms tailored for pilgrims, tourists, and business visitors. Guests can review in-room amenities, access driving directions to prominent Kumbakonam temples, verify front-desk services, and submit booking enquiries directly through a fast, mobile-friendly interface.",
     icon: "Building2",
-    banner: "/assets/projects/subra-residency.svg",
+    banner: "/assets/projects/live/subra-residency-1.jpg",
     banners: [
-      "/assets/projects/subra-residency.svg",
-      "/assets/projects/subra-residency-slide2.svg",
+      "/assets/projects/live/subra-residency-1.jpg",
     ],
     mobileBanners: [],
     showWebView: true,
@@ -656,11 +771,11 @@ export const FALLBACK_PROJECTS: Project[] = [
     fullDesc:
       "Construction CRM is a specialized contractor CRM platform tailored to handle the unique workflows of general contractors, commercial builders, and civil engineering groups. It centralizes contractor directories, tracks construction bid progress, manages building material procurement orders, and hosts client communication boards. Site managers can upload daily site pictures and inspection logs to update property owners on build milestones, weather conditions, and progress billing cycles.",
     icon: "HardHat",
-    banner: "/assets/projects/construction-crm.png",
+    banner: "/assets/projects/live/construction-1.jpg",
     banners: [
-      "/assets/projects/construction-crm.jpg",
-      "/assets/projects/construction-crm-slide2.jpg",
-      "/assets/projects/construction-crm.png",
+      "/assets/projects/live/construction-1.jpg",
+      "/assets/projects/live/construction-2.jpg",
+      "/assets/projects/live/construction-3.jpg",
     ],
     mobileBanners: [],
     showWebView: true,
@@ -756,11 +871,10 @@ export const FALLBACK_PROJECTS: Project[] = [
     fullDesc:
       "The Automated Factory Application is a custom Industry 4.0 industrial IoT monitoring platform built for modern manufacturing plants and assembly lines. By connecting PLC controllers and wireless MQTT sensors directly to centralized management dashboards, the system tracks real-time machine operating status, assembly line throughput, temperature/vibration metrics, and Overall Equipment Effectiveness (OEE). It automatically triggers predictive maintenance alarms before breakdowns occur, reducing factory assembly downtime by 90% and eliminating manual paper logs.",
     icon: "Cpu",
-    banner: "/assets/projects/factory-automation.png",
+    banner: "/assets/projects/live/factoryos-1.jpg",
     banners: [
-      "/assets/projects/factory-automation.jpg",
-      "/assets/projects/factory-automation-slide2.jpg",
-      "/assets/projects/factory-automation.png",
+      "/assets/projects/live/factoryos-1.jpg",
+      "/assets/projects/live/factoryos-2.jpg",
     ],
     mobileBanners: [],
     showWebView: true,
