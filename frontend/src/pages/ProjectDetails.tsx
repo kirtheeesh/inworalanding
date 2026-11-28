@@ -401,11 +401,11 @@ export default function ProjectDetails() {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c] hover:underline"
+                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-[#083A2E] dark:text-[#9FD9C4] hover:underline"
               >
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#228B22] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#228B22]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0B4F3E] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0B4F3E]" />
                 </span>
                 Active Production Deployment
               </a>
@@ -420,12 +420,12 @@ export default function ProjectDetails() {
             className="border-b border-border/60 pb-8"
           >
             <div className="flex flex-wrap items-center gap-2.5 mb-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-3 py-1 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#228B22]" />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-3 py-1 text-xs font-semibold text-[#083A2E] dark:text-[#9FD9C4]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#0B4F3E]" />
                 {project.category}
               </span>
               {project.liveUrl && (
-                <span className="inline-flex items-center gap-1 rounded-full border border-[#228B22]/30 bg-background px-2.5 py-0.5 text-[11px] font-medium text-[#185e18] dark:text-[#8ce68c]">
+                <span className="inline-flex items-center gap-1 rounded-full border border-[#0B4F3E]/30 bg-background px-2.5 py-0.5 text-[11px] font-medium text-[#083A2E] dark:text-[#9FD9C4]">
                   Live System
                 </span>
               )}
@@ -449,7 +449,7 @@ export default function ProjectDetails() {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-md border border-[#E0EEE0] dark:border-border bg-card px-2.5 py-1 text-xs font-medium text-foreground/80 shadow-2xs"
+                    className="rounded-md border border-[#F6EBD3] dark:border-border bg-card px-2.5 py-1 text-xs font-medium text-foreground/80 shadow-2xs"
                   >
                     {tag}
                   </span>
@@ -488,7 +488,7 @@ export default function ProjectDetails() {
                     <BannerSlider
                       images={project.banners?.length ? project.banners : [project.banner]}
                       alt={project.title}
-                      className="aspect-[16/10] sm:aspect-[16/9] rounded-2xl shadow-md border border-[#E0EEE0] dark:border-border"
+                      className="aspect-[16/10] sm:aspect-[16/9] rounded-2xl shadow-md border border-[#F6EBD3] dark:border-border"
                     />
                   </motion.div>
                 )}
@@ -532,7 +532,7 @@ export default function ProjectDetails() {
                 <section>
                   <div className="brand-structure-bar mb-5">
                     <h2 className="flex items-center gap-2 text-2xl font-bold tracking-tight text-foreground">
-                      <Cpu className="h-5 w-5 text-[#228B22]" />
+                      <Cpu className="h-5 w-5 text-[#0B4F3E]" />
                       Technology Stack
                     </h2>
                   </div>
@@ -540,9 +540,9 @@ export default function ProjectDetails() {
                     {project.tags.map((tag) => (
                       <div
                         key={tag}
-                        className="flex items-center gap-2.5 rounded-xl border border-[#E0EEE0] dark:border-border/60 bg-card p-3 shadow-2xs"
+                        className="flex items-center gap-2.5 rounded-xl border border-[#F6EBD3] dark:border-border/60 bg-card p-3 shadow-2xs"
                       >
-                        <div className="h-2 w-2 rounded-full bg-[#228B22]" />
+                        <div className="h-2 w-2 rounded-full bg-[#0B4F3E]" />
                         <span className="text-sm font-medium text-foreground">{tag}</span>
                       </div>
                     ))}
@@ -562,9 +562,9 @@ export default function ProjectDetails() {
                     {project.features.map((feature) => (
                       <div
                         key={feature}
-                        className="flex items-start gap-3 rounded-xl border border-[#E0EEE0] dark:border-border/60 bg-card p-4 shadow-2xs hover:border-[#228B22]/40 transition-colors"
+                        className="flex items-start gap-3 rounded-xl border border-[#F6EBD3] dark:border-border/60 bg-card p-4 shadow-2xs hover:border-[#0B4F3E]/40 transition-colors"
                       >
-                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] mt-0.5">
+                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] mt-0.5">
                           <Check className="h-3 w-3 stroke-[2.5]" />
                         </div>
                         <span className="text-sm font-medium text-foreground/90 leading-snug">{feature}</span>
@@ -580,11 +580,11 @@ export default function ProjectDetails() {
                 <section>
                   <div className="brand-structure-bar mb-5">
                     <h2 className="flex items-center gap-2 text-2xl font-bold tracking-tight text-foreground">
-                      <PlayCircle className="h-5 w-5 text-[#228B22]" />
+                      <PlayCircle className="h-5 w-5 text-[#0B4F3E]" />
                       Working Demo
                     </h2>
                   </div>
-                  <div className="aspect-video w-full overflow-hidden rounded-2xl border border-[#E0EEE0] dark:border-border bg-muted shadow-md">
+                  <div className="aspect-video w-full overflow-hidden rounded-2xl border border-[#F6EBD3] dark:border-border bg-muted shadow-md">
                     {project.videoType === "youtube" ? (
                       <iframe
                         className="h-full w-full"
@@ -607,7 +607,7 @@ export default function ProjectDetails() {
               )}
 
               {/* Cross-link to Portfolio */}
-              <div className="rounded-2xl border border-[#E0EEE0] dark:border-border bg-gradient-to-r from-[#E0EEE0]/30 to-card p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="rounded-2xl border border-[#F6EBD3] dark:border-border bg-gradient-to-r from-[#F6EBD3]/30 to-card p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                   <h3 className="text-base font-bold text-foreground">Explore more technical solutions</h3>
                   <p className="text-xs sm:text-sm text-muted-foreground mt-1">
@@ -630,7 +630,7 @@ export default function ProjectDetails() {
               <div className="sticky top-24 space-y-5">
                 {/* Live System Card */}
                 {project.liveUrl && (
-                  <div className="rounded-2xl bg-gradient-to-br from-[#228B22] via-[#1d7b1d] to-[#155e15] p-6 text-white shadow-lg shadow-[#228B22]/15">
+                  <div className="rounded-2xl bg-gradient-to-br from-[#0B4F3E] via-[#0F6450] to-[#083A2E] p-6 text-white shadow-lg shadow-[#0B4F3E]/15">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="relative flex h-2.5 w-2.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
@@ -646,7 +646,7 @@ export default function ProjectDetails() {
                     </p>
                     <Button
                       variant="secondary"
-                      className="mt-5 w-full rounded-full bg-[#E0EEE0] hover:bg-white text-[#165b16] font-semibold h-11 cursor-pointer transition-colors shadow-sm"
+                      className="mt-5 w-full rounded-full bg-[#F6EBD3] hover:bg-white text-[#083A2E] font-semibold h-11 cursor-pointer transition-colors shadow-sm"
                       onClick={() => window.open(project.liveUrl!, "_blank")}
                     >
                       Visit live system
@@ -659,16 +659,16 @@ export default function ProjectDetails() {
                 {project.pdfUrl && (
                   <button
                     onClick={() => window.open(project.pdfUrl!, "_blank")}
-                    className="group w-full rounded-2xl border border-[#E0EEE0] dark:border-border bg-card p-6 text-left transition-all hover:border-[#228B22]/50 hover:shadow-md cursor-pointer"
+                    className="group w-full rounded-2xl border border-[#F6EBD3] dark:border-border bg-card p-6 text-left transition-all hover:border-[#0B4F3E]/50 hover:shadow-md cursor-pointer"
                   >
-                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22]">
+                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E]">
                       <FileText className="h-5 w-5" />
                     </div>
                     <h3 className="text-base font-bold text-foreground">Project presentation</h3>
                     <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
                       Download the technical specifications, architectural diagrams, and project deck.
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#228B22]">
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0B4F3E]">
                       Download PDF deck
                       <Download className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
                     </span>
@@ -676,8 +676,8 @@ export default function ProjectDetails() {
                 )}
 
                 {/* Engineering Consultation Card */}
-                <div className="rounded-2xl border border-[#E0EEE0] dark:border-border bg-card p-6 shadow-2xs">
-                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] mb-3">
+                <div className="rounded-2xl border border-[#F6EBD3] dark:border-border bg-card p-6 shadow-2xs">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] mb-3">
                     <Layers className="h-5 w-5" />
                   </div>
                   <h3 className="text-base font-bold text-foreground">Discuss a similar solution</h3>
@@ -687,15 +687,15 @@ export default function ProjectDetails() {
 
                   <ul className="mt-4 space-y-2 text-xs text-foreground/85 border-t border-border/60 pt-3">
                     <li className="flex items-center gap-2">
-                      <Check className="h-3.5 w-3.5 text-[#228B22]" />
+                      <Check className="h-3.5 w-3.5 text-[#0B4F3E]" />
                       Full code & IP ownership
                     </li>
                     <li className="flex items-center gap-2">
-                      <Check className="h-3.5 w-3.5 text-[#228B22]" />
+                      <Check className="h-3.5 w-3.5 text-[#0B4F3E]" />
                       Confidential NDA protection
                     </li>
                     <li className="flex items-center gap-2">
-                      <Check className="h-3.5 w-3.5 text-[#228B22]" />
+                      <Check className="h-3.5 w-3.5 text-[#0B4F3E]" />
                       Direct senior developer consultation
                     </li>
                   </ul>

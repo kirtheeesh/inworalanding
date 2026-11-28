@@ -85,11 +85,11 @@ export default function AboutPage() {
 
       <main className="flex-1">
         {/* About Hero */}
-        <section className="relative overflow-hidden pt-28 md:pt-36 pb-16 md:pb-24 border-b border-border bg-gradient-to-b from-[#E0EEE0]/35 via-background to-background dark:from-[#228B22]/10 dark:via-background dark:to-background">
+        <section className="relative overflow-hidden pt-28 md:pt-36 pb-16 md:pb-24 border-b border-border bg-gradient-to-b from-[#F6EBD3]/35 via-background to-background dark:from-[#0B4F3E]/10 dark:via-background dark:to-background">
           {/* Organic Mint Wave Accents */}
           <svg
             aria-hidden
-            className="pointer-events-none absolute -top-12 -left-12 w-80 md:w-[28rem] text-[#E0EEE0]/80 dark:text-[#228B22]/10 z-0 opacity-80"
+            className="pointer-events-none absolute -top-12 -left-12 w-80 md:w-[28rem] text-[#F6EBD3]/80 dark:text-[#0B4F3E]/10 z-0 opacity-80"
             viewBox="0 0 400 400"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@ export default function AboutPage() {
           </svg>
           <svg
             aria-hidden
-            className="pointer-events-none absolute -top-12 -right-12 w-80 md:w-[28rem] text-[#E0EEE0]/75 dark:text-[#228B22]/10 z-0 opacity-75"
+            className="pointer-events-none absolute -top-12 -right-12 w-80 md:w-[28rem] text-[#F6EBD3]/75 dark:text-[#0B4F3E]/10 z-0 opacity-75"
             viewBox="0 0 400 400"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -117,9 +117,9 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 rounded-full border border-[#228B22]/20 bg-[#E0EEE0]/80 dark:bg-[#228B22]/15 px-3.5 py-1 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c] mb-6"
+              className="inline-flex items-center gap-2 rounded-full border border-[#0B4F3E]/20 bg-[#F6EBD3]/80 dark:bg-[#0B4F3E]/15 px-3.5 py-1 text-xs font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-6"
             >
-              <Sparkles className="h-3.5 w-3.5 text-[#228B22]" />
+              <Sparkles className="h-3.5 w-3.5 text-[#0B4F3E]" />
               About Inwora Technologies
             </motion.div>
 
@@ -130,7 +130,7 @@ export default function AboutPage() {
               className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.08]"
             >
               Built on innovation,{" "}
-              <span className="text-[#228B22] dark:text-[#3cd43c] block sm:inline">
+              <span className="text-[#0B4F3E] dark:text-[#5CC9A7] block sm:inline">
                 driven by purpose
               </span>
             </motion.h1>

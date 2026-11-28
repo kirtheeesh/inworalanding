@@ -105,22 +105,22 @@ export default function WhyChoose() {
             <motion.div
               key={item.title}
               {...fadeUpDelay(i)}
-              className="group relative flex flex-col justify-between rounded-2xl border border-[#E0EEE0] dark:border-border bg-card p-6 sm:p-7 shadow-xs hover:border-[#228B22]/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="group relative flex flex-col justify-between rounded-2xl border border-[#F6EBD3] dark:border-border bg-card p-6 sm:p-7 shadow-xs hover:border-[#0B4F3E]/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               data-testid={`card-why-${i}`}
             >
               <div>
                 {/* Header: Icon & Category tag */}
                 <div className="mb-5 flex items-center justify-between">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] group-hover:scale-105 transition-all duration-200">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] group-hover:scale-105 transition-all duration-200">
                     <item.icon className="h-6 w-6" />
                   </div>
-                  <span className="rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-3 py-1 font-mono text-[10px] font-bold tracking-wider text-[#185e18] dark:text-[#8ce68c] uppercase">
+                  <span className="rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-3 py-1 font-mono text-[10px] font-bold tracking-wider text-[#083A2E] dark:text-[#9FD9C4] uppercase">
                     {item.category}
                   </span>
                 </div>
 
                 {/* Title & Description */}
-                <h3 className="mb-2 text-lg font-bold text-foreground group-hover:text-[#228B22] transition-colors">
+                <h3 className="mb-2 text-lg font-bold text-foreground group-hover:text-[#0B4F3E] transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-muted-foreground mb-6">
@@ -134,7 +134,7 @@ export default function WhyChoose() {
                       key={feature}
                       className="flex items-center gap-2.5 text-xs sm:text-sm text-foreground/90 font-medium"
                     >
-                      <CheckCircle2 className="h-4 w-4 text-[#228B22] flex-shrink-0" />
+                      <CheckCircle2 className="h-4 w-4 text-[#0B4F3E] flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -144,7 +144,7 @@ export default function WhyChoose() {
               {/* Bottom Outcome Metric */}
               <div className="pt-4 border-t border-border/70 flex items-center justify-between text-xs">
                 <span className="text-muted-foreground font-medium">Key Outcome</span>
-                <span className="inline-flex items-center gap-1.5 font-bold text-[#228B22]">
+                <span className="inline-flex items-center gap-1.5 font-bold text-[#0B4F3E]">
                   <Sparkles className="h-3.5 w-3.5" />
                   {item.metric}
                 </span>

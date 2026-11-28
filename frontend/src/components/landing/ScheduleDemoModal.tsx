@@ -74,7 +74,7 @@ export default function ScheduleDemoModal() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: 12 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 w-full max-w-md rounded-3xl border border-[#E0EEE0] dark:border-border bg-card p-6 sm:p-7 shadow-2xl"
+            className="relative z-10 w-full max-w-md rounded-3xl border border-[#F6EBD3] dark:border-border bg-card p-6 sm:p-7 shadow-2xl"
           >
             <button
               onClick={() => setIsOpen(false)}
@@ -85,7 +85,7 @@ export default function ScheduleDemoModal() {
             </button>
 
             <div className="mb-6">
-              <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22]">
+              <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E]">
                 <Calendar className="h-5 w-5" />
               </div>
               <h3 className="text-2xl font-extrabold tracking-tight text-foreground">
@@ -99,7 +99,7 @@ export default function ScheduleDemoModal() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  <Boxes className="h-3.5 w-3.5 text-[#228B22]" />
+                  <Boxes className="h-3.5 w-3.5 text-[#0B4F3E]" />
                   Product of Interest
                 </label>
                 <select
@@ -117,7 +117,7 @@ export default function ScheduleDemoModal() {
 
               <div>
                 <label className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  <Calendar className="h-3.5 w-3.5 text-[#228B22]" />
+                  <Calendar className="h-3.5 w-3.5 text-[#0B4F3E]" />
                   Preferred Date
                 </label>
                 <input
@@ -131,7 +131,7 @@ export default function ScheduleDemoModal() {
 
               <div>
                 <label className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  <Clock className="h-3.5 w-3.5 text-[#228B22]" />
+                  <Clock className="h-3.5 w-3.5 text-[#0B4F3E]" />
                   Preferred Time
                 </label>
                 <input

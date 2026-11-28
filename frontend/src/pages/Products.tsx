@@ -74,11 +74,11 @@ export default function ProductsPage() {
 
       <main className="flex-1">
         {/* Products Hero */}
-        <section className="relative overflow-hidden pt-28 md:pt-36 pb-16 md:pb-24 border-b border-border bg-gradient-to-b from-[#E0EEE0]/35 via-background to-background dark:from-[#228B22]/10 dark:via-background dark:to-background">
+        <section className="relative overflow-hidden pt-28 md:pt-36 pb-16 md:pb-24 border-b border-border bg-gradient-to-b from-[#F6EBD3]/35 via-background to-background dark:from-[#0B4F3E]/10 dark:via-background dark:to-background">
           {/* Organic Mint Wave Accents */}
           <svg
             aria-hidden
-            className="pointer-events-none absolute -top-12 -left-12 w-80 md:w-[28rem] text-[#E0EEE0]/80 dark:text-[#228B22]/10 z-0 opacity-80"
+            className="pointer-events-none absolute -top-12 -left-12 w-80 md:w-[28rem] text-[#F6EBD3]/80 dark:text-[#0B4F3E]/10 z-0 opacity-80"
             viewBox="0 0 400 400"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ export default function ProductsPage() {
           </svg>
           <svg
             aria-hidden
-            className="pointer-events-none absolute -top-12 -right-12 w-80 md:w-[28rem] text-[#E0EEE0]/75 dark:text-[#228B22]/10 z-0 opacity-75"
+            className="pointer-events-none absolute -top-12 -right-12 w-80 md:w-[28rem] text-[#F6EBD3]/75 dark:text-[#0B4F3E]/10 z-0 opacity-75"
             viewBox="0 0 400 400"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -106,9 +106,9 @@ export default function ProductsPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 rounded-full border border-[#228B22]/20 bg-[#E0EEE0]/80 dark:bg-[#228B22]/15 px-3.5 py-1 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c] mb-6 shadow-2xs"
+              className="inline-flex items-center gap-2 rounded-full border border-[#0B4F3E]/20 bg-[#F6EBD3]/80 dark:bg-[#0B4F3E]/15 px-3.5 py-1 text-xs font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-6 shadow-2xs"
             >
-              <Boxes className="h-3.5 w-3.5 text-[#228B22]" />
+              <Boxes className="h-3.5 w-3.5 text-[#0B4F3E]" />
               INWORA Proprietary Product Suite
             </motion.div>
 
@@ -119,7 +119,7 @@ export default function ProductsPage() {
               className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.08]"
             >
               Enterprise Software &{" "}
-              <span className="text-[#228B22] dark:text-[#3cd43c] block sm:inline">
+              <span className="text-[#0B4F3E] dark:text-[#5CC9A7] block sm:inline">
                 Unified Business ERP
               </span>
             </motion.h1>
@@ -173,14 +173,14 @@ export default function ProductsPage() {
                       className={cn(
                         "group relative flex flex-col rounded-2xl border bg-card p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl",
                         product.featured
-                          ? "border-[#228B22]/60 ring-2 ring-[#228B22]/20 shadow-md shadow-[#228B22]/10"
-                          : "border-[#E0EEE0] dark:border-border/70 hover:border-[#228B22]/50"
+                          ? "border-[#0B4F3E]/60 ring-2 ring-[#0B4F3E]/20 shadow-md shadow-[#0B4F3E]/10"
+                          : "border-[#F6EBD3] dark:border-border/70 hover:border-[#0B4F3E]/50"
                       )}
                     >
                       {/* Card Header */}
                       <div className="mb-5 flex items-start justify-between gap-3">
                         {hasImage ? (
-                          <div className="h-14 w-20 overflow-hidden rounded-xl border border-[#E0EEE0] dark:border-border bg-muted shadow-2xs">
+                          <div className="h-14 w-20 overflow-hidden rounded-xl border border-[#F6EBD3] dark:border-border bg-muted shadow-2xs">
                             <img
                               src={product.image}
                               alt={product.title}
@@ -190,17 +190,17 @@ export default function ProductsPage() {
                             />
                           </div>
                         ) : (
-                          <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] shadow-2xs">
+                          <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] shadow-2xs">
                             <Icon className="h-6 w-6" />
                           </div>
                         )}
 
                         {product.featured ? (
-                          <span className="rounded-full bg-[#228B22] px-3 py-1 text-[11px] font-semibold text-white shadow-xs">
+                          <span className="rounded-full bg-[#0B4F3E] px-3 py-1 text-[11px] font-semibold text-white shadow-xs">
                             Most popular
                           </span>
                         ) : product.badge ? (
-                          <span className="rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-2.5 py-1 text-[11px] font-medium text-[#165b16] dark:text-[#8ce68c]">
+                          <span className="rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-2.5 py-1 text-[11px] font-medium text-[#083A2E] dark:text-[#9FD9C4]">
                             {product.badge}
                           </span>
                         ) : null}
@@ -210,7 +210,7 @@ export default function ProductsPage() {
                         {product.title}
                       </h3>
                       {product.subtitle && (
-                        <p className="mt-1 text-sm font-semibold text-[#228B22] dark:text-[#8ce68c]">
+                        <p className="mt-1 text-sm font-semibold text-[#0B4F3E] dark:text-[#9FD9C4]">
                           {product.subtitle}
                         </p>
                       )}
@@ -225,7 +225,7 @@ export default function ProductsPage() {
                         <ul className="mt-5 mb-5 space-y-2 border-t border-border/60 pt-4">
                           {product.features.slice(0, 4).map((f) => (
                             <li key={f} className="flex items-start gap-2 text-xs sm:text-sm text-foreground/90">
-                              <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-[#228B22]" />
+                              <Check className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-[#0B4F3E]" />
                               <span className="line-clamp-1">{f}</span>
                             </li>
                           ))}
@@ -239,9 +239,9 @@ export default function ProductsPage() {
                             href={product.playStoreUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 rounded-full border border-[#E0EEE0] dark:border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground hover:border-[#228B22]/40"
+                            className="inline-flex items-center gap-1.5 rounded-full border border-[#F6EBD3] dark:border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground hover:border-[#0B4F3E]/40"
                           >
-                            <SiGoogleplay className="h-3.5 w-3.5 text-[#228B22]" />
+                            <SiGoogleplay className="h-3.5 w-3.5 text-[#0B4F3E]" />
                             Google Play
                           </a>
                         )}
@@ -250,15 +250,15 @@ export default function ProductsPage() {
                             href={product.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 rounded-full border border-[#E0EEE0] dark:border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground hover:border-[#228B22]/40"
+                            className="inline-flex items-center gap-1.5 rounded-full border border-[#F6EBD3] dark:border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground hover:border-[#0B4F3E]/40"
                           >
-                            <span className="h-1.5 w-1.5 rounded-full bg-[#228B22]" />
+                            <span className="h-1.5 w-1.5 rounded-full bg-[#0B4F3E]" />
                             {hostOf(product.liveUrl)}
                           </a>
                         ) : (
                           !product.playStoreUrl && (
-                            <span className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-[#E0EEE0] dark:border-border px-3 py-1 text-xs font-medium text-muted-foreground">
-                              <span className="h-1.5 w-1.5 rounded-full bg-[#228B22]" />
+                            <span className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-[#F6EBD3] dark:border-border px-3 py-1 text-xs font-medium text-muted-foreground">
+                              <span className="h-1.5 w-1.5 rounded-full bg-[#0B4F3E]" />
                               Demo on request
                             </span>
                           )
@@ -305,16 +305,16 @@ export default function ProductsPage() {
         </section>
 
         {/* Unified Business ERP Feature Spotlight (SEO & Readable Points) */}
-        <section className="py-16 md:py-24 border-t border-[#E0EEE0] dark:border-border/80 bg-gradient-to-b from-[#E0EEE0]/20 via-background to-background dark:from-[#228B22]/10 dark:via-background dark:to-background">
+        <section className="py-16 md:py-24 border-t border-[#F6EBD3] dark:border-border/80 bg-gradient-to-b from-[#F6EBD3]/20 via-background to-background dark:from-[#0B4F3E]/10 dark:via-background dark:to-background">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#228B22]/20 bg-[#E0EEE0] dark:bg-primary/20 px-3.5 py-1 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c] mb-4 shadow-2xs">
-                <Boxes className="h-3.5 w-3.5 text-[#228B22]" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#0B4F3E]/20 bg-[#F6EBD3] dark:bg-primary/20 px-3.5 py-1 text-xs font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-4 shadow-2xs">
+                <Boxes className="h-3.5 w-3.5 text-[#0B4F3E]" />
                 Flagship Enterprise Solution
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]">
                 Unified Business ERP:{" "}
-                <span className="text-[#228B22] dark:text-[#3cd43c]">
+                <span className="text-[#0B4F3E] dark:text-[#5CC9A7]">
                   Your Complete Operations Command Center
                 </span>
               </h2>
@@ -327,7 +327,7 @@ export default function ProductsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
               {/* Left Column: Authentic UI Mockup Preview */}
               <div className="lg:col-span-6 flex flex-col gap-4">
-                <div className="relative group overflow-hidden rounded-2xl border border-[#E0EEE0] dark:border-border bg-card shadow-2xl">
+                <div className="relative group overflow-hidden rounded-2xl border border-[#F6EBD3] dark:border-border bg-card shadow-2xl">
                   {/* Window Bar */}
                   <div className="flex items-center justify-between border-b border-border/80 bg-muted/60 px-4 py-2.5">
                     <div className="flex items-center gap-2">
@@ -336,7 +336,7 @@ export default function ProductsPage() {
                       <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
                     </div>
                     <span className="text-[11px] font-mono text-muted-foreground">app.inwora.com/erp/dashboard</span>
-                    <span className="rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#185e18] dark:text-[#8ce68c]">
+                    <span className="rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#083A2E] dark:text-[#9FD9C4]">
                       Live SaaS
                     </span>
                   </div>
@@ -423,9 +423,9 @@ export default function ProductsPage() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="flex flex-col p-4 rounded-xl border border-[#E0EEE0] dark:border-border/70 bg-card hover:border-[#228B22]/40 transition-all hover:shadow-md"
+                    className="flex flex-col p-4 rounded-xl border border-[#F6EBD3] dark:border-border/70 bg-card hover:border-[#0B4F3E]/40 transition-all hover:shadow-md"
                   >
-                    <span className="inline-block self-start rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#185e18] dark:text-[#8ce68c] mb-2">
+                    <span className="inline-block self-start rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-2">
                       {item.tag}
                     </span>
                     <h3 className="text-sm font-bold text-foreground mb-1.5">{item.title}</h3>
@@ -438,16 +438,16 @@ export default function ProductsPage() {
         </section>
 
         {/* POS & KOT Software Feature Spotlight */}
-        <section className="py-16 md:py-24 border-t border-[#E0EEE0] dark:border-border/80 bg-background">
+        <section className="py-16 md:py-24 border-t border-[#F6EBD3] dark:border-border/80 bg-background">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#228B22]/20 bg-[#E0EEE0] dark:bg-primary/20 px-3.5 py-1 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c] mb-4 shadow-2xs">
-                <Monitor className="h-3.5 w-3.5 text-[#228B22]" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#0B4F3E]/20 bg-[#F6EBD3] dark:bg-primary/20 px-3.5 py-1 text-xs font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-4 shadow-2xs">
+                <Monitor className="h-3.5 w-3.5 text-[#0B4F3E]" />
                 Restaurant &amp; Dining SaaS
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]">
                 POS &amp; KOT Software:{" "}
-                <span className="text-[#228B22] dark:text-[#3cd43c]">
+                <span className="text-[#0B4F3E] dark:text-[#5CC9A7]">
                   Lightning-Fast Restaurant Billing &amp; Kitchen Workflows
                 </span>
               </h2>
@@ -494,9 +494,9 @@ export default function ProductsPage() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="flex flex-col p-4 rounded-xl border border-[#E0EEE0] dark:border-border/70 bg-card hover:border-[#228B22]/40 transition-all hover:shadow-md"
+                    className="flex flex-col p-4 rounded-xl border border-[#F6EBD3] dark:border-border/70 bg-card hover:border-[#0B4F3E]/40 transition-all hover:shadow-md"
                   >
-                    <span className="inline-block self-start rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#185e18] dark:text-[#8ce68c] mb-2">
+                    <span className="inline-block self-start rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-2">
                       {item.tag}
                     </span>
                     <h3 className="text-sm font-bold text-foreground mb-1.5">{item.title}</h3>
@@ -507,7 +507,7 @@ export default function ProductsPage() {
 
               {/* Right Column: Authentic UI Mockup Preview */}
               <div className="lg:col-span-6 flex flex-col gap-4 order-1 lg:order-2">
-                <div className="relative group overflow-hidden rounded-2xl border border-[#E0EEE0] dark:border-border bg-card shadow-2xl">
+                <div className="relative group overflow-hidden rounded-2xl border border-[#F6EBD3] dark:border-border bg-card shadow-2xl">
                   {/* Window Bar */}
                   <div className="flex items-center justify-between border-b border-border/80 bg-muted/60 px-4 py-2.5">
                     <div className="flex items-center gap-2">
@@ -516,7 +516,7 @@ export default function ProductsPage() {
                       <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
                     </div>
                     <span className="text-[11px] font-mono text-muted-foreground">app.inwora.com/pos-kot</span>
-                    <span className="rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#185e18] dark:text-[#8ce68c]">
+                    <span className="rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#083A2E] dark:text-[#9FD9C4]">
                       Live SaaS
                     </span>
                   </div>
@@ -571,16 +571,16 @@ export default function ProductsPage() {
         </section>
 
         {/* Construction Management Feature Spotlight */}
-        <section className="py-16 md:py-24 border-t border-[#E0EEE0] dark:border-border/80 bg-gradient-to-b from-[#E0EEE0]/20 via-background to-background dark:from-[#228B22]/10 dark:via-background dark:to-background">
+        <section className="py-16 md:py-24 border-t border-[#F6EBD3] dark:border-border/80 bg-gradient-to-b from-[#F6EBD3]/20 via-background to-background dark:from-[#0B4F3E]/10 dark:via-background dark:to-background">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#228B22]/20 bg-[#E0EEE0] dark:bg-primary/20 px-3.5 py-1 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c] mb-4 shadow-2xs">
-                <HardHat className="h-3.5 w-3.5 text-[#228B22]" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#0B4F3E]/20 bg-[#F6EBD3] dark:bg-primary/20 px-3.5 py-1 text-xs font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-4 shadow-2xs">
+                <HardHat className="h-3.5 w-3.5 text-[#0B4F3E]" />
                 Infrastructure &amp; Site Operations ERP
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]">
                 Construction Management:{" "}
-                <span className="text-[#228B22] dark:text-[#3cd43c]">
+                <span className="text-[#0B4F3E] dark:text-[#5CC9A7]">
                   Every Site Account, Material &amp; Movement in One Step
                 </span>
               </h2>
@@ -593,7 +593,7 @@ export default function ProductsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
               {/* Left Column: Authentic UI Mockup Preview */}
               <div className="lg:col-span-6 flex flex-col gap-4">
-                <div className="relative group overflow-hidden rounded-2xl border border-[#E0EEE0] dark:border-border bg-card shadow-2xl">
+                <div className="relative group overflow-hidden rounded-2xl border border-[#F6EBD3] dark:border-border bg-card shadow-2xl">
                   {/* Window Bar */}
                   <div className="flex items-center justify-between border-b border-border/80 bg-muted/60 px-4 py-2.5">
                     <div className="flex items-center gap-2">
@@ -602,7 +602,7 @@ export default function ProductsPage() {
                       <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
                     </div>
                     <span className="text-[11px] font-mono text-muted-foreground">construction.inwora.com</span>
-                    <span className="rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#185e18] dark:text-[#8ce68c]">
+                    <span className="rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#083A2E] dark:text-[#9FD9C4]">
                       Live SaaS
                     </span>
                   </div>
@@ -689,9 +689,9 @@ export default function ProductsPage() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="flex flex-col p-4 rounded-xl border border-[#E0EEE0] dark:border-border/70 bg-card hover:border-[#228B22]/40 transition-all hover:shadow-md"
+                    className="flex flex-col p-4 rounded-xl border border-[#F6EBD3] dark:border-border/70 bg-card hover:border-[#0B4F3E]/40 transition-all hover:shadow-md"
                   >
-                    <span className="inline-block self-start rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#185e18] dark:text-[#8ce68c] mb-2">
+                    <span className="inline-block self-start rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-2">
                       {item.tag}
                     </span>
                     <h3 className="text-sm font-bold text-foreground mb-1.5">{item.title}</h3>
@@ -704,16 +704,16 @@ export default function ProductsPage() {
         </section>
 
         {/* Factory Management Feature Spotlight */}
-        <section className="py-16 md:py-24 border-t border-[#E0EEE0] dark:border-border/80 bg-background">
+        <section className="py-16 md:py-24 border-t border-[#F6EBD3] dark:border-border/80 bg-background">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#228B22]/20 bg-[#E0EEE0] dark:bg-primary/20 px-3.5 py-1 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c] mb-4 shadow-2xs">
-                <Factory className="h-3.5 w-3.5 text-[#228B22]" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#0B4F3E]/20 bg-[#F6EBD3] dark:bg-primary/20 px-3.5 py-1 text-xs font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-4 shadow-2xs">
+                <Factory className="h-3.5 w-3.5 text-[#0B4F3E]" />
                 Manufacturing &amp; MES Operations
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]">
                 Factory Management:{" "}
-                <span className="text-[#228B22] dark:text-[#3cd43c]">
+                <span className="text-[#0B4F3E] dark:text-[#5CC9A7]">
                   Raw Material to Dispatch in a Single Click
                 </span>
               </h2>
@@ -760,9 +760,9 @@ export default function ProductsPage() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="flex flex-col p-4 rounded-xl border border-[#E0EEE0] dark:border-border/70 bg-card hover:border-[#228B22]/40 transition-all hover:shadow-md"
+                    className="flex flex-col p-4 rounded-xl border border-[#F6EBD3] dark:border-border/70 bg-card hover:border-[#0B4F3E]/40 transition-all hover:shadow-md"
                   >
-                    <span className="inline-block self-start rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#185e18] dark:text-[#8ce68c] mb-2">
+                    <span className="inline-block self-start rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-2">
                       {item.tag}
                     </span>
                     <h3 className="text-sm font-bold text-foreground mb-1.5">{item.title}</h3>
@@ -773,7 +773,7 @@ export default function ProductsPage() {
 
               {/* Right Column: Authentic UI Mockup Preview */}
               <div className="lg:col-span-6 flex flex-col gap-4 order-1 lg:order-2">
-                <div className="relative group overflow-hidden rounded-2xl border border-[#E0EEE0] dark:border-border bg-card shadow-2xl">
+                <div className="relative group overflow-hidden rounded-2xl border border-[#F6EBD3] dark:border-border bg-card shadow-2xl">
                   {/* Window Bar */}
                   <div className="flex items-center justify-between border-b border-border/80 bg-muted/60 px-4 py-2.5">
                     <div className="flex items-center gap-2">
@@ -782,7 +782,7 @@ export default function ProductsPage() {
                       <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
                     </div>
                     <span className="text-[11px] font-mono text-muted-foreground">factory.inwora.com</span>
-                    <span className="rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#185e18] dark:text-[#8ce68c]">
+                    <span className="rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-[#083A2E] dark:text-[#9FD9C4]">
                       Live SaaS
                     </span>
                   </div>
@@ -840,8 +840,8 @@ export default function ProductsPage() {
         <section className="py-12 border-t border-border/60 bg-muted/20">
           <div className="container mx-auto px-4 md:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="flex items-start gap-4 p-5 rounded-2xl border border-[#E0EEE0] dark:border-border bg-card">
-                <div className="h-10 w-10 rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-4 p-5 rounded-2xl border border-[#F6EBD3] dark:border-border bg-card">
+                <div className="h-10 w-10 rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] flex items-center justify-center flex-shrink-0">
                   <Zap className="h-5 w-5" />
                 </div>
                 <div>
@@ -852,8 +852,8 @@ export default function ProductsPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-5 rounded-2xl border border-[#E0EEE0] dark:border-border bg-card">
-                <div className="h-10 w-10 rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-4 p-5 rounded-2xl border border-[#F6EBD3] dark:border-border bg-card">
+                <div className="h-10 w-10 rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] flex items-center justify-center flex-shrink-0">
                   <Cloud className="h-5 w-5" />
                 </div>
                 <div>
@@ -864,8 +864,8 @@ export default function ProductsPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-5 rounded-2xl border border-[#E0EEE0] dark:border-border bg-card">
-                <div className="h-10 w-10 rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-4 p-5 rounded-2xl border border-[#F6EBD3] dark:border-border bg-card">
+                <div className="h-10 w-10 rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] flex items-center justify-center flex-shrink-0">
                   <RefreshCw className="h-5 w-5" />
                 </div>
                 <div>
@@ -880,15 +880,15 @@ export default function ProductsPage() {
         </section>
 
         {/* White-Label & Enterprise Customization Banner */}
-        <section className="py-16 border-y border-[#E0EEE0] dark:border-border bg-gradient-to-b from-[#E0EEE0]/30 to-background dark:from-[#228B22]/10 dark:to-background">
+        <section className="py-16 border-y border-[#F6EBD3] dark:border-border bg-gradient-to-b from-[#F6EBD3]/30 to-background dark:from-[#0B4F3E]/10 dark:to-background">
           <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E0EEE0] dark:bg-primary/20 px-3.5 py-1 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c] mb-4">
-              <Sparkles className="h-3.5 w-3.5 text-[#228B22]" />
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#F6EBD3] dark:bg-primary/20 px-3.5 py-1 text-xs font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-4">
+              <Sparkles className="h-3.5 w-3.5 text-[#0B4F3E]" />
               Custom Enterprise Deployment
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
               Need a custom white-label deployment for{" "}
-              <span className="text-[#228B22] dark:text-[#3cd43c]">your brand?</span>
+              <span className="text-[#0B4F3E] dark:text-[#5CC9A7]">your brand?</span>
             </h2>
             <p className="mt-4 text-sm md:text-base leading-relaxed text-muted-foreground max-w-xl mx-auto">
               Every INWORA product can be rebranded with your company logo, configured with your custom domain, integrated with your existing ERP/CRM databases, and deployed on dedicated infrastructure.

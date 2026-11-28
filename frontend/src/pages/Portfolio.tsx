@@ -124,7 +124,7 @@ export default function Portfolio() {
           <div className="relative">
             <svg
               aria-hidden="true"
-              className="pointer-events-none absolute -top-16 -left-12 w-80 md:w-[28rem] text-[#E0EEE0]/80 dark:text-[#228B22]/10 z-0 opacity-80"
+              className="pointer-events-none absolute -top-16 -left-12 w-80 md:w-[28rem] text-[#F6EBD3]/80 dark:text-[#0B4F3E]/10 z-0 opacity-80"
               viewBox="0 0 400 400"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -142,13 +142,13 @@ export default function Portfolio() {
               transition={{ duration: 0.5 }}
               className="max-w-3xl relative z-10"
             >
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#228B22]/20 bg-[#E0EEE0]/80 dark:bg-[#228B22]/15 px-3.5 py-1 text-xs font-semibold text-[#185e18] dark:text-[#8ce68c] mb-4">
-                <Code2 className="h-3.5 w-3.5 text-[#228B22]" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#0B4F3E]/20 bg-[#F6EBD3]/80 dark:bg-[#0B4F3E]/15 px-3.5 py-1 text-xs font-semibold text-[#083A2E] dark:text-[#9FD9C4] mb-4">
+                <Code2 className="h-3.5 w-3.5 text-[#0B4F3E]" />
                 Selected Case Studies &amp; Technical Work
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-tight text-foreground">
                 Our Work &amp;{" "}
-                <span className="text-[#228B22] dark:text-[#3cd43c]">Technical Expertise</span>
+                <span className="text-[#0B4F3E] dark:text-[#5CC9A7]">Technical Expertise</span>
               </h1>
               <p className="mt-5 text-base md:text-lg leading-relaxed text-muted-foreground">
                 Explore selected projects that demonstrate our approach to software development, business applications, automation and technology solutions.
@@ -161,9 +161,9 @@ export default function Portfolio() {
             {portfolioPillars.map((v) => (
               <div
                 key={v.title}
-                className="rounded-2xl border border-[#E0EEE0] dark:border-border/60 bg-card p-6 shadow-2xs hover:shadow-md hover:border-[#228B22]/40 transition-all duration-200"
+                className="rounded-2xl border border-[#F6EBD3] dark:border-border/60 bg-card p-6 shadow-2xs hover:shadow-md hover:border-[#0B4F3E]/40 transition-all duration-200"
               >
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22]">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E]">
                   <v.icon className="h-5 w-5" />
                 </div>
                 <h3 className="mb-1.5 text-base font-bold text-foreground">{v.title}</h3>
@@ -192,7 +192,7 @@ export default function Portfolio() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search projects or technologies..."
-                  className="w-full rounded-full border border-[#E0EEE0] dark:border-border bg-card pl-10 pr-9 py-2 text-xs sm:text-sm text-foreground outline-none transition-colors focus:border-[#228B22] focus:ring-2 focus:ring-[#228B22]/20"
+                  className="w-full rounded-full border border-[#F6EBD3] dark:border-border bg-card pl-10 pr-9 py-2 text-xs sm:text-sm text-foreground outline-none transition-colors focus:border-[#0B4F3E] focus:ring-2 focus:ring-[#0B4F3E]/20"
                 />
                 {searchQuery && (
                   <button
@@ -223,7 +223,7 @@ export default function Portfolio() {
                           "inline-flex flex-shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-xs sm:text-sm font-medium transition-all cursor-pointer",
                           active
                             ? "brand-btn-primary shadow-md"
-                            : "border border-[#E0EEE0] dark:border-border bg-card text-muted-foreground hover:border-[#228B22]/40 hover:text-foreground"
+                            : "border border-[#F6EBD3] dark:border-border bg-card text-muted-foreground hover:border-[#0B4F3E]/40 hover:text-foreground"
                         )}
                       >
                         {name === ALL_CATEGORY && <LayoutGrid className="h-3.5 w-3.5" />}
@@ -233,7 +233,7 @@ export default function Portfolio() {
                             "rounded-full px-2 py-0.5 text-[11px] font-semibold leading-none",
                             active
                               ? "bg-white/20 text-white"
-                              : "bg-[#E0EEE0] dark:bg-muted text-[#165b16] dark:text-muted-foreground"
+                              : "bg-[#F6EBD3] dark:bg-muted text-[#083A2E] dark:text-muted-foreground"
                           )}
                         >
                           {count}
@@ -251,7 +251,7 @@ export default function Portfolio() {
                 {Array.from({ length: 4 }).map((_, i) => (
                   <div
                     key={i}
-                    className="rounded-2xl border border-[#E0EEE0] dark:border-border bg-card overflow-hidden"
+                    className="rounded-2xl border border-[#F6EBD3] dark:border-border bg-card overflow-hidden"
                   >
                     <div className="aspect-[16/9] w-full bg-muted animate-pulse" />
                     <div className="p-6 space-y-4">
@@ -312,7 +312,7 @@ export default function Portfolio() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-60px" }}
                         transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.25) }}
-                        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#E0EEE0] dark:border-border/70 bg-card transition-all duration-300 hover:border-[#228B22]/50 hover:shadow-xl hover:shadow-[#228B22]/5 hover:-translate-y-1 cursor-pointer"
+                        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#F6EBD3] dark:border-border/70 bg-card transition-all duration-300 hover:border-[#0B4F3E]/50 hover:shadow-xl hover:shadow-[#0B4F3E]/5 hover:-translate-y-1 cursor-pointer"
                         data-testid={`portfolio-card-${project.id}`}
                       >
                         {/* Cover Image or Branded Graphical Placeholder */}
@@ -326,11 +326,11 @@ export default function Portfolio() {
                               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                           ) : (
-                            <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#E0EEE0]/60 via-background to-[#E0EEE0]/30 p-6 text-center">
-                              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E0EEE0] text-[#228B22] mb-3 shadow-xs">
+                            <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#F6EBD3]/60 via-background to-[#F6EBD3]/30 p-6 text-center">
+                              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#F6EBD3] text-[#0B4F3E] mb-3 shadow-xs">
                                 <Icon className="h-7 w-7" />
                               </div>
-                              <span className="text-xs font-semibold uppercase tracking-wider text-[#165b16]">
+                              <span className="text-xs font-semibold uppercase tracking-wider text-[#083A2E]">
                                 {project.category}
                               </span>
                               <span className="text-sm font-bold text-foreground mt-1 max-w-xs">
@@ -350,18 +350,18 @@ export default function Portfolio() {
                         {/* Card Content */}
                         <div className="flex flex-1 flex-col p-6 sm:p-7">
                           <div className="mb-4 flex items-start justify-between gap-3">
-                            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#E0EEE0] dark:bg-primary/20 text-[#228B22] group-hover:scale-105 transition-transform">
+                            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F6EBD3] dark:bg-primary/20 text-[#0B4F3E] group-hover:scale-105 transition-transform">
                               <Icon className="h-5 w-5" />
                             </div>
                             {project.liveUrl && (
-                              <span className="inline-flex items-center gap-1 rounded-full bg-[#E0EEE0]/60 px-2.5 py-0.5 text-[10px] font-semibold text-[#185e18]">
-                                <span className="h-1.5 w-1.5 rounded-full bg-[#228B22]" />
+                              <span className="inline-flex items-center gap-1 rounded-full bg-[#F6EBD3]/60 px-2.5 py-0.5 text-[10px] font-semibold text-[#083A2E]">
+                                <span className="h-1.5 w-1.5 rounded-full bg-[#0B4F3E]" />
                                 Live System
                               </span>
                             )}
                           </div>
 
-                          <h3 className="mb-2 text-xl font-bold text-foreground transition-colors group-hover:text-[#228B22]">
+                          <h3 className="mb-2 text-xl font-bold text-foreground transition-colors group-hover:text-[#0B4F3E]">
                             {project.title}
                           </h3>
                           <p className="mb-5 line-clamp-2 text-sm leading-relaxed text-muted-foreground flex-1">
@@ -374,7 +374,7 @@ export default function Portfolio() {
                               {project.tags.slice(0, 3).map((tag) => (
                                 <span
                                   key={tag}
-                                  className="rounded-md border border-[#E0EEE0] dark:border-border bg-background px-2 py-0.5 text-[11px] font-medium text-muted-foreground"
+                                  className="rounded-md border border-[#F6EBD3] dark:border-border bg-background px-2 py-0.5 text-[11px] font-medium text-muted-foreground"
                                 >
                                   {tag}
                                 </span>
@@ -385,7 +385,7 @@ export default function Portfolio() {
                                 </span>
                               )}
                             </div>
-                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#228B22] group-hover:translate-x-1 transition-transform">
+                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#0B4F3E] group-hover:translate-x-1 transition-transform">
                               View Project <ArrowRight className="h-3.5 w-3.5" />
                             </span>
                           </div>
@@ -399,7 +399,7 @@ export default function Portfolio() {
           </div>
 
           {/* Bottom CTA Box */}
-          <div className="relative overflow-hidden mt-24 rounded-3xl border border-[#228B22]/30 bg-gradient-to-br from-[#228B22] via-[#1d7b1d] to-[#155e15] p-10 md:p-14 text-center text-white shadow-xl shadow-[#228B22]/15">
+          <div className="relative overflow-hidden mt-24 rounded-3xl border border-[#0B4F3E]/30 bg-gradient-to-br from-[#0B4F3E] via-[#0F6450] to-[#083A2E] p-10 md:p-14 text-center text-white shadow-xl shadow-[#0B4F3E]/15">
             <div className="relative z-10 max-w-2xl mx-auto">
               <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1 text-xs font-semibold text-white backdrop-blur-sm mb-4">
                 Let's Build Together
@@ -413,7 +413,7 @@ export default function Portfolio() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
                 <Button
                   size="lg"
-                  className="rounded-full bg-[#E0EEE0] hover:bg-white text-[#165b16] font-semibold px-8 h-12 shadow-lg transition-transform hover:scale-105 cursor-pointer"
+                  className="rounded-full bg-[#F6EBD3] hover:bg-white text-[#083A2E] font-semibold px-8 h-12 shadow-lg transition-transform hover:scale-105 cursor-pointer"
                   onClick={() =>
                     openWhatsApp(
                       "https://wa.me/919025728998?text=Hello%20INWORA!%20I%20have%20a%20project%20in%20mind%20and%20would%20like%20to%20discuss%20requirements.",

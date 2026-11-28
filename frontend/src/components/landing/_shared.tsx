@@ -24,8 +24,8 @@ export const fadeUpDelay = (i: number): any => ({
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.18em] text-[#228B22] mb-1">
-      <span className="h-1.5 w-1.5 rounded-full bg-[#228B22]" />
+    <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.18em] text-[#0B4F3E] mb-1">
+      <span className="h-1.5 w-1.5 rounded-full bg-[#F57C00]" />
       {children}
     </span>
   );
