@@ -48,6 +48,8 @@ export interface PageSeo {
   path: string;
   title: string;
   description: string;
+  /** Comma-separated SEO keywords for legacy crawlers and page metadata. */
+  keywords?: string;
   ogTitle?: string;
   ogDescription?: string;
   ogType?: "website" | "article";
@@ -77,6 +79,8 @@ const HOME: PageSeo = {
   title: "Inwora Technologies | ERP, POS & KOT Software Company in Madurai",
   description:
     "Inwora Technologies, Madurai: ERP, POS & KOT, Factory OS and Construction ERP software, custom development, AI solutions, automation and digital marketing.",
+  keywords:
+    "Inwora Technologies, software company in Madurai, ERP software in Madurai, POS and KOT software, factory management software, construction ERP software, custom software development, business automation",
   ogTitle: "Inwora Technologies — ERP, POS & KOT, AI and Business Automation",
   ogDescription:
     "ERP, POS & KOT, Factory OS, Construction ERP, custom software, AI video marketing, digital marketing and digital invitations. Innovate. Automate. Scale.",
@@ -87,6 +91,8 @@ const SERVICES: PageSeo = {
   title: "Custom Software Development & IT Services in Tamil Nadu | Inwora",
   description:
     "Custom software development, application maintenance, QA test automation, IT outsourcing and API integration services from Inwora Technologies, Madurai.",
+  keywords:
+    "custom software development in Madurai, web application development, mobile app development, business automation, IT outsourcing, application maintenance, QA test automation, API integration",
   ogTitle: "Software Development & IT Services | Inwora Technologies",
   breadcrumbs: [
     { name: "Home", path: "/" },
@@ -138,6 +144,8 @@ const PRODUCTS: PageSeo = {
   title: "ERP, POS & KOT, Factory & Construction Software | Inwora",
   description:
     "Inwora's business software: Unified Business ERP with GST billing and inventory, restaurant POS & KOT, factory and construction management, and Inwora Daily Gold.",
+  keywords:
+    "ERP software in Madurai, unified business ERP, GST ERP software, restaurant POS software, POS and KOT software, factory management software, manufacturing ERP, construction management software, construction ERP",
   ogTitle: "Business Software Products | Inwora Technologies",
   breadcrumbs: [
     { name: "Home", path: "/" },
@@ -161,6 +169,8 @@ const PORTFOLIO: PageSeo = {
   title: "Software Portfolio & Case Studies | Inwora Technologies",
   description:
     "Case studies of ERP, POS, CRM, e-commerce, jewellery, hospitality and business websites built by Inwora Technologies for clients in Tamil Nadu.",
+  keywords:
+    "Inwora portfolio, software case studies, ERP case study, POS case study, web development portfolio, custom software projects, software company in Tamil Nadu",
   breadcrumbs: [
     { name: "Home", path: "/" },
     { name: "Portfolio", path: "/portfolio" },
@@ -172,6 +182,8 @@ const ABOUT: PageSeo = {
   title: "About Inwora Technologies | Software Company in Madurai",
   description:
     "Inwora Technologies is an independent technology and SaaS company in Madurai, Tamil Nadu: ERP, POS & KOT, Factory OS, Construction ERP, AI and automation.",
+  keywords:
+    "Inwora Technologies, software company in Madurai, SaaS company in Tamil Nadu, ERP development company, custom software company, business automation company",
   breadcrumbs: [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -227,6 +239,7 @@ export function projectSeo(project: ProjectSeoInput): PageSeo {
     path,
     title: `${project.title} — Case Study | Inwora Technologies`,
     description,
+    keywords: `${project.title}, ${project.title} case study, custom software project, software case study Tamil Nadu, Inwora Technologies portfolio`,
     ogType: "article",
     ogImage: image,
     ogImageAlt: image ? `${project.title} by Inwora Technologies` : undefined,

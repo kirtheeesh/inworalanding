@@ -112,7 +112,7 @@ No search volumes, difficulty scores or rankings are included: no keyword tool d
 | AI & marketing | AI video marketing services, AI advertisement video production, digital marketing company in Madurai, business promotional video services | **none** | No page offers these services today. Don't target them until a page describing the real service exists. |
 | Digital invitations | digital invitation, online wedding invitation | `/portfolio/inwora-wishes`; `digitalinvitation.inwora.com` | Subdomain SEO |
 
-Keywords were placed in titles and descriptions naturally, once each. There's no keyword stuffing and no `meta keywords` tag (Google ignores it).
+Keywords were placed in titles and descriptions naturally, once each. Route-specific `meta keywords` tags are included for compatibility. Google mainly uses page content, links and structured data for ranking, so the tag is not treated as a ranking guarantee.
 
 ---
 

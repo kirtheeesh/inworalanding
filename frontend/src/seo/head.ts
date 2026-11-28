@@ -21,6 +21,7 @@ export function resolvePageSeo(page: PageSeo) {
   return {
     title: page.title,
     description: page.description,
+    keywords: page.keywords ?? null,
     canonical: url,
     robots: page.noindex ? ROBOTS_NOINDEX : ROBOTS_INDEX,
     ogType: page.ogType ?? "website",
@@ -41,6 +42,7 @@ export function renderPageHead(page: PageSeo): string {
   const lines = [
     `<title>${esc(s.title)}</title>`,
     `<meta name="description" content="${esc(s.description)}" />`,
+    s.keywords ? `<meta name="keywords" content="${esc(s.keywords)}" />` : "",
     `<meta name="robots" content="${s.robots}" />`,
     page.noindex || page.noCanonical ? "" : `<link rel="canonical" href="${esc(s.canonical)}" />`,
     `<meta property="og:type" content="${s.ogType}" />`,

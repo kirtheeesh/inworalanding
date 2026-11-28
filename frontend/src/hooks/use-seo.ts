@@ -57,6 +57,7 @@ export function useSeo(page: PageSeo | null | undefined) {
     const s = resolvePageSeo(page);
     document.title = s.title;
     upsertMeta("name", "description", s.description);
+    upsertMeta("name", "keywords", s.keywords);
     upsertMeta("name", "robots", s.robots);
     upsertCanonical(page.noindex ? null : s.canonical);
     upsertMeta("property", "og:type", s.ogType);
